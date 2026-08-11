@@ -13,14 +13,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 px-4 pt-3 sm:px-6 md:pt-4">
       <Container as="div">
-        <SailHalo
-          variant="nav"
-          className={cn(
-            "rounded-xl border border-border/70 bg-surface-white/88 shadow-[0_1px_2px_rgba(17,19,24,0.04),0_8px_24px_rgba(17,19,24,0.03)]",
-            "backdrop-blur-md md:rounded-2xl"
-          )}
-        >
-          <div className="flex h-[3.5rem] items-center justify-between gap-6 px-4 sm:h-[3.75rem] sm:px-5 md:px-6">
+        <SailHalo className="rounded-xl md:rounded-2xl">
+          <div className="sail-glass-nav flex h-[3.5rem] items-center justify-between gap-6 rounded-[inherit] px-4 sm:h-[3.75rem] sm:px-5 md:px-6">
             <Wordmark className="text-[15px]" />
 
             <nav

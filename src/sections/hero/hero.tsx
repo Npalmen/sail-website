@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
 import { ctaPrimary, ctaSecondary } from "@/components/shared/cta-styles";
-import { SailHalo } from "@/components/shared/sail-halo";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -12,9 +11,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden bg-surface-canvas">
       <Container className="relative pb-12 sm:pb-16 lg:pb-20 xl:pb-24">
-        {/* Stacked by default; asymmetric overlap only at lg+ */}
         <div className="flex flex-col lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-6">
-          {/* Editorial copy — always first in document order */}
           <div className="relative z-10 pt-8 sm:pt-12 md:pt-14 lg:col-span-5 lg:pt-20 xl:col-span-5 xl:pt-24">
             <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 motion-reduce:animate-none">
               <p className="text-[13px] font-medium tracking-[0.04em] text-muted-foreground">
@@ -41,7 +38,6 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Product stage — follows copy until large desktop */}
           <div
             className={cn(
               "relative z-0 mt-10 sm:mt-12 md:mt-14",
@@ -49,12 +45,9 @@ export function Hero() {
               "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-6 motion-safe:duration-1000 motion-safe:delay-200 motion-reduce:animate-none"
             )}
           >
-            <SailHalo
-              variant="hero"
-              className="rounded-2xl border border-border/50 bg-surface-soft-stone/60 p-3 sm:p-4 md:p-5 lg:p-6"
-            >
+            <div className="rounded-2xl border border-border/35 bg-surface-soft-stone/50 p-3 sm:p-4 md:p-5 lg:p-6">
               <ProductPreview />
-            </SailHalo>
+            </div>
           </div>
         </div>
       </Container>

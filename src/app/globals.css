@@ -20,6 +20,8 @@
   --color-graphite: var(--sail-graphite);
   --color-graphite-hover: var(--sail-graphite-hover);
   --color-warm-white: var(--sail-warm-white);
+  --color-cta-blue: var(--sail-cta-blue);
+  --color-cta-blue-hover: var(--sail-cta-blue-hover);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -68,15 +70,17 @@
   --sail-ink: #111318;
   --sail-graphite: #45433f;
   --sail-graphite-hover: #3a3834;
+  --sail-cta-blue: #3a4a66;
+  --sail-cta-blue-hover: #33425b;
   --sail-slate: #687078;
   --sail-line: #e5e1da;
   --sail-signal: #2864dc;
 
-  /* Halo chromatic family */
-  --halo-steel: #8997a8;
-  --halo-sage: #91a098;
-  --halo-sand: #ada18c;
-  --halo-mauve: #9d929f;
+  /* Halo chromatic family — restrained lens tones */
+  --halo-steel: #8fa3b8;
+  --halo-violet: #a89bb5;
+  --halo-sand: #b8ab96;
+  --halo-cool: #9aa8b4;
 
   /* Surface system */
   --surface-canvas: var(--sail-canvas);
@@ -158,104 +162,177 @@
     animation: none !important;
   }
 
-  .sail-halo__orb {
+  .sail-halo--nav::before,
+  .sail-accent-card::before {
     animation: none !important;
   }
 }
 
-/* ── SailHalo — chromatic orbit effect ── */
+/* ── Premium CTA — frosted dark blue glass ── */
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-weight: 500;
+  color: var(--sail-warm-white);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sail-cta-blue) 88%, white) 0%,
+    var(--sail-cta-blue) 100%
+  );
+  border: 1px solid color-mix(in srgb, white 14%, transparent);
+  box-shadow:
+    0 1px 2px rgba(17, 19, 24, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.btn-cta:hover {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sail-cta-blue-hover) 90%, white) 0%,
+    var(--sail-cta-blue-hover) 100%
+  );
+  box-shadow:
+    0 2px 4px rgba(17, 19, 24, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.btn-cta:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--sail-canvas),
+    0 0 0 4px color-mix(in srgb, var(--sail-cta-blue) 40%, transparent);
+}
+
+.btn-cta--lg {
+  height: 2.5rem;
+  padding-inline: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.btn-cta--sm {
+  height: 2.25rem;
+  padding-inline: 1rem;
+  font-size: 0.8125rem;
+}
+
+/* ── SailHalo — chromatic perimeter (navbar) ── */
 
 .sail-halo {
   --halo-x: 50%;
   --halo-y: 50%;
-  --halo-proximity: 0;
   position: relative;
   isolation: isolate;
+}
+
+.sail-halo--nav {
   overflow: hidden;
 }
 
-.sail-halo__surface {
-  position: relative;
-  z-index: 1;
-}
-
-.sail-halo__orb {
+.sail-halo--nav::before {
+  content: "";
   position: absolute;
-  inset: -20%;
+  inset: 0;
   border-radius: inherit;
-  pointer-events: none;
-  opacity: calc(0.42 + var(--halo-proximity) * 0.22);
-  filter: blur(18px);
-  will-change: transform;
-}
-
-.sail-halo--nav .sail-halo__orb {
-  inset: -30%;
-  filter: blur(14px);
-  opacity: calc(0.5 + var(--halo-proximity) * 0.28);
-}
-
-.sail-halo--hero .sail-halo__orb {
-  inset: -35%;
-  filter: blur(28px);
-  opacity: calc(0.32 + var(--halo-proximity) * 0.18);
-}
-
-.sail-halo__orb--1 {
+  padding: 1px;
   background: conic-gradient(
     from 0deg at var(--halo-x) var(--halo-y),
     transparent 0deg,
-    color-mix(in srgb, var(--halo-steel) 18%, transparent) 55deg,
-    transparent 110deg,
-    color-mix(in srgb, var(--halo-sage) 14%, transparent) 180deg,
-    transparent 240deg,
-    color-mix(in srgb, var(--halo-mauve) 12%, transparent) 300deg,
-    transparent 360deg
+    color-mix(in srgb, var(--halo-steel) 28%, transparent) 40deg,
+    transparent 80deg,
+    color-mix(in srgb, var(--halo-violet) 22%, transparent) 140deg,
+    transparent 200deg,
+    color-mix(in srgb, var(--halo-sand) 24%, transparent) 260deg,
+    transparent 320deg,
+    color-mix(in srgb, var(--halo-cool) 20%, transparent) 360deg
   );
-  animation: sail-halo-drift-1 17s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
+  animation: sail-halo-border-drift 48s linear infinite;
 }
 
-.sail-halo__orb--2 {
+.sail-glass-nav {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--sail-warm-white) 72%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 1px 2px rgba(17, 19, 24, 0.04),
+    0 8px 32px rgba(17, 19, 24, 0.03);
+}
+
+/* ── Card accent — selective product blocks ── */
+
+.sail-accent-card {
+  position: relative;
+  border-radius: 10px;
+}
+
+.sail-accent-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
   background: conic-gradient(
-    from 120deg at var(--halo-x) var(--halo-y),
+    from 180deg at 50% 50%,
     transparent 0deg,
-    color-mix(in srgb, var(--halo-sand) 16%, transparent) 70deg,
-    transparent 140deg,
-    color-mix(in srgb, var(--halo-steel) 12%, transparent) 220deg,
+    color-mix(in srgb, var(--halo-steel) 18%, transparent) 60deg,
+    transparent 120deg,
+    color-mix(in srgb, var(--halo-violet) 14%, transparent) 200deg,
+    transparent 280deg,
+    color-mix(in srgb, var(--halo-sand) 16%, transparent) 340deg,
     transparent 360deg
   );
-  animation: sail-halo-drift-2 22s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: sail-halo-border-drift 60s linear infinite;
 }
 
-.sail-halo__orb--3 {
-  background: radial-gradient(
-    ellipse 80% 60% at var(--halo-x) var(--halo-y),
-    color-mix(in srgb, var(--halo-sage) 10%, transparent) 0%,
-    color-mix(in srgb, var(--halo-mauve) 8%, transparent) 35%,
-    transparent 70%
-  );
-  animation: sail-halo-drift-3 31s linear infinite;
+.sail-accent-card--medium::before {
+  opacity: 0.45;
 }
 
-@keyframes sail-halo-drift-1 {
-  from {
-    transform: rotate(0deg) scale(1);
-  }
-  to {
-    transform: rotate(360deg) scale(1.02);
-  }
+.sail-accent-card--soft::before {
+  opacity: 0.28;
+  animation-duration: 72s;
 }
 
-@keyframes sail-halo-drift-2 {
-  from {
-    transform: rotate(0deg) scale(1.04);
-  }
-  to {
-    transform: rotate(-360deg) scale(1);
-  }
+.sail-glass-card {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--sail-white) 88%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--sail-line) 80%, transparent);
+  box-shadow: 0 1px 2px rgba(17, 19, 24, 0.03);
 }
 
-@keyframes sail-halo-drift-3 {
+@keyframes sail-halo-border-drift {
   from {
     transform: rotate(0deg);
   }

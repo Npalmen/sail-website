@@ -10,45 +10,27 @@ import {
 
 import { cn } from "@/lib/utils";
 
-type SailHaloVariant = "nav" | "hero";
-
 type SailHaloProps = {
   children: ReactNode;
   className?: string;
-  variant?: SailHaloVariant;
 };
 
-const variantStyles: Record<SailHaloVariant, string> = {
-  nav: "sail-halo--nav",
-  hero: "sail-halo--hero",
-};
-
-export function SailHalo({
-  children,
-  className,
-  variant = "nav",
-}: SailHaloProps) {
+/**
+ * Subtle chromatic perimeter accent for frosted surfaces (navbar).
+ * Pointer interaction is minimal — shifts gradient origin only.
+ */
+export function SailHalo({ children, className }: SailHaloProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef(0);
-  const pointerRef = useRef({ x: 0.5, y: 0.5, active: false });
+  const pointerRef = useRef({ x: 0.5, y: 0.5 });
 
   const applyPointerVars = useCallback(() => {
     const el = rootRef.current;
     if (!el) return;
 
-    const { x, y, active } = pointerRef.current;
+    const { x, y } = pointerRef.current;
     el.style.setProperty("--halo-x", `${x * 100}%`);
     el.style.setProperty("--halo-y", `${y * 100}%`);
-
-    if (active) {
-      const dist = Math.hypot(x - 0.5, y - 0.5);
-      el.style.setProperty(
-        "--halo-proximity",
-        String(Math.max(0, Math.min(1, 1 - dist * 1.6)))
-      );
-    } else {
-      el.style.setProperty("--halo-proximity", "0");
-    }
   }, []);
 
   useEffect(() => {
@@ -60,10 +42,7 @@ export function SailHalo({
     ).matches;
     const prefersNoHover = window.matchMedia("(hover: none)").matches;
 
-    if (prefersReducedMotion || prefersNoHover) {
-      applyPointerVars();
-      return;
-    }
+    if (prefersReducedMotion || prefersNoHover) return;
 
     const scheduleUpdate = () => {
       if (rafRef.current) return;
@@ -78,15 +57,14 @@ export function SailHalo({
       if (rect.width === 0 || rect.height === 0) return;
 
       pointerRef.current = {
-        x: (event.clientX - rect.left) / rect.width,
-        y: (event.clientY - rect.top) / rect.height,
-        active: true,
+        x: 0.5 + ((event.clientX - rect.left) / rect.width - 0.5) * 0.1,
+        y: 0.5 + ((event.clientY - rect.top) / rect.height - 0.5) * 0.1,
       };
       scheduleUpdate();
     };
 
     const onPointerLeave = () => {
-      pointerRef.current = { x: 0.5, y: 0.5, active: false };
+      pointerRef.current = { x: 0.5, y: 0.5 };
       scheduleUpdate();
     };
 
@@ -96,28 +74,22 @@ export function SailHalo({
     return () => {
       el.removeEventListener("pointermove", onPointerMove);
       el.removeEventListener("pointerleave", onPointerLeave);
-      if (rafRef.current) {
-        window.cancelAnimationFrame(rafRef.current);
-      }
+      if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
     };
   }, [applyPointerVars]);
 
   return (
     <div
       ref={rootRef}
-      className={cn("sail-halo", variantStyles[variant], className)}
+      className={cn("sail-halo sail-halo--nav", className)}
       style={
         {
           "--halo-x": "50%",
           "--halo-y": "50%",
-          "--halo-proximity": "0",
         } as CSSProperties
       }
     >
-      <div aria-hidden="true" className="sail-halo__orb sail-halo__orb--1" />
-      <div aria-hidden="true" className="sail-halo__orb sail-halo__orb--2" />
-      <div aria-hidden="true" className="sail-halo__orb sail-halo__orb--3" />
-      <div className="sail-halo__surface">{children}</div>
+      {children}
     </div>
   );
 }

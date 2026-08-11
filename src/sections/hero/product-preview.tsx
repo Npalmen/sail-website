@@ -9,17 +9,17 @@ function ProgressConnector() {
       fill="none"
       preserveAspectRatio="none"
     >
-        <path
-          d="M 180 95 C 260 95, 300 130, 340 160"
-          stroke="var(--sail-line)"
-          strokeWidth="1"
-          strokeDasharray="4 4"
-        />
-        <path
-          d="M 640 280 L 640 340"
-          stroke="var(--sail-line)"
-          strokeWidth="1"
-        />
+      <path
+        d="M 180 95 C 260 95, 300 130, 340 160"
+        stroke="var(--sail-line)"
+        strokeWidth="1"
+        strokeDasharray="4 4"
+      />
+      <path
+        d="M 640 280 L 640 340"
+        stroke="var(--sail-line)"
+        strokeWidth="1"
+      />
     </svg>
   );
 }
@@ -39,6 +39,26 @@ function StatusDot({ status }: { status: StageStatus }) {
   );
 }
 
+type AccentCardProps = {
+  children: React.ReactNode;
+  className?: string;
+  accent?: "medium" | "soft" | "none";
+};
+
+function AccentCard({ children, className, accent = "none" }: AccentCardProps) {
+  return (
+    <div
+      className={cn(
+        accent === "medium" && "sail-accent-card sail-accent-card--medium",
+        accent === "soft" && "sail-accent-card sail-accent-card--soft",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function ProductPreview() {
   return (
     <div
@@ -48,35 +68,37 @@ export function ProductPreview() {
       <div className="relative min-h-[380px] sm:min-h-[420px] lg:min-h-[480px]">
         <ProgressConnector />
 
-        {/* Incoming work — floating card, top-left */}
+        {/* Incoming work */}
         <div
           className={cn(
             "absolute left-0 top-0 z-20 w-[52%] max-w-[240px] sm:max-w-[260px]",
             "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-left-3 motion-safe:duration-700 motion-reduce:animate-none"
           )}
         >
-          <div className="rounded-[10px] border border-border/80 bg-surface-white p-3.5 shadow-[0_1px_2px_rgba(11,18,32,0.04)] sm:p-4">
-            <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-              Incoming
-            </p>
-            <p className="mt-2 text-[13px] font-medium leading-snug text-foreground">
-              Contract renewal request
-            </p>
-            <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-              From Acme Corp · received 2m ago
-            </p>
-          </div>
+          <AccentCard accent="medium">
+            <div className="sail-glass-card rounded-[10px] p-3.5 sm:p-4">
+              <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                Incoming
+              </p>
+              <p className="mt-2 text-[13px] font-medium leading-snug text-foreground">
+                Contract renewal request
+              </p>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                From Acme Corp · received 2m ago
+              </p>
+            </div>
+          </AccentCard>
         </div>
 
-        {/* Central workspace — dominant surface */}
+        {/* Central workspace — clean white, no accent ring */}
         <div
           className={cn(
             "absolute left-[8%] right-0 top-[18%] z-10 sm:left-[12%] lg:left-[14%] lg:top-[14%]",
             "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-700 motion-safe:delay-150 motion-reduce:animate-none"
           )}
         >
-          <div className="overflow-hidden rounded-xl border border-border/70 bg-surface-white shadow-[0_2px_8px_rgba(11,18,32,0.03)]">
-            <div className="flex items-center justify-between border-b border-border/60 bg-surface-soft/50 px-4 py-2.5 sm:px-5">
+          <div className="overflow-hidden rounded-xl border border-border/60 bg-surface-white shadow-[0_1px_3px_rgba(17,19,24,0.04)]">
+            <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-2.5 sm:px-5">
               <div className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-emerald-600/70" />
                 <span className="text-xs font-medium text-foreground">
@@ -111,54 +133,57 @@ export function ProductPreview() {
                 </div>
               </div>
 
-              <div className="space-y-3 bg-surface-cloud/30 p-4 sm:p-5">
-                <div>
-                  <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                    Prepared action
-                  </p>
-                  <p className="mt-1.5 text-sm leading-snug text-foreground">
-                    Draft renewal proposal with updated pricing tier.
-                  </p>
+              <AccentCard accent="soft" className="h-full">
+                <div className="sail-glass-card h-full space-y-3 bg-surface-cloud/20 p-4 sm:p-5">
+                  <div>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
+                      Prepared action
+                    </p>
+                    <p className="mt-1.5 text-sm leading-snug text-foreground">
+                      Draft renewal proposal with updated pricing tier.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <StatusDot status="active" />
+                    Ready for approval
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <StatusDot status="active" />
-                  Ready for approval
-                </div>
-              </div>
+              </AccentCard>
             </div>
           </div>
         </div>
 
-        {/* Activity panel — bottom right */}
+        {/* Activity panel */}
         <div
           className={cn(
             "absolute bottom-0 right-0 z-20 w-[46%] max-w-[220px] sm:max-w-[240px]",
             "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-right-3 motion-safe:duration-700 motion-safe:delay-300 motion-reduce:animate-none"
           )}
         >
-          <div className="rounded-[10px] border border-border/80 bg-surface-cloud/80 p-3.5 backdrop-blur-[2px] sm:p-4">
-            <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-              Activity
-            </p>
-            <ul className="mt-2.5 space-y-2">
-              {[
-                { label: "Request parsed", status: "complete" as const },
-                { label: "Customer matched", status: "complete" as const },
-                { label: "Action prepared", status: "active" as const },
-              ].map((item) => (
-                <li
-                  key={item.label}
-                  className="flex items-center gap-2 text-xs text-foreground"
-                >
-                  <StatusDot status={item.status} />
-                  {item.label}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <AccentCard accent="medium">
+            <div className="sail-glass-card rounded-[10px] p-3.5 sm:p-4">
+              <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                Activity
+              </p>
+              <ul className="mt-2.5 space-y-2">
+                {[
+                  { label: "Request parsed", status: "complete" as const },
+                  { label: "Customer matched", status: "complete" as const },
+                  { label: "Action prepared", status: "active" as const },
+                ].map((item) => (
+                  <li
+                    key={item.label}
+                    className="flex items-center gap-2 text-xs text-foreground"
+                  >
+                    <StatusDot status={item.status} />
+                    {item.label}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AccentCard>
         </div>
 
-        {/* Progress rail — subtle bottom indicator */}
         <div className="absolute bottom-8 left-[14%] right-[20%] hidden lg:block">
           <div className="flex items-center gap-3">
             {["Understand", "Decide", "Act", "Done"].map((step, i) => (
@@ -172,7 +197,10 @@ export function ProductPreview() {
                   {step}
                 </span>
                 {i < 3 && (
-                  <span className="h-px w-6 bg-border sm:w-10" aria-hidden="true" />
+                  <span
+                    className="h-px w-6 bg-border sm:w-10"
+                    aria-hidden="true"
+                  />
                 )}
               </div>
             ))}
