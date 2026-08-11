@@ -119,3 +119,23 @@
     }
   }
 }
+
+@layer utilities {
+  .text-display {
+    font-size: clamp(2.75rem, 4.2vw + 1.25rem, 4.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe\:animate-in,
+  .motion-safe\:fade-in,
+  .motion-safe\:slide-in-from-bottom-4,
+  .motion-safe\:slide-in-from-bottom-6,
+  .motion-safe\:slide-in-from-left-3,
+  .motion-safe\:slide-in-from-right-2,
+  .motion-safe\:slide-in-from-right-3 {
+    animation: none !important;
+  }
+}

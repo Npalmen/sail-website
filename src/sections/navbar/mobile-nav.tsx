@@ -4,7 +4,6 @@ import Link from "next/link";
 import { MenuIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -15,6 +14,9 @@ import {
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
+const ctaMobile =
+  "inline-flex h-10 w-full items-center justify-center rounded-[10px] bg-foreground text-sm font-medium text-background transition-colors hover:bg-foreground/90";
+
 export function MobileNav() {
   return (
     <Sheet>
@@ -23,7 +25,7 @@ export function MobileNav() {
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className="md:hidden"
             aria-label="Open navigation menu"
           />
         }
@@ -34,12 +36,12 @@ export function MobileNav() {
         <SheetHeader>
           <SheetTitle className="sr-only">Navigation</SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col gap-1 px-4">
+        <nav className="flex flex-col gap-0.5 px-4 pt-2">
           {siteConfig.nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+              className="rounded-lg px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
             >
               {item.title}
             </Link>
@@ -52,10 +54,7 @@ export function MobileNav() {
           >
             Log in
           </Link>
-          <Link
-            href={siteConfig.links.bookDemo}
-            className={cn(buttonVariants({ variant: "default", size: "lg" }), "w-full")}
-          >
+          <Link href={siteConfig.links.bookDemo} className={cn(ctaMobile)}>
             Book a demo
           </Link>
         </div>
