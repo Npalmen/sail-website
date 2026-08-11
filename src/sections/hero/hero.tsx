@@ -1,24 +1,21 @@
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
+import { ctaPrimary, ctaSecondary } from "@/components/shared/cta-styles";
+import { SailHalo } from "@/components/shared/sail-halo";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 import { ProductPreview } from "./product-preview";
 
-const ctaPrimary =
-  "inline-flex h-10 items-center justify-center rounded-[10px] bg-foreground px-5 text-sm font-medium text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2";
-
-const ctaSecondary =
-  "inline-flex h-10 items-center justify-center px-2 text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/10 focus-visible:ring-offset-2";
-
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-surface-warm">
-      <Container className="relative md:pb-16 lg:pb-20 xl:pb-24">
-        <div className="md:grid md:grid-cols-12 md:items-start md:gap-x-6">
-          {/* Editorial copy */}
-          <div className="relative z-10 pt-12 sm:pt-16 md:col-span-5 md:pt-20 lg:pt-24 xl:col-span-5 xl:pt-28">
+    <section className="relative overflow-hidden bg-surface-canvas">
+      <Container className="relative pb-12 sm:pb-16 lg:pb-20 xl:pb-24">
+        {/* Stacked by default; asymmetric overlap only at lg+ */}
+        <div className="flex flex-col lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-6">
+          {/* Editorial copy — always first in document order */}
+          <div className="relative z-10 pt-8 sm:pt-12 md:pt-14 lg:col-span-5 lg:pt-20 xl:col-span-5 xl:pt-24">
             <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 motion-reduce:animate-none">
               <p className="text-[13px] font-medium tracking-[0.04em] text-muted-foreground">
                 Your digital coworker
@@ -44,25 +41,27 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Product composition — overlaps copy on desktop */}
+          {/* Product stage — follows copy until large desktop */}
           <div
             className={cn(
-              "relative z-0 mt-12 sm:mt-14",
-              "md:col-span-8 md:col-start-5 md:row-start-1 md:mt-16",
-              "lg:mt-20 xl:col-span-8 xl:col-start-5 xl:mt-16",
+              "relative z-0 mt-10 sm:mt-12 md:mt-14",
+              "lg:col-span-8 lg:col-start-5 lg:row-start-1 lg:mt-16 xl:mt-14",
               "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-6 motion-safe:duration-1000 motion-safe:delay-200 motion-reduce:animate-none"
             )}
           >
-            <div className="rounded-2xl bg-surface-cloud/50 p-3 sm:p-4 md:p-5 lg:p-6">
+            <SailHalo
+              variant="hero"
+              className="rounded-2xl border border-border/50 bg-surface-soft-stone/60 p-3 sm:p-4 md:p-5 lg:p-6"
+            >
               <ProductPreview />
-            </div>
+            </SailHalo>
           </div>
         </div>
       </Container>
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-surface-cloud/50"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-surface-warm/80 sm:h-20"
       />
     </section>
   );

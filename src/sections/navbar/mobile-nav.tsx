@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { MenuIcon } from "lucide-react";
 
+import { ctaPrimaryFull } from "@/components/shared/cta-styles";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -13,9 +14,6 @@ import {
 } from "@/components/ui/sheet";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-
-const ctaMobile =
-  "inline-flex h-10 w-full items-center justify-center rounded-[10px] bg-foreground text-sm font-medium text-background transition-colors hover:bg-foreground/90";
 
 export function MobileNav() {
   return (
@@ -54,7 +52,7 @@ export function MobileNav() {
           >
             Log in
           </Link>
-          <Link href={siteConfig.links.bookDemo} className={cn(ctaMobile)}>
+          <Link href={siteConfig.links.bookDemo} className={cn(ctaPrimaryFull)}>
             Book a demo
           </Link>
         </div>

@@ -14,6 +14,12 @@
   --color-surface-white: var(--surface-white);
   --color-surface-cloud: var(--surface-cloud);
   --color-surface-soft: var(--surface-soft);
+  --color-surface-canvas: var(--surface-canvas);
+  --color-surface-soft-stone: var(--surface-soft-stone);
+  --color-surface-mist: var(--surface-mist);
+  --color-graphite: var(--sail-graphite);
+  --color-graphite-hover: var(--sail-graphite-hover);
+  --color-warm-white: var(--sail-warm-white);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -53,23 +59,36 @@
 }
 
 :root {
-  /* SAIL brand palette */
-  --sail-ink: #0b1220;
+  /* SAIL brand palette — warm neutrals */
+  --sail-canvas: #faf9f6;
+  --sail-warm-white: #f7f5f1;
+  --sail-soft-stone: #f1efea;
+  --sail-mist: #f4f5f3;
+  --sail-white: #ffffff;
+  --sail-ink: #111318;
+  --sail-graphite: #45433f;
+  --sail-graphite-hover: #3a3834;
+  --sail-slate: #687078;
+  --sail-line: #e5e1da;
   --sail-signal: #2864dc;
-  --sail-slate: #647184;
-  --sail-line: #e3e7ed;
-  --sail-cloud: #f6f8fa;
-  --sail-soft: #f7f7f3;
-  --sail-warm: #fcfcfa;
+
+  /* Halo chromatic family */
+  --halo-steel: #8997a8;
+  --halo-sage: #91a098;
+  --halo-sand: #ada18c;
+  --halo-mauve: #9d929f;
 
   /* Surface system */
-  --surface-warm: var(--sail-warm);
-  --surface-white: #ffffff;
-  --surface-cloud: var(--sail-cloud);
-  --surface-soft: var(--sail-soft);
+  --surface-canvas: var(--sail-canvas);
+  --surface-warm: var(--sail-warm-white);
+  --surface-soft: var(--sail-soft-stone);
+  --surface-cloud: var(--sail-mist);
+  --surface-soft-stone: var(--sail-soft-stone);
+  --surface-mist: var(--sail-mist);
+  --surface-white: var(--sail-white);
 
   /* Semantic tokens */
-  --background: var(--sail-warm);
+  --background: var(--sail-canvas);
   --foreground: var(--sail-ink);
   --card: var(--surface-white);
   --card-foreground: var(--sail-ink);
@@ -77,11 +96,11 @@
   --popover-foreground: var(--sail-ink);
   --primary: var(--sail-signal);
   --primary-foreground: #ffffff;
-  --secondary: var(--sail-cloud);
+  --secondary: var(--sail-mist);
   --secondary-foreground: var(--sail-ink);
-  --muted: var(--sail-cloud);
+  --muted: var(--sail-soft-stone);
   --muted-foreground: var(--sail-slate);
-  --accent: var(--sail-soft);
+  --accent: var(--sail-warm-white);
   --accent-foreground: var(--sail-ink);
   --destructive: #dc2626;
   --border: var(--sail-line);
@@ -91,13 +110,13 @@
   --chart-1: var(--sail-signal);
   --chart-2: var(--sail-slate);
   --chart-3: var(--sail-ink);
-  --chart-4: var(--sail-cloud);
-  --chart-5: var(--sail-soft);
+  --chart-4: var(--sail-mist);
+  --chart-5: var(--sail-soft-stone);
   --sidebar: var(--surface-white);
   --sidebar-foreground: var(--sail-ink);
   --sidebar-primary: var(--sail-signal);
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: var(--sail-cloud);
+  --sidebar-accent: var(--sail-mist);
   --sidebar-accent-foreground: var(--sail-ink);
   --sidebar-border: var(--sail-line);
   --sidebar-ring: var(--sail-signal);
@@ -137,5 +156,110 @@
   .motion-safe\:slide-in-from-right-2,
   .motion-safe\:slide-in-from-right-3 {
     animation: none !important;
+  }
+
+  .sail-halo__orb {
+    animation: none !important;
+  }
+}
+
+/* ── SailHalo — chromatic orbit effect ── */
+
+.sail-halo {
+  --halo-x: 50%;
+  --halo-y: 50%;
+  --halo-proximity: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.sail-halo__surface {
+  position: relative;
+  z-index: 1;
+}
+
+.sail-halo__orb {
+  position: absolute;
+  inset: -20%;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: calc(0.42 + var(--halo-proximity) * 0.22);
+  filter: blur(18px);
+  will-change: transform;
+}
+
+.sail-halo--nav .sail-halo__orb {
+  inset: -30%;
+  filter: blur(14px);
+  opacity: calc(0.5 + var(--halo-proximity) * 0.28);
+}
+
+.sail-halo--hero .sail-halo__orb {
+  inset: -35%;
+  filter: blur(28px);
+  opacity: calc(0.32 + var(--halo-proximity) * 0.18);
+}
+
+.sail-halo__orb--1 {
+  background: conic-gradient(
+    from 0deg at var(--halo-x) var(--halo-y),
+    transparent 0deg,
+    color-mix(in srgb, var(--halo-steel) 18%, transparent) 55deg,
+    transparent 110deg,
+    color-mix(in srgb, var(--halo-sage) 14%, transparent) 180deg,
+    transparent 240deg,
+    color-mix(in srgb, var(--halo-mauve) 12%, transparent) 300deg,
+    transparent 360deg
+  );
+  animation: sail-halo-drift-1 17s linear infinite;
+}
+
+.sail-halo__orb--2 {
+  background: conic-gradient(
+    from 120deg at var(--halo-x) var(--halo-y),
+    transparent 0deg,
+    color-mix(in srgb, var(--halo-sand) 16%, transparent) 70deg,
+    transparent 140deg,
+    color-mix(in srgb, var(--halo-steel) 12%, transparent) 220deg,
+    transparent 360deg
+  );
+  animation: sail-halo-drift-2 22s linear infinite;
+}
+
+.sail-halo__orb--3 {
+  background: radial-gradient(
+    ellipse 80% 60% at var(--halo-x) var(--halo-y),
+    color-mix(in srgb, var(--halo-sage) 10%, transparent) 0%,
+    color-mix(in srgb, var(--halo-mauve) 8%, transparent) 35%,
+    transparent 70%
+  );
+  animation: sail-halo-drift-3 31s linear infinite;
+}
+
+@keyframes sail-halo-drift-1 {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.02);
+  }
+}
+
+@keyframes sail-halo-drift-2 {
+  from {
+    transform: rotate(0deg) scale(1.04);
+  }
+  to {
+    transform: rotate(-360deg) scale(1);
+  }
+}
+
+@keyframes sail-halo-drift-3 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -26,11 +26,10 @@ export function ControlledMomentum() {
   return (
     <section
       id="controlled-momentum"
-      className="relative bg-surface-cloud pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24"
+      className="relative bg-surface-warm pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24"
     >
       <Container>
         <div className="grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-16 lg:gap-20 xl:gap-24">
-          {/* Statement */}
           <div className="lg:pt-4">
             <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
               Controlled momentum
@@ -41,11 +40,10 @@ export function ControlledMomentum() {
             </h2>
           </div>
 
-          {/* Vertical progression */}
-          <div className="relative lg:pt-2">
+          <div className="relative rounded-2xl border border-border/40 bg-surface-mist/50 p-6 sm:p-8 lg:pt-10">
             <div
               aria-hidden="true"
-              className="absolute left-[19px] top-3 bottom-3 hidden w-px bg-border sm:block"
+              className="absolute left-[27px] top-8 bottom-8 hidden w-px bg-border/80 sm:block"
             />
 
             <ol className="space-y-10 sm:space-y-12">
