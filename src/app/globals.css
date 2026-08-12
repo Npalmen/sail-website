@@ -87,11 +87,8 @@
 
   /* Brand deboss relief — scroll-driven on .sail-brand-mark */
   --brand-shadow-x: 0px;
-  --brand-shadow-y: 4px;
-  --brand-highlight-x: 0px;
-  --brand-highlight-y: -4px;
+  --brand-shadow-y: -4px;
   --brand-relief-depth: 4px;
-  --brand-inset-face: color-mix(in srgb, var(--sail-canvas) 91%, rgb(28, 34, 44));
 
   /* Optical chromatic family */
   --sail-optical-steel: #7e91aa;
@@ -216,9 +213,7 @@
 @media (prefers-reduced-motion: reduce) {
   :root {
     --brand-shadow-x: 0px;
-    --brand-shadow-y: 4px;
-    --brand-highlight-x: 0px;
-    --brand-highlight-y: -4px;
+    --brand-shadow-y: -4px;
   }
 }
 
@@ -287,7 +282,7 @@
   line-height: 0.85;
   text-align: center;
   white-space: nowrap;
-  color: var(--brand-inset-face);
+  color: var(--sail-canvas-material);
 }
 
 .sail-brand-mark__defs {

@@ -2,43 +2,35 @@
 
 import { useEffect, useId, useRef } from "react";
 
+/** Directional inner-shadow offset — test range 3–5px. */
 const RELIEF_DEPTH = 4;
 
-function applyReliefVars(
+function applyInnerShadow(
   target: HTMLElement,
   darkInnerRef: React.RefObject<SVGFEOffsetElement | null>,
-  lightInnerRef: React.RefObject<SVGFEOffsetElement | null>,
   fromX: number,
   fromY: number
 ) {
-  const highlightX = fromX * RELIEF_DEPTH;
-  const highlightY = fromY * RELIEF_DEPTH;
-  const shadowX = -fromX * RELIEF_DEPTH;
-  const shadowY = -fromY * RELIEF_DEPTH;
+  const offsetX = fromX * RELIEF_DEPTH;
+  const offsetY = fromY * RELIEF_DEPTH;
 
-  target.style.setProperty("--brand-highlight-x", `${highlightX}px`);
-  target.style.setProperty("--brand-highlight-y", `${highlightY}px`);
-  target.style.setProperty("--brand-shadow-x", `${shadowX}px`);
-  target.style.setProperty("--brand-shadow-y", `${shadowY}px`);
+  target.style.setProperty("--brand-shadow-x", `${offsetX}px`);
+  target.style.setProperty("--brand-shadow-y", `${offsetY}px`);
 
-  darkInnerRef.current?.setAttribute("dx", String(highlightX));
-  darkInnerRef.current?.setAttribute("dy", String(highlightY));
-  lightInnerRef.current?.setAttribute("dx", String(shadowX));
-  lightInnerRef.current?.setAttribute("dy", String(shadowY));
+  darkInnerRef.current?.setAttribute("dx", String(offsetX));
+  darkInnerRef.current?.setAttribute("dy", String(offsetY));
 }
 
-function applyStaticDebossLighting(
+function applyStaticInnerShadow(
   target: HTMLElement,
-  darkInnerRef: React.RefObject<SVGFEOffsetElement | null>,
-  lightInnerRef: React.RefObject<SVGFEOffsetElement | null>
+  darkInnerRef: React.RefObject<SVGFEOffsetElement | null>
 ) {
-  applyReliefVars(target, darkInnerRef, lightInnerRef, 0, -1);
+  applyInnerShadow(target, darkInnerRef, 0, -1);
 }
 
 function useBrandMarkLighting(
   markRef: React.RefObject<HTMLElement | null>,
-  darkInnerRef: React.RefObject<SVGFEOffsetElement | null>,
-  lightInnerRef: React.RefObject<SVGFEOffsetElement | null>
+  darkInnerRef: React.RefObject<SVGFEOffsetElement | null>
 ) {
   useEffect(() => {
     const mark = markRef.current;
@@ -49,7 +41,7 @@ function useBrandMarkLighting(
     ).matches;
 
     if (reducedMotion) {
-      applyStaticDebossLighting(mark, darkInnerRef, lightInnerRef);
+      applyStaticInnerShadow(mark, darkInnerRef);
       return;
     }
 
@@ -67,10 +59,9 @@ function useBrandMarkLighting(
       const sourceAngleDeg = -90 + eased * 180;
       const radians = (sourceAngleDeg * Math.PI) / 180;
 
-      applyReliefVars(
+      applyInnerShadow(
         mark,
         darkInnerRef,
-        lightInnerRef,
         Math.cos(radians),
         Math.sin(radians)
       );
@@ -95,17 +86,16 @@ function useBrandMarkLighting(
       window.removeEventListener("resize", onScroll);
       if (frame !== null) window.cancelAnimationFrame(frame);
     };
-  }, [markRef, darkInnerRef, lightInnerRef]);
+  }, [markRef, darkInnerRef]);
 }
 
-/** Inset/debossed SAIL mark — SVG inner relief, scroll-driven light. */
+/** Canvas-matched SAIL mark — dark inner contour only, scroll-driven. */
 export function SailBrandMark() {
   const markRef = useRef<HTMLDivElement>(null);
   const darkInnerRef = useRef<SVGFEOffsetElement>(null);
-  const lightInnerRef = useRef<SVGFEOffsetElement>(null);
   const filterId = useId().replace(/:/g, "");
 
-  useBrandMarkLighting(markRef, darkInnerRef, lightInnerRef);
+  useBrandMarkLighting(markRef, darkInnerRef);
 
   return (
     <div ref={markRef} aria-hidden="true" className="sail-brand-mark">
@@ -126,7 +116,7 @@ export function SailBrandMark() {
           >
             <feGaussianBlur
               in="SourceAlpha"
-              stdDeviation="2.2"
+              stdDeviation="2"
               result="darkBlur"
             />
             <feOffset
@@ -142,7 +132,7 @@ export function SailBrandMark() {
               operator="out"
               result="darkInv"
             />
-            <feFlood floodColor="#191820" floodOpacity="0.32" result="darkColor" />
+            <feFlood floodColor="#191820" floodOpacity="0.16" result="darkColor" />
             <feComposite
               in="darkColor"
               in2="darkInv"
@@ -150,36 +140,9 @@ export function SailBrandMark() {
               result="darkInner"
             />
 
-            <feGaussianBlur
-              in="SourceAlpha"
-              stdDeviation="1.6"
-              result="lightBlur"
-            />
-            <feOffset
-              ref={lightInnerRef}
-              in="lightBlur"
-              dx="0"
-              dy="4"
-              result="lightOff"
-            />
-            <feComposite
-              in="SourceAlpha"
-              in2="lightOff"
-              operator="out"
-              result="lightInv"
-            />
-            <feFlood floodColor="#ffffff" floodOpacity="0.36" result="lightColor" />
-            <feComposite
-              in="lightColor"
-              in2="lightInv"
-              operator="in"
-              result="lightInner"
-            />
-
             <feMerge>
               <feMergeNode in="SourceGraphic" />
               <feMergeNode in="darkInner" />
-              <feMergeNode in="lightInner" />
             </feMerge>
           </filter>
         </defs>
