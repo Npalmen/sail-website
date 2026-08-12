@@ -41,7 +41,7 @@ export function Problem() {
             </ul>
           </div>
 
-          <div className="p-5 sm:p-6">
+          <div className="sail-field-chapter p-5 sm:p-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
               Men kräver fortfarande
             </p>

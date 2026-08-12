@@ -12,7 +12,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 px-4 pt-3 sm:px-6 md:pt-4">
       <div className="mx-auto w-[min(92vw,1320px)]">
-        <SailOpticalShell className="rounded-xl md:rounded-2xl">
+        <SailOpticalShell className="rounded-[var(--radius-surface-sm)] md:rounded-[var(--radius-surface-md)]">
           <div className="flex h-[62px] items-center justify-between gap-6 px-4 md:h-16 md:px-6">
             <Wordmark className="text-[15px]" />
 

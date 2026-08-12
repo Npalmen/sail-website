@@ -27,7 +27,7 @@ export function ControlledMomentum() {
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-0">
           {flow.map((step, index) => (
             <div key={step} className="flex items-center">
-              <div className="rounded-full border border-border/70 bg-surface-white/75 px-5 py-2.5 text-sm font-medium text-foreground shadow-surface-resting backdrop-blur-sm">
+              <div className="sail-glass-card !rounded-full px-5 py-2.5 text-sm font-medium text-foreground">
                 {step}
               </div>
               {index < flow.length - 1 && (

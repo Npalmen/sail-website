@@ -26,7 +26,7 @@ export function FinalCta({ id = homepageContent.finalCta.id }: FinalCtaProps) {
       spacing="loose"
       padding="none"
     >
-      <SailOpticalShell intensity="medium" className="rounded-[26px]">
+      <SailOpticalShell intensity="medium" className="rounded-[var(--radius-surface-lg)]">
         <div className="px-6 py-12 text-center sm:px-12 sm:py-16">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             {headline}

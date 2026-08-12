@@ -56,13 +56,13 @@ export function Workflow() {
         </ol>
       </div>
 
-      <div className="mt-8 sail-field-stage p-4 sm:p-5">
+      <div className="mt-8 sail-field-stage">
         <div className="grid gap-3 sm:grid-cols-5 sail-module-grid">
           {steps.map((step, index) => (
             <div
               key={step.title}
               className={cn(
-                "sail-inner-module flex h-full flex-col rounded-lg p-3",
+                "sail-inner-module flex h-full flex-col rounded-[var(--radius-module-info)] p-4 sm:p-5",
                 index === 2 && "ring-1 ring-primary/20"
               )}
             >

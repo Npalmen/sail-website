@@ -38,12 +38,12 @@ export function ProductExperience() {
         className="[&_h2]:mt-3"
       />
 
-      <div className="mt-6 sail-field-stage p-2 sm:mt-7 sm:p-2.5">
+      <div className="mt-6 sail-field-stage sm:mt-7">
         <div
           aria-hidden="true"
-          className="overflow-hidden rounded-[14px] sail-inner-module"
+          className="overflow-hidden rounded-[var(--radius-module-nested)] sail-inner-module"
         >
-          <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-2 sm:px-4">
+          <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-2.5 sm:px-5">
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-emerald-600/70" />
               <span className="text-xs font-medium text-foreground">
@@ -56,7 +56,7 @@ export function ProductExperience() {
           </div>
 
           <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="border-b border-border/50 p-3.5 sm:p-4 lg:border-b-0 lg:border-r">
+            <div className="border-b border-border/50 p-4 sm:p-5 lg:border-b-0 lg:border-r">
               <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
                 Sammanfattning
               </p>
@@ -80,7 +80,7 @@ export function ProductExperience() {
               </ul>
             </div>
 
-            <div className="p-3.5 sm:p-4">
+            <div className="p-4 sm:p-5">
               <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
                 Senaste aktivitet
               </p>

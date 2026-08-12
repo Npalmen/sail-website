@@ -43,9 +43,9 @@ const alignClass: Record<SurfaceAlign, string> = {
 };
 
 const radiusClass: Record<SurfaceRadius, string> = {
-  sm: "rounded-[12px]",
-  md: "rounded-[18px]",
-  lg: "rounded-[26px]",
+  sm: "rounded-[var(--radius-surface-sm)]",
+  md: "rounded-[var(--radius-surface-md)]",
+  lg: "rounded-[var(--radius-surface-lg)]",
 };
 
 const spacingClass: Record<SurfaceSpacing, string> = {

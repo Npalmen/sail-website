@@ -24,7 +24,7 @@ export function Capabilities() {
         </div>
 
         <div className="xl:col-span-8">
-          <div className="overflow-hidden rounded-[14px] sail-inner-module">
+          <div className="overflow-hidden rounded-[var(--radius-module-nested)] sail-inner-module">
             <div className="border-b border-border/50 px-4 py-3 sm:px-5">
               <p className="text-xs font-medium text-foreground">
                 Kapacitetsöversikt

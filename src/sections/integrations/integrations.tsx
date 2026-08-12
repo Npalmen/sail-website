@@ -28,7 +28,7 @@ export function Integrations() {
         {categories.map((category) => (
           <li
             key={category.name}
-              className="sail-inner-module flex h-full flex-col rounded-[12px] p-5"
+            className="sail-inner-module flex h-full flex-col p-4 sm:p-5"
           >
             <div className="flex size-10 items-center justify-center rounded-lg bg-surface-soft text-xs font-semibold text-muted-foreground">
               {category.name.slice(0, 2).toUpperCase()}

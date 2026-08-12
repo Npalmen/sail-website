@@ -28,7 +28,7 @@ export function Autonomy() {
           <div
             key={level.title}
             className={cn(
-              "sail-inner-module--dark flex flex-col rounded-[14px] p-5 sm:p-6",
+              "sail-inner-module--dark flex flex-col rounded-[var(--radius-module-nested)] p-4 sm:p-5",
               index === 3 && "ring-1 ring-white/15"
             )}
           >

@@ -53,7 +53,7 @@ export function Hero() {
               "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-6 motion-safe:duration-1000 motion-safe:delay-200 motion-reduce:animate-none"
             )}
           >
-            <div className="sail-surface-frosted shadow-glass-floating rounded-[18px] p-3 sm:p-4 md:p-5 xl:p-6">
+            <div className="sail-surface-frosted shadow-glass-floating rounded-[var(--radius-surface-md)] p-3 sm:p-4 md:p-5">
               <ProductPreview />
             </div>
           </div>
