@@ -85,22 +85,18 @@
   --sail-ink-deep: #1c2433;
   --sail-canvas-material: #f7f5f1;
 
-  /* Brand deboss relief — scroll-driven via SailBrandLighting */
-  --brand-dark-x: 0px;
-  --brand-dark-y: -4.5px;
-  --brand-light-x: 0px;
-  --brand-light-y: 4.5px;
+  /* Brand deboss relief — scroll-driven on .sail-brand-mark */
   --brand-shadow-x: 0px;
-  --brand-shadow-y: -4.5px;
+  --brand-shadow-y: 5px;
   --brand-highlight-x: 0px;
-  --brand-highlight-y: 4.5px;
-  --brand-relief-depth: 4.5px;
-  --brand-dark-blur: 4px;
-  --brand-light-blur: 3.5px;
-  --brand-dark-opacity: 0.17;
-  --brand-light-opacity: 0.62;
-  --brand-dark-opacity-secondary: 0.11;
-  --brand-inset-face: color-mix(in srgb, var(--sail-canvas) 90%, rgb(28, 34, 44));
+  --brand-highlight-y: -5px;
+  --brand-relief-depth: 5px;
+  --brand-shadow-blur: 4.5px;
+  --brand-highlight-blur: 4px;
+  --brand-shadow-opacity: 0.18;
+  --brand-highlight-opacity: 0.58;
+  --brand-shadow-opacity-secondary: 0.11;
+  --brand-inset-face: color-mix(in srgb, var(--sail-canvas) 91%, rgb(28, 34, 44));
 
   /* Optical chromatic family */
   --sail-optical-steel: #7e91aa;
@@ -209,14 +205,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --brand-dark-x: 0px;
-    --brand-dark-y: -4.5px;
-    --brand-light-x: 0px;
-    --brand-light-y: 4.5px;
     --brand-shadow-x: 0px;
-    --brand-shadow-y: -4.5px;
+    --brand-shadow-y: 5px;
     --brand-highlight-x: 0px;
-    --brand-highlight-y: 4.5px;
+    --brand-highlight-y: -5px;
   }
 }
 
@@ -277,70 +269,27 @@
   user-select: none;
 }
 
-.sail-brand-mark__stack {
-  position: relative;
+.sail-brand-mark__face {
   display: block;
-  width: 100%;
   font-size: clamp(8rem, 22vw, 18rem);
   font-weight: 600;
   letter-spacing: 0.18em;
   line-height: 0.85;
   text-align: center;
   white-space: nowrap;
-}
-
-.sail-brand-mark__face,
-.sail-brand-mark__relief {
-  display: block;
-  font: inherit;
-  letter-spacing: inherit;
-  line-height: inherit;
-  white-space: inherit;
-}
-
-.sail-brand-mark__relief {
-  position: absolute;
-  inset: 0;
-  color: transparent;
-  pointer-events: none;
-}
-
-/* Inset dark contour — toward light source */
-.sail-brand-mark__relief--dark {
-  z-index: 1;
-  text-shadow:
-    var(--brand-dark-x) var(--brand-dark-y) var(--brand-dark-blur)
-      rgba(25, 32, 42, var(--brand-dark-opacity));
-}
-
-/* Inset light contour — opposite inner wall */
-.sail-brand-mark__relief--light {
-  z-index: 2;
-  text-shadow:
-    var(--brand-light-x) var(--brand-light-y) var(--brand-light-blur)
-      rgba(255, 255, 255, var(--brand-light-opacity)),
-    calc(var(--brand-light-x) * 1.25) calc(var(--brand-light-y) * 1.25)
-      calc(var(--brand-light-blur) * 1.15)
-      rgba(255, 255, 255, calc(var(--brand-light-opacity) * 0.45));
-}
-
-/* Tighter secondary dark — hugs glyph contours */
-.sail-brand-mark__relief--dark-secondary {
-  z-index: 3;
-  text-shadow:
-    calc(var(--brand-dark-x) * 0.55) calc(var(--brand-dark-y) * 0.55)
-      calc(var(--brand-dark-blur) * 0.65)
-      rgba(25, 32, 42, var(--brand-dark-opacity-secondary)),
-    calc(var(--brand-dark-x) * 1.2) calc(var(--brand-dark-y) * 1.2)
-      calc(var(--brand-dark-blur) * 1.1)
-      rgba(25, 32, 42, calc(var(--brand-dark-opacity) * 0.55));
-}
-
-/* Flat inset face — slightly darker than canvas, no gradient */
-.sail-brand-mark__face {
-  position: relative;
-  z-index: 4;
   color: var(--brand-inset-face);
+  /* Inset cavity: highlight toward light, shadow on opposite inner wall */
+  text-shadow:
+    var(--brand-shadow-x) var(--brand-shadow-y) var(--brand-shadow-blur)
+      rgba(25, 32, 42, var(--brand-shadow-opacity)),
+    var(--brand-highlight-x) var(--brand-highlight-y) var(--brand-highlight-blur)
+      rgba(255, 255, 255, var(--brand-highlight-opacity)),
+    calc(var(--brand-shadow-x) * 0.65) calc(var(--brand-shadow-y) * 0.65)
+      calc(var(--brand-shadow-blur) * 0.75)
+      rgba(25, 32, 42, var(--brand-shadow-opacity-secondary)),
+    calc(var(--brand-highlight-x) * 1.2) calc(var(--brand-highlight-y) * 1.2)
+      calc(var(--brand-highlight-blur) * 1.1)
+      rgba(255, 255, 255, calc(var(--brand-highlight-opacity) * 0.42));
 }
 
 @media (max-width: 768px) {
@@ -351,17 +300,17 @@
     width: min(85vw, 420px);
   }
 
-  .sail-brand-mark__stack {
+  .sail-brand-mark__face {
     font-size: clamp(5rem, 28vw, 9rem);
     letter-spacing: 0.14em;
   }
 
-  :root {
-    --brand-relief-depth: 3.5px;
-    --brand-dark-blur: 3.5px;
-    --brand-light-blur: 3px;
-    --brand-dark-opacity: 0.16;
-    --brand-light-opacity: 0.56;
+  .sail-brand-mark {
+    --brand-relief-depth: 4px;
+    --brand-shadow-blur: 4px;
+    --brand-highlight-blur: 3.5px;
+    --brand-shadow-opacity: 0.17;
+    --brand-highlight-opacity: 0.52;
   }
 }
 
@@ -827,16 +776,10 @@
   box-shadow: 0 1px 3px rgba(18, 25, 35, 0.04);
 }
 
-:root[data-page-tone="legal"] .sail-brand-mark__relief--dark {
-  --brand-dark-opacity: 0.08;
-}
-
-:root[data-page-tone="legal"] .sail-brand-mark__relief--light {
-  --brand-light-opacity: 0.38;
-}
-
-:root[data-page-tone="legal"] .sail-brand-mark__relief--dark-secondary {
-  --brand-dark-opacity-secondary: 0.05;
+:root[data-page-tone="legal"] .sail-brand-mark {
+  --brand-shadow-opacity: 0.09;
+  --brand-highlight-opacity: 0.4;
+  --brand-shadow-opacity-secondary: 0.06;
 }
 
 .nav-link {
