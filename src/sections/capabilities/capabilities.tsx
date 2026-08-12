@@ -20,14 +20,14 @@ export function Capabilities() {
       <div className="grid gap-10 xl:grid-cols-12 xl:gap-12">
         <div className="xl:col-span-4">
           <SectionHeader eyebrow={eyebrow} headline={headline} />
-          <DeepLink href={routes.product}>Explore the product</DeepLink>
+          <DeepLink href={routes.product}>Utforska produkten</DeepLink>
         </div>
 
         <div className="xl:col-span-8">
           <div className="overflow-hidden rounded-[14px] sail-inner-module">
             <div className="border-b border-border/50 px-4 py-3 sm:px-5">
               <p className="text-xs font-medium text-foreground">
-                Capability overview
+                Kapacitetsöversikt
               </p>
             </div>
             <div className="grid divide-y divide-border/50 sm:grid-cols-2 sm:divide-x sm:divide-y-0">

@@ -18,7 +18,7 @@ export function Security() {
       radius="md"
     >
       <SectionHeader eyebrow={eyebrow} headline={headline} />
-      <DeepLink href={routes.security}>Learn about security</DeepLink>
+      <DeepLink href={routes.security}>Läs mer om säkerhet</DeepLink>
 
       <ul className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2 sail-module-grid">
         {principles.map((principle) => (

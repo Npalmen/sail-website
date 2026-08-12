@@ -20,7 +20,7 @@ export function Autonomy() {
     >
       <SectionHeader eyebrow={eyebrow} headline={headline} variant="dark" />
       <DeepLink href={routes.security} className="text-white/60 hover:text-white/90">
-        See SAIL&apos;s control model
+        Se SAIL:s kontrollmodell
       </DeepLink>
 
       <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 xl:grid-cols-4 sail-module-grid">
@@ -33,7 +33,7 @@ export function Autonomy() {
             )}
           >
             <span className="font-mono text-xs text-white/40">
-              Level {level.level}
+              Nivå {level.level}
             </span>
             <h3 className="mt-3 text-lg font-semibold tracking-tight text-white/95">
               {level.title}
@@ -63,7 +63,7 @@ export function Autonomy() {
           </div>
         ))}
         <span className="ml-2 shrink-0 text-xs text-white/45">
-          Increasing autonomy
+          Ökande autonomi
         </span>
       </div>
     </ContentSurface>

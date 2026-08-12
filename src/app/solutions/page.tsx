@@ -14,41 +14,41 @@ export const metadata: Metadata = {
 
 const scenarios = [
   {
-    title: "Incoming request",
+    title: "Inkommande förfrågan",
     steps: [
-      "Request arrives through email or a connected channel",
-      "SAIL understands intent and extracts relevant details",
-      "Context is matched to customer or internal records",
-      "Next action is prepared within defined authority",
-      "Your team approves where required",
+      "Förfrågan kommer via e-post eller en kopplad kanal",
+      "SAIL förstår avsikten och extraherar relevanta detaljer",
+      "Kontext matchas mot kund- eller interna register",
+      "Nästa åtgärd förbereds inom definierad auktoritet",
+      "Ditt team godkänner där det krävs",
     ],
   },
   {
-    title: "Routine administration",
+    title: "Rutinadministration",
     steps: [
-      "Administrative item enters the workflow",
-      "SAIL sorts and prepares the administrative step",
-      "Supporting information is gathered",
-      "Action is prepared or routed for review",
-      "Activity remains visible in the workspace",
+      "Administrativt ärende går in i flödet",
+      "SAIL sorterar och förbereder det administrativa steget",
+      "Stödjande information samlas in",
+      "Åtgärd förbereds eller dirigeras för granskning",
+      "Aktiviteten förblir synlig i arbetsytan",
     ],
   },
   {
-    title: "Lead opportunity",
+    title: "Säljmöjlighet",
     steps: [
-      "Incoming communication suggests a sales opportunity",
-      "SAIL identifies relevant context",
-      "Next step is prepared for your sales process",
-      "Your team decides how to proceed",
+      "Inkommande kommunikation antyder en säljmöjlighet",
+      "SAIL identifierar relevant kontext",
+      "Nästa steg förbereds för er säljprocess",
+      "Ert team bestämmer hur ni går vidare",
     ],
   },
   {
-    title: "Support request",
+    title: "Supportärende",
     steps: [
-      "Service request is received",
-      "SAIL understands the issue and relevant history",
-      "Response or escalation is prepared within guidelines",
-      "Approval boundaries are respected",
+      "Serviceförfrågan tas emot",
+      "SAIL förstår ärendet och relevant historik",
+      "Svar eller eskalering förbereds inom riktlinjerna",
+      "Godkännandegränser respekteras",
     ],
   },
 ] as const;
@@ -61,20 +61,20 @@ export default function SolutionsPage() {
       <ContentSurface variant="open" width="editorial" align="center" spacing="compact" padding="none">
         <div className="pt-6 text-center sm:pt-10">
           <p className="text-[13px] font-medium tracking-[0.04em] text-muted-foreground">
-            Solutions
+            Lösningar
           </p>
           <h1 className="mt-4 text-display font-semibold text-foreground">
-            What kinds of work can SAIL help with?
+            Vilka typer av arbete kan SAIL hjälpa till med?
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-            SAIL handles administrative work around your operations — preparing,
-            routing, and acting within boundaries you define.
+            SAIL hanterar administrativt arbete kring verksamheten — förbereder,
+            dirigerar och agerar inom gränser du sätter.
           </p>
         </div>
       </ContentSurface>
 
       <ContentSurface variant="frosted" width="wide" align="center" spacing="default" radius="lg">
-        <SectionHeader eyebrow="Capability areas" headline={capabilities.headline} align="center" />
+        <SectionHeader eyebrow="Kapacitetsområden" headline={capabilities.headline} align="center" />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 sail-module-grid">
           {capabilities.items.map((item) => (
             <li key={item.title} className="sail-inner-module flex flex-col p-5">
@@ -89,9 +89,9 @@ export default function SolutionsPage() {
 
       <ContentSurface variant="frosted" width="standard" align="left" spacing="default" radius="md">
         <SectionHeader
-          eyebrow="Scenarios"
-          headline="How work moves through SAIL"
-          description="Illustrative flows — not claims about specific production integrations or outcomes."
+          eyebrow="Scenarier"
+          headline="Hur arbete rör sig genom SAIL"
+          description="Illustrativa flöden — inte påståenden om specifika produktionsintegrationer eller resultat."
         />
         <div className="mt-10 space-y-6">
           {scenarios.map((scenario) => (
@@ -123,20 +123,20 @@ export default function SolutionsPage() {
           ))}
         </ul>
         <p className="mx-auto mt-8 max-w-lg text-center text-xs text-muted-foreground">
-          Categories shown for illustration. Supported connections will be confirmed as they
-          become available.
+          Kategorier visas som illustration. Stödda kopplingar bekräftas när de
+          blir tillgängliga.
         </p>
       </ContentSurface>
 
       <ContentSurface variant="frosted" width="narrow" align="center" spacing="loose" radius="md">
         <SectionHeader
-          eyebrow="Next step"
-          headline="Discuss the work you want SAIL to handle."
+          eyebrow="Nästa steg"
+          headline="Diskutera det arbete du vill att SAIL ska hantera."
           align="center"
         />
         <div className="mt-8 text-center">
           <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
-            Book a demo
+            Boka demo
           </CtaLink>
         </div>
       </ContentSurface>

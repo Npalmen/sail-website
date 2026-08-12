@@ -26,16 +26,16 @@ export function Pricing() {
       />
       <div className="text-center">
         <DeepLink href={routes.pricing} className="mt-0">
-          View pricing approach
+          Se prissättningsmodellen
         </DeepLink>
       </div>
       <div className="mt-8 text-center">
         <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
-          Book a demo
+          Boka demo
         </CtaLink>
       </div>
       <p className="mt-6 text-center text-xs text-muted-foreground">
-        Pricing details will be shared during your demo conversation.
+        Prisuppgifter delas under demosamtalet.
       </p>
     </ContentSurface>
   );

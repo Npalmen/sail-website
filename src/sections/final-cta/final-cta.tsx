@@ -36,10 +36,10 @@ export function FinalCta({ id = homepageContent.finalCta.id }: FinalCtaProps) {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
-              Book a demo
+              Boka demo
             </CtaLink>
             <Link href={routes.product} className={ctaSecondary}>
-              See how SAIL works
+              Se hur SAIL fungerar
             </Link>
           </div>
         </div>

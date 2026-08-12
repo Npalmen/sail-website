@@ -19,7 +19,7 @@ export function Workflow() {
       radius="lg"
     >
       <SectionHeader eyebrow={eyebrow} headline={headline} />
-      <DeepLink href={routes.product}>Explore how SAIL works</DeepLink>
+      <DeepLink href={routes.product}>Utforska hur SAIL fungerar</DeepLink>
 
       <div className="mt-10 overflow-x-auto pb-2 sm:mt-14">
         <ol className="flex min-w-[640px] gap-0">
@@ -70,11 +70,11 @@ export function Workflow() {
                 {step.title}
               </p>
               <p className="mt-1.5 text-xs leading-snug text-foreground">
-                {index === 0 && "New request received"}
-                {index === 1 && "Intent & context matched"}
-                {index === 2 && "Next step determined"}
-                {index === 3 && "Action prepared"}
-                {index === 4 && "Activity logged"}
+                {index === 0 && "Ny förfrågan mottagen"}
+                {index === 1 && "Avsikt och kontext matchad"}
+                {index === 2 && "Nästa steg bedömt"}
+                {index === 3 && "Åtgärd förberedd"}
+                {index === 4 && "Aktivitet loggad"}
               </p>
             </div>
           ))}

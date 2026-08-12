@@ -2,30 +2,30 @@ import { routes } from "@/config/site";
 
 export const footerColumns = [
   {
-    title: "Product",
+    title: "Produkt",
     links: [
-      { label: "Product", href: routes.product },
-      { label: "Solutions", href: routes.solutions },
-      { label: "Pricing", href: routes.pricing },
-      { label: "Security", href: routes.security },
+      { label: "Produkt", href: routes.product },
+      { label: "Lösningar", href: routes.solutions },
+      { label: "Priser", href: routes.pricing },
+      { label: "Säkerhet", href: routes.security },
     ],
   },
   {
-    title: "Company",
+    title: "Företag",
     links: [
-      { label: "About", href: routes.about },
-      { label: "Contact", href: routes.contact },
+      { label: "Om oss", href: routes.about },
+      { label: "Kontakt", href: routes.contact },
     ],
   },
   {
-    title: "Legal",
+    title: "Juridik",
     links: [
-      { label: "Privacy", href: routes.privacy },
-      { label: "Terms", href: routes.terms },
+      { label: "Integritet", href: routes.privacy },
+      { label: "Villkor", href: routes.terms },
     ],
   },
   {
-    title: "Account",
-    links: [{ label: "Log in", href: "#" }],
+    title: "Konto",
+    links: [{ label: "Logga in", href: "#" }],
   },
 ] as const;

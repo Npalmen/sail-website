@@ -14,24 +14,24 @@ export const metadata: Metadata = {
 
 const themes = [
   {
-    title: "Administrative work should not consume the business",
-    body: "Businesses receive work constantly — but the administrative layer around that work often still falls to people. SAIL exists to handle that layer systematically.",
+    title: "Administrativt arbete ska inte ta över verksamheten",
+    body: "Verksamheter tar emot arbete ständigt — men det administrativa lagret kring det arbetet faller ofta fortfarande på människor. SAIL finns för att hantera det lagret systematiskt.",
   },
   {
-    title: "AI within defined authority",
-    body: "SAIL is designed to act within boundaries the business sets — not to assume open-ended autonomy over operations.",
+    title: "AI inom definierad auktoritet",
+    body: "SAIL är utformad för att agera inom gränser verksamheten sätter — inte för att anta obegränsad autonomi över driften.",
   },
   {
-    title: "Control matters",
-    body: "Visibility, approval boundaries, and traceability are part of the product — not afterthoughts.",
+    title: "Kontroll är avgörande",
+    body: "Synlighet, godkännandegränser och spårbarhet är en del av produkten — inte eftertankar.",
   },
   {
-    title: "A digital coworker — not a chatbot",
-    body: "SAIL is built around receiving work, understanding context, deciding next steps, and preparing or executing actions within authority.",
+    title: "En digital medarbetare — inte en chatbot",
+    body: "SAIL bygger på att ta emot arbete, förstå kontext, bedöma nästa steg och förbereda eller utföra åtgärder inom auktoritet.",
   },
   {
-    title: "Stable system, moving work",
-    body: "The underlying SAIL system remains consistent while information and administrative work move through it — under your control.",
+    title: "Stabilt system, rörligt arbete",
+    body: "Det underliggande SAIL-systemet förblir konsekvent medan information och administrativt arbete rör sig genom det — under din kontroll.",
   },
 ] as const;
 
@@ -41,10 +41,10 @@ export default function AboutPage() {
       <ContentSurface variant="open" width="editorial" align="center" spacing="compact" padding="none">
         <div className="pt-6 text-center sm:pt-10">
           <p className="text-[13px] font-medium tracking-[0.04em] text-muted-foreground">
-            About SAIL
+            Om SAIL
           </p>
           <h1 className="mt-4 text-display font-semibold text-foreground">
-            Built for businesses that need work to move — under control.
+            Byggt för verksamheter som behöver att arbetet rör sig — under kontroll.
           </h1>
         </div>
       </ContentSurface>
@@ -66,21 +66,21 @@ export default function AboutPage() {
 
       <ContentSurface variant="frosted" width="narrow" align="center" spacing="loose" radius="md">
         <SectionHeader
-          eyebrow="Explore"
-          headline="Learn more about the product and how SAIL works."
+          eyebrow="Utforska"
+          headline="Läs mer om produkten och hur SAIL fungerar."
           align="center"
         />
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <DeepLink href={routes.product} className="mt-0">
-            Explore the product
+            Utforska produkten
           </DeepLink>
           <DeepLink href={routes.security} className="mt-0">
-            Security & control
+            Säkerhet och kontroll
           </DeepLink>
         </div>
         <div className="mt-10 text-center">
           <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
-            Book a demo
+            Boka demo
           </CtaLink>
         </div>
       </ContentSurface>

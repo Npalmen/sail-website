@@ -14,24 +14,24 @@ export const metadata: Metadata = {
 
 const scopeFactors = [
   {
-    title: "Work to handle",
-    description: "Which administrative areas SAIL should begin with — reception, administration, leads, support, or a focused subset.",
+    title: "Arbete att hantera",
+    description: "Vilka administrativa områden SAIL ska börja med — mottagning, administration, leads, support eller ett fokuserat urval.",
   },
   {
-    title: "Capabilities activated",
-    description: "Which capability families are in scope at the start, and which can be expanded later.",
+    title: "Aktiverade kapaciteter",
+    description: "Vilka kapacitetsfamiljer som ingår från start, och vilka som kan utökas senare.",
   },
   {
-    title: "Level of automation",
-    description: "How far SAIL may act — from informing and suggesting to preparing actions and executing within approved scopes.",
+    title: "Automatiseringsnivå",
+    description: "Hur långt SAIL får agera — från att informera och föreslå till att förbereda åtgärder och utföra inom godkända scope.",
   },
   {
-    title: "Onboarding & configuration",
-    description: "How your business processes, boundaries, and operational context are established with SAIL.",
+    title: "Onboarding och konfiguration",
+    description: "Hur verksamhetens processer, gränser och operativ kontext etableras tillsammans med SAIL.",
   },
   {
-    title: "Expansion over time",
-    description: "How additional work types and authority can be activated as your business is ready.",
+    title: "Utökning över tid",
+    description: "Hur fler arbetstyper och auktoritet kan aktiveras när verksamheten är redo.",
   },
 ] as const;
 
@@ -43,7 +43,7 @@ export default function PricingPage() {
       <ContentSurface variant="open" width="editorial" align="center" spacing="compact" padding="none">
         <div className="pt-6 text-center sm:pt-10">
           <p className="text-[13px] font-medium tracking-[0.04em] text-muted-foreground">
-            Pricing
+            Priser
           </p>
           <h1 className="mt-4 text-display font-semibold text-foreground">
             {pricing.headline}
@@ -56,8 +56,8 @@ export default function PricingPage() {
 
       <ContentSurface variant="frosted" width="standard" align="center" spacing="default" radius="lg">
         <SectionHeader
-          eyebrow="Commercial model"
-          headline="What determines scope"
+          eyebrow="Kommersiell modell"
+          headline="Vad som avgör omfattningen"
           align="center"
         />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 sail-module-grid">
@@ -74,27 +74,27 @@ export default function PricingPage() {
 
       <ContentSurface variant="frosted" width="narrow" align="center" spacing="default" radius="md">
         <div className="sail-inner-module border border-dashed border-border/70 p-8 text-center sm:p-10">
-          <p className="text-sm font-medium text-foreground">Pricing cards</p>
+          <p className="text-sm font-medium text-foreground">Priskort</p>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Plan names, currency amounts, and package structures will be published here once
-            finalized. The layout supports future pricing cards without redesign.
+            Plannamn, belopp och paketstrukturer publiceras här när de är
+            slutgiltiga. Layouten stödjer framtida priskort utan omdesign.
           </p>
         </div>
       </ContentSurface>
 
       <ContentSurface variant="frosted" width="narrow" align="center" spacing="loose" radius="md">
         <SectionHeader
-          eyebrow="Next step"
-          headline="Discuss scope in a demo conversation."
+          eyebrow="Nästa steg"
+          headline="Diskutera omfattningen i ett demosamtal."
           align="center"
         />
         <div className="mt-8 text-center">
           <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
-            Book a demo
+            Boka demo
           </CtaLink>
         </div>
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          Pricing details will be shared during your demo conversation.
+          Prisuppgifter delas under demosamtalet.
         </p>
       </ContentSurface>
     </SiteShell>

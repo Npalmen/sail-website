@@ -52,7 +52,7 @@ export function Footer() {
 
       <div className="mt-10 border-t border-border/50 pt-8">
         <p className="text-xs text-muted-foreground">
-          © {year} SAIL. All rights reserved.
+          © {year} SAIL. Alla rättigheter förbehållna.
         </p>
       </div>
     </ContentSurface>

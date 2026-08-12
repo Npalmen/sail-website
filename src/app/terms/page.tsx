@@ -17,19 +17,20 @@ export default function TermsPage() {
       <LegalPageTone />
       <ContentSurface variant="frosted" width="editorial" align="center" spacing="default" radius="md">
         <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-          Terms of use
+          Användarvillkor
         </h1>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-          Legal information is being finalized before public launch. This page
-          provides the layout and route structure for the SAIL terms of use.
+          Juridisk information färdigställs före offentlig lansering. Den här
+          sidan tillhandahåller layout och ruttstruktur för SAIL:s
+          användarvillkor.
         </p>
         <div className="mt-10 space-y-6 text-sm leading-relaxed text-muted-foreground">
           <p>
-            Final terms will govern use of the SAIL website and services once
-            reviewed and published.
+            Slutgiltiga villkor kommer att reglera användning av SAIL-webbplatsen
+            och tjänsterna när de granskats och publicerats.
           </p>
           <p>
-            Do not treat this placeholder as a binding legal document.
+            Behandla inte det här som ett bindande juridiskt dokument.
           </p>
         </div>
       </ContentSurface>

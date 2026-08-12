@@ -47,18 +47,18 @@ export function ProductExperience() {
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-emerald-600/70" />
               <span className="text-xs font-medium text-foreground">
-                Morning overview
+                Morgonöversikt
               </span>
             </div>
             <span className="text-[11px] text-muted-foreground">
-              Today · 08:42
+              Idag · 08:42
             </span>
           </div>
 
           <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="border-b border-border/50 p-3.5 sm:p-4 lg:border-b-0 lg:border-r">
               <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                Summary
+                Sammanfattning
               </p>
               <ul className="mt-3 grid gap-2">
                 {panels.slice(0, 3).map((panel) => (
@@ -82,13 +82,13 @@ export function ProductExperience() {
 
             <div className="p-3.5 sm:p-4">
               <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                Recent activity
+                Senaste aktivitet
               </p>
               <div className="mt-3 space-y-1.5">
                 {[
-                  "Contract renewal parsed · Acme Corp",
-                  "Customer record matched · CRM context added",
-                  "Follow-up prepared · awaiting approval",
+                  "Avtalsförnyelse analyserad · Acme Corp",
+                  "Kundpost matchad · CRM-kontext tillagd",
+                  "Uppföljning förberedd · väntar på godkännande",
                 ].map((line) => (
                   <div
                     key={line}
@@ -102,17 +102,17 @@ export function ProductExperience() {
 
               <div className="mt-3.5 sail-state-module--approval p-2.5">
                 <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-primary/80">
-                  Needs approval
+                  Behöver godkännande
                 </p>
                 <p className="mt-1 text-sm font-medium leading-snug text-foreground">
-                  Send renewal terms to Acme Corp
+                  Skicka förnyelsevillkor till Acme Corp
                 </p>
                 <div className="mt-2.5 flex gap-2">
                   <span className="rounded-md bg-surface-white/90 px-2.5 py-1 text-[11px] font-medium text-foreground ring-1 ring-border/60">
-                    Review
+                    Granska
                   </span>
                   <span className="rounded-md px-2.5 py-1 text-[11px] text-muted-foreground">
-                    Dismiss
+                    Avfärda
                   </span>
                 </div>
               </div>

@@ -8,7 +8,7 @@ export function TrustStrip() {
     <ContentSurface
       as="section"
       id="trust"
-      aria-label="Product context"
+      aria-label="Produktkontext"
       variant="frosted"
       width="narrow"
       align="center"

@@ -16,19 +16,20 @@ export default function PrivacyPage() {
     <SiteShell>
       <LegalPageTone />
       <ContentSurface variant="frosted" width="editorial" align="center" spacing="default" radius="md">
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground">Privacy</h1>
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground">Integritet</h1>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-          Legal information is being finalized before public launch. This page
-          provides the layout and route structure for the SAIL privacy policy.
+          Juridisk information färdigställs före offentlig lansering. Den här
+          sidan tillhandahåller layout och ruttstruktur för SAIL:s
+          integritetspolicy.
         </p>
         <div className="mt-10 space-y-6 text-sm leading-relaxed text-muted-foreground">
           <p>
-            A complete privacy policy will describe how the SAIL website and
-            product handle personal data, retention, and user rights — once
-            reviewed and approved.
+            En fullständig integritetspolicy kommer att beskriva hur SAIL-webbplatsen
+            och produkten hanterar personuppgifter, lagring och användares rättigheter
+            — när texten granskats och godkänts.
           </p>
           <p>
-            Do not treat this placeholder as a binding legal document.
+            Behandla inte det här som ett bindande juridiskt dokument.
           </p>
         </div>
       </ContentSurface>

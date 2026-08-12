@@ -1,6 +1,6 @@
 import { ContentSurface } from "@/components/layout/content-surface";
 
-const flow = ["Understand", "Decide", "Act"] as const;
+const flow = ["Förstå", "Bedöm", "Agera"] as const;
 
 export function ControlledMomentum() {
   return (
@@ -15,11 +15,11 @@ export function ControlledMomentum() {
     >
       <div className="text-center">
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-          Controlled momentum
+          Kontrollerad rörelse
         </p>
         <h2 className="mt-5 text-2xl font-semibold leading-[1.25] tracking-tight text-foreground sm:text-3xl xl:text-[2rem]">
-          SAIL understands incoming work, decides what needs to happen, and acts
-          within the authority the business has given it.
+          SAIL förstår inkommande arbete, bedömer vad som behöver hända och
+          agerar inom den auktoritet verksamheten gett den.
         </h2>
       </div>
 
@@ -42,7 +42,7 @@ export function ControlledMomentum() {
           ))}
         </div>
         <p className="mt-8 text-center text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
-          Work keeps moving — at the pace and within the boundaries you define.
+          Arbetet fortsätter — i den takt och inom de gränser du sätter.
         </p>
       </div>
     </ContentSurface>

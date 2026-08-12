@@ -23,24 +23,24 @@ export function Hero() {
           <div className="relative z-10 pt-6 sm:pt-10 md:pt-12 xl:col-span-5 xl:pt-16">
             <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 motion-reduce:animate-none">
               <p className="text-[13px] font-medium tracking-[0.04em] text-muted-foreground">
-                Your digital coworker
+                Din digitala medarbetare
               </p>
 
               <h1 className="mt-5 max-w-[12ch] text-display font-semibold text-foreground">
-                Work moves forward.
+                Arbetet rör sig framåt.
               </h1>
 
               <p className="mt-6 max-w-[34ch] text-base leading-relaxed text-muted-foreground sm:text-[17px] sm:leading-[1.65]">
-                SAIL handles the administrative work around your business&nbsp;—
-                while you stay in control.
+                SAIL hanterar administrationen kring din verksamhet&nbsp;—
+                medan du behåller kontrollen.
               </p>
 
               <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
                 <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
-                  Book a demo
+                  Boka demo
                 </CtaLink>
                 <Link href={routes.product} className={ctaSecondary}>
-                  See how it works
+                  Se hur det fungerar
                 </Link>
               </div>
             </div>

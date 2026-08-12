@@ -27,7 +27,7 @@ export function Problem() {
         <div className="grid gap-6 sm:grid-cols-2 xl:col-span-7">
           <div className="sail-field-chapter p-5 sm:p-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-              Work arrives through
+              Arbete kommer in via
             </p>
             <ul className="mt-4 space-y-3">
               {channels.map((channel) => (
@@ -43,7 +43,7 @@ export function Problem() {
 
           <div className="p-5 sm:p-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-              But still requires
+              Men kräver fortfarande
             </p>
             <ul className="mt-4 space-y-3">
               {adminTasks.map((task) => (

@@ -27,7 +27,7 @@ export function ContactForm({ className }: ContactFormProps) {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block space-y-1.5">
-          <span className="text-sm font-medium text-foreground">Name</span>
+          <span className="text-sm font-medium text-foreground">Namn</span>
           <input
             required
             name="name"
@@ -37,7 +37,7 @@ export function ContactForm({ className }: ContactFormProps) {
           />
         </label>
         <label className="block space-y-1.5">
-          <span className="text-sm font-medium text-foreground">Company</span>
+          <span className="text-sm font-medium text-foreground">Företag</span>
           <input
             required
             name="company"
@@ -48,7 +48,7 @@ export function ContactForm({ className }: ContactFormProps) {
         </label>
       </div>
       <label className="block space-y-1.5">
-        <span className="text-sm font-medium text-foreground">Work email</span>
+        <span className="text-sm font-medium text-foreground">Jobbmejl</span>
         <input
           required
           name="email"
@@ -59,7 +59,7 @@ export function ContactForm({ className }: ContactFormProps) {
       </label>
       <label className="block space-y-1.5">
         <span className="text-sm font-medium text-foreground">
-          Phone <span className="font-normal text-muted-foreground">(optional)</span>
+          Telefon <span className="font-normal text-muted-foreground">(valfritt)</span>
         </span>
         <input
           name="phone"
@@ -70,7 +70,7 @@ export function ContactForm({ className }: ContactFormProps) {
       </label>
       <label className="block space-y-1.5">
         <span className="text-sm font-medium text-foreground">
-          What would you like SAIL to help with?
+          Vad vill du att SAIL ska hjälpa till med?
         </span>
         <textarea
           required
@@ -81,7 +81,7 @@ export function ContactForm({ className }: ContactFormProps) {
       </label>
       <label className="block space-y-1.5">
         <span className="text-sm font-medium text-foreground">
-          Message <span className="font-normal text-muted-foreground">(optional)</span>
+          Meddelande <span className="font-normal text-muted-foreground">(valfritt)</span>
         </span>
         <textarea
           name="message"
@@ -92,12 +92,12 @@ export function ContactForm({ className }: ContactFormProps) {
 
       {submitted ? (
         <p className="rounded-[var(--radius-module-info)] border border-border/60 bg-surface-soft/50 p-4 text-sm text-muted-foreground">
-          Form submission is not yet connected. Contact details will be added
-          before launch — this UI validates the request flow only.
+          Formulärinlämning är inte kopplad ännu. Kontaktuppgifter läggs till
+          före lansering — det här gränssnittet validerar endast flödet.
         </p>
       ) : (
         <CtaButton type="submit" className="btn-cta--lg">
-          Send request
+          Skicka förfrågan
         </CtaButton>
       )}
     </form>

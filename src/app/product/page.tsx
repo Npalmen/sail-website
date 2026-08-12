@@ -23,21 +23,22 @@ export default function ProductPage() {
       <ContentSurface variant="open" width="wide" align="center" spacing="compact" padding="none">
         <div className="pt-6 sm:pt-10">
           <p className="text-[13px] font-medium tracking-[0.04em] text-muted-foreground">
-            SAIL Product
+            SAIL Produkt
           </p>
           <h1 className="mt-4 max-w-2xl text-display font-semibold text-foreground">
-            The digital coworker built around your business.
+            Den digitala medarbetaren byggd kring din verksamhet.
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-[17px]">
-            SAIL receives administrative work, understands context, decides what
-            needs to happen, and acts within the authority your business defines.
+            SAIL tar emot administrativt arbete, förstår kontext, bedömer vad
+            som behöver hända och agerar inom den auktoritet din verksamhet
+            definierar.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
             <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
-              Book a demo
+              Boka demo
             </CtaLink>
             <DeepLink href="#capabilities" className="mt-0">
-              Explore capabilities
+              Utforska kapacitet
             </DeepLink>
           </div>
         </div>
@@ -45,8 +46,8 @@ export default function ProductPage() {
 
       <ContentSurface variant="frosted" width="wide" align="center" spacing="default" radius="lg">
         <SectionHeader
-          eyebrow="Product preview"
-          headline="Work moves through SAIL — visibly and controllably."
+          eyebrow="Produktförhandsvisning"
+          headline="Arbetet rör sig genom SAIL — synligt och kontrollerbart."
         />
         <div className="mt-8 sail-surface-frosted rounded-[var(--radius-module-outer)] p-3 sm:p-4">
           <ProductPreview />
@@ -55,12 +56,12 @@ export default function ProductPage() {
 
       <ContentSurface variant="frosted" width="standard" align="left" spacing="default" radius="md">
         <SectionHeader
-          eyebrow="Receiving work"
-          headline="How SAIL receives work"
-          description="Incoming administrative work arrives through the channels businesses already use — communication, documents, requests, and connected systems."
+          eyebrow="Ta emot arbete"
+          headline="Hur SAIL tar emot arbete"
+          description="Inkommande administrativt arbete når verksamheten via kanaler ni redan använder — kommunikation, dokument, förfrågningar och kopplade system."
         />
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-          {["Communication", "Documents & forms", "Customer requests", "Business systems"].map(
+          {["Kommunikation", "Dokument och formulär", "Kundförfrågningar", "Affärssystem"].map(
             (item) => (
               <li key={item} className="sail-inner-module p-4 text-sm text-foreground">
                 {item}
@@ -72,16 +73,16 @@ export default function ProductPage() {
 
       <ContentSurface variant="frosted" width="standard" align="right" spacing="default" radius="md">
         <SectionHeader
-          eyebrow="Understanding"
-          headline="How SAIL understands work"
-          description="SAIL extracts intent, matches context, and applies business rules — conservatively and traceably."
+          eyebrow="Förståelse"
+          headline="Hur SAIL förstår arbete"
+          description="SAIL extraherar avsikt, matchar kontext och tillämpar affärsregler — konservativt och spårbart."
         />
         <ul className="mt-8 space-y-3">
           {[
-            "Context from incoming communication",
-            "Intent and relevant details",
-            "Customer and record context where available",
-            "Business rules and prior activity",
+            "Kontext från inkommande kommunikation",
+            "Avsikt och relevanta detaljer",
+            "Kund- och registerkontext där tillgänglig",
+            "Affärsregler och tidigare aktivitet",
           ].map((item) => (
             <li key={item} className="border-l-2 border-border pl-4 text-sm text-muted-foreground">
               {item}
@@ -111,8 +112,9 @@ export default function ProductPage() {
               <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                SAIL prepares and routes work at this level — expanding capability as your
-                business defines what should be handled next.
+                SAIL förbereder och dirigerar arbete på den här nivån — med
+                utökad kapacitet i takt med att verksamheten definierar vad som
+                ska hanteras härnäst.
               </p>
             </div>
           ))}
@@ -124,12 +126,12 @@ export default function ProductPage() {
       <ContentSurface variant="dark" width="wide" align="center" spacing="default" radius="lg">
         <SectionHeader eyebrow={autonomy.eyebrow} headline={autonomy.headline} variant="dark" />
         <DeepLink href={routes.security} className="text-white/60 hover:text-white/90">
-          Learn about security & control
+          Läs mer om säkerhet och kontroll
         </DeepLink>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 sail-module-grid">
           {autonomy.levels.map((level) => (
             <div key={level.title} className="sail-inner-module--dark flex flex-col p-5 sm:p-6">
-              <span className="font-mono text-xs text-white/40">Level {level.level}</span>
+              <span className="font-mono text-xs text-white/40">Nivå {level.level}</span>
               <h3 className="mt-3 text-lg font-semibold text-white/95">{level.title}</h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">{level.description}</p>
             </div>
@@ -139,13 +141,13 @@ export default function ProductPage() {
 
       <ContentSurface variant="frosted" width="narrow" align="center" spacing="loose" radius="md">
         <SectionHeader
-          eyebrow="Next step"
-          headline="See SAIL in the context of your business."
+          eyebrow="Nästa steg"
+          headline="Se SAIL i kontexten av din verksamhet."
           align="center"
         />
         <div className="mt-8 text-center">
           <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
-            Book a demo
+            Boka demo
           </CtaLink>
         </div>
       </ContentSurface>

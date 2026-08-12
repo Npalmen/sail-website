@@ -12,19 +12,19 @@ export const routes = {
 
 export const siteConfig = {
   name: "SAIL",
-  title: "SAIL — AI-powered operations",
+  title: "SAIL — AI-driven administration",
   description:
-    "SAIL handles the administrative work around your business — while you stay in control.",
+    "SAIL hanterar administrationen kring din verksamhet — medan du behåller kontrollen.",
   url: "https://sail.example.com",
   links: {
     login: "#",
     bookDemo: routes.contact,
   },
   nav: [
-    { title: "Product", href: routes.product },
-    { title: "Solutions", href: routes.solutions },
-    { title: "Pricing", href: routes.pricing },
-    { title: "Security", href: routes.security },
+    { title: "Produkt", href: routes.product },
+    { title: "Lösningar", href: routes.solutions },
+    { title: "Priser", href: routes.pricing },
+    { title: "Säkerhet", href: routes.security },
   ],
 } as const;
 
@@ -32,40 +32,43 @@ export type SiteConfig = typeof siteConfig;
 
 export const pageMetadata = {
   product: {
-    title: "SAIL — Product",
+    title: "SAIL — Produkt",
     description:
-      "Explore how SAIL works as a digital coworker — receiving, understanding, and acting on administrative work within your control.",
+      "Utforska hur SAIL fungerar som digital medarbetare — tar emot, förstår och agerar på administrativt arbete inom ramen för din kontroll.",
   },
   solutions: {
-    title: "SAIL — Solutions",
+    title: "SAIL — Lösningar",
     description:
-      "See the kinds of work SAIL can help with — from reception and administration to leads and support.",
+      "Se vilka typer av arbete SAIL kan hjälpa till med — från mottagning och administration till leads och support.",
   },
   pricing: {
-    title: "SAIL — Pricing",
+    title: "SAIL — Priser",
     description:
-      "Start with the work you want SAIL to handle. Capabilities expand as your business grows.",
+      "Börja med det arbete du vill att SAIL ska hantera. Kapaciteten kan utökas i takt med att verksamheten växer.",
   },
   security: {
-    title: "SAIL — Security",
+    title: "SAIL — Säkerhet",
     description:
-      "How SAIL approaches control, permissions, approval boundaries, and traceability.",
+      "Hur SAIL förhåller sig till kontroll, behörigheter, godkännandegränser och spårbarhet.",
   },
   about: {
-    title: "SAIL — About",
+    title: "SAIL — Om oss",
     description:
-      "The philosophy behind SAIL — administrative work in motion, under your authority.",
+      "Filosofin bakom SAIL — administrativt arbete i rörelse, under din auktoritet.",
   },
   contact: {
-    title: "SAIL — Contact",
-    description: "Get in touch or book a demo to explore how SAIL fits your business.",
+    title: "SAIL — Kontakt",
+    description:
+      "Hör av dig eller boka en demo för att utforska hur SAIL passar din verksamhet.",
   },
   privacy: {
-    title: "SAIL — Privacy",
-    description: "Privacy information for the SAIL website. Legal copy pending final review.",
+    title: "SAIL — Integritet",
+    description:
+      "Integritetsinformation för SAIL-webbplatsen. Juridisk text väntar på slutgiltig granskning.",
   },
   terms: {
-    title: "SAIL — Terms",
-    description: "Terms of use for the SAIL website. Legal copy pending final review.",
+    title: "SAIL — Villkor",
+    description:
+      "Användarvillkor för SAIL-webbplatsen. Juridisk text väntar på slutgiltig granskning.",
   },
 } as const;

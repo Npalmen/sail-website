@@ -24,7 +24,7 @@ export function MobileNav() {
             variant="ghost"
             size="icon"
             className="md:hidden"
-            aria-label="Open navigation menu"
+              aria-label="Öppna navigationsmenyn"
           />
         }
       >
@@ -50,10 +50,10 @@ export function MobileNav() {
             href={siteConfig.links.login}
             className="px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
-            Log in
+            Logga in
           </Link>
           <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg w-full">
-            Book a demo
+            Boka demo
           </CtaLink>
         </div>
       </SheetContent>

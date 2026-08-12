@@ -20,7 +20,7 @@ export function Integrations() {
       <SectionHeader eyebrow={eyebrow} headline={headline} align="center" />
       <div className="text-center">
         <DeepLink href={routes.solutions} className="mt-0">
-          Explore solutions
+          Utforska lösningar
         </DeepLink>
       </div>
 
@@ -44,8 +44,8 @@ export function Integrations() {
       </ul>
 
       <p className="mx-auto mt-8 max-w-lg text-center text-xs text-muted-foreground">
-        Integration categories shown for illustration. Supported connections
-        will be confirmed as they become available.
+        Kategorier visas som illustration. Stödda kopplingar bekräftas när de
+        blir tillgängliga.
       </p>
     </ContentSurface>
   );

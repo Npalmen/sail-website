@@ -42,7 +42,6 @@ export function ProductPreview() {
       className="relative mx-auto w-full max-w-[720px] md:max-w-none xl:max-w-[880px]"
     >
       <div className="relative min-h-[380px] sm:min-h-[420px] xl:min-h-[480px]">
-        {/* Incoming — restrained optical echo */}
         <div
           className={cn(
             "absolute left-0 top-0 z-20 w-[52%] max-w-[240px] sm:max-w-[260px]",
@@ -52,19 +51,18 @@ export function ProductPreview() {
           <OpticalCard edge="medium">
             <div className="sail-glass-card rounded-[var(--radius-module-info)] p-3.5 sm:p-4">
               <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-                Incoming
+                Inkommande
               </p>
               <p className="mt-2 text-[13px] font-medium leading-snug text-foreground">
-                Contract renewal request
+                Begäran om avtalsförnyelse
               </p>
               <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                From Acme Corp · received 2m ago
+                Från Acme Corp · mottagen för 2 min sedan
               </p>
             </div>
           </OpticalCard>
         </div>
 
-        {/* Main workspace — clean, stable, no optical edge */}
         <div
           className={cn(
             "absolute left-[8%] right-0 top-[18%] z-10 sm:left-[12%] xl:left-[14%] xl:top-[14%]",
@@ -76,7 +74,7 @@ export function ProductPreview() {
               <div className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-emerald-600/70" />
                 <span className="text-xs font-medium text-foreground">
-                  SAIL workspace
+                  SAIL-arbetsyta
                 </span>
               </div>
               <span className="text-[11px] text-muted-foreground">
@@ -88,15 +86,15 @@ export function ProductPreview() {
               <div className="flex h-full flex-col p-4 sm:p-5">
                 <div className="flex flex-1 flex-col">
                   <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                    Understand
+                    Förstå
                   </p>
                   <p className="mt-1.5 text-sm leading-snug text-foreground">
-                    Renewal terms identified. Customer context matched to CRM
-                    record.
+                    Förnyelsevillkor identifierade. Kundkontext matchad mot
+                    CRM-post.
                   </p>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-1.5">
-                  {["Contract", "Renewal", "Enterprise"].map((tag) => (
+                  {["Avtal", "Förnyelse", "Enterprise"].map((tag) => (
                     <span
                       key={tag}
                       className="rounded-md bg-surface-cloud px-2 py-0.5 text-[11px] text-muted-foreground"
@@ -110,22 +108,21 @@ export function ProductPreview() {
               <div className="flex h-full flex-col border-t border-border/50 bg-surface-cloud/15 p-4 sm:border-t-0 sm:border-l sm:p-5">
                 <div className="flex flex-1 flex-col">
                   <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                    Prepared action
+                    Förberedd åtgärd
                   </p>
                   <p className="mt-1.5 text-sm leading-snug text-foreground">
-                    Draft renewal proposal with updated pricing tier.
+                    Utforma förnyelseförslag med uppdaterad prisnivå.
                   </p>
                 </div>
                 <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
                   <StatusDot status="active" />
-                  Ready for approval
+                  Redo för godkännande
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Activity — neutral, no optical edge */}
         <div
           className={cn(
             "absolute bottom-0 right-0 z-20 w-[46%] max-w-[220px] sm:max-w-[240px]",
@@ -134,13 +131,13 @@ export function ProductPreview() {
         >
           <div className="sail-glass-card rounded-[var(--radius-module-info)] p-3.5 sm:p-4">
             <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-              Activity
+              Aktivitet
             </p>
             <ul className="mt-2.5 space-y-2">
               {[
-                { label: "Request parsed", status: "complete" as const },
-                { label: "Customer matched", status: "complete" as const },
-                { label: "Action prepared", status: "active" as const },
+                { label: "Begäran analyserad", status: "complete" as const },
+                { label: "Kund matchad", status: "complete" as const },
+                { label: "Åtgärd förberedd", status: "active" as const },
               ].map((item) => (
                 <li
                   key={item.label}
@@ -156,7 +153,7 @@ export function ProductPreview() {
 
         <div className="absolute bottom-8 left-[14%] right-[20%] hidden xl:block">
           <div className="flex items-center gap-3">
-            {["Understand", "Decide", "Act", "Done"].map((step, i) => (
+            {["Förstå", "Bedöm", "Agera", "Klart"].map((step, i) => (
               <div key={step} className="flex items-center gap-3">
                 <span
                   className={cn(

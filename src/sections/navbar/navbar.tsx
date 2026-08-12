@@ -17,7 +17,7 @@ export function Navbar() {
             <Wordmark className="text-[15px]" />
 
             <nav
-              aria-label="Main navigation"
+              aria-label="Huvudnavigering"
               className="hidden items-center gap-7 md:flex lg:gap-9"
             >
               <MainNavLinks />
@@ -28,13 +28,13 @@ export function Navbar() {
                 href={siteConfig.links.login}
                 className="hidden text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
               >
-                Log in
+                Logga in
               </Link>
               <CtaLink
                 href={siteConfig.links.bookDemo}
                 className="btn-cta--sm hidden md:inline-flex"
               >
-                Book a demo
+                Boka demo
               </CtaLink>
               <MobileNav />
             </div>
