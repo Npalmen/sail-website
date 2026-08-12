@@ -9,7 +9,7 @@ export function Capabilities() {
     <ContentSurface
       as="section"
       id={id}
-      variant="soft"
+      variant="frosted"
       width="standard"
       align="right"
       spacing="default"
@@ -21,7 +21,7 @@ export function Capabilities() {
         </div>
 
         <div className="xl:col-span-8">
-          <div className="overflow-hidden rounded-[14px] border border-border/60 bg-surface-white/95 shadow-surface-resting">
+          <div className="overflow-hidden rounded-[14px] sail-inner-module">
             <div className="border-b border-border/50 px-4 py-3 sm:px-5">
               <p className="text-xs font-medium text-foreground">
                 Capability overview

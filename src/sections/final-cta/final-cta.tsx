@@ -3,7 +3,8 @@
 import Link from "next/link";
 
 import { ContentSurface } from "@/components/layout/content-surface";
-import { ctaPrimary, ctaSecondary } from "@/components/shared/cta-styles";
+import { CtaLink } from "@/components/shared/cta-link";
+import { ctaSecondary } from "@/components/shared/cta-styles";
 import { SailOpticalShell } from "@/components/shared/sail-optical-shell";
 import { homepageContent } from "@/config/homepage";
 import { siteConfig } from "@/config/site";
@@ -30,9 +31,9 @@ export function FinalCta() {
             {body}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href={siteConfig.links.bookDemo} className={ctaPrimary}>
+            <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
               Book a demo
-            </Link>
+            </CtaLink>
             <Link href="#workflow" className={ctaSecondary}>
               See how SAIL works
             </Link>

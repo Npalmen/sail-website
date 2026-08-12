@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { MenuIcon } from "lucide-react";
 
-import { ctaPrimaryFull } from "@/components/shared/cta-styles";
+import { CtaLink } from "@/components/shared/cta-link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -13,7 +13,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
 
 export function MobileNav() {
   return (
@@ -52,9 +51,9 @@ export function MobileNav() {
           >
             Log in
           </Link>
-          <Link href={siteConfig.links.bookDemo} className={cn(ctaPrimaryFull)}>
+          <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg w-full">
             Book a demo
-          </Link>
+          </CtaLink>
         </div>
       </SheetContent>
     </Sheet>

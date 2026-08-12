@@ -10,7 +10,7 @@ export function Problem() {
     <ContentSurface
       as="section"
       id="problem"
-      variant="paper"
+      variant="frosted"
       width="editorial"
       align="left"
       spacing="default"

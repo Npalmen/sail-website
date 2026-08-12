@@ -36,7 +36,7 @@ export function ProductExperience() {
       <div className="mt-10 sail-field-stage p-3 sm:mt-14 sm:p-4">
         <div
           aria-hidden="true"
-          className="overflow-hidden rounded-[14px] border border-border/60 bg-surface-white/95 shadow-surface-resting"
+          className="overflow-hidden rounded-[14px] sail-inner-module"
         >
           <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-3 sm:px-5">
             <div className="flex items-center gap-2">

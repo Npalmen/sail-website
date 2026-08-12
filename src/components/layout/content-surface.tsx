@@ -63,11 +63,11 @@ const paddingClass: Record<SurfacePadding, string> = {
 };
 
 const variantClass: Record<Exclude<SurfaceVariant, "open">, string> = {
-  paper: "sail-surface-paper shadow-surface-floating",
+  paper: "sail-surface-frosted shadow-glass-floating",
   frosted: "sail-surface-frosted shadow-glass-floating",
-  soft: "sail-surface-soft shadow-surface-resting",
-  product: "sail-surface-product shadow-surface-floating",
-  dark: "sail-surface-dark shadow-dark-floating",
+  soft: "sail-surface-frosted shadow-glass-floating",
+  product: "sail-surface-frosted shadow-glass-floating",
+  dark: "sail-surface-dark-frosted shadow-dark-floating",
 };
 
 export function ContentSurface({

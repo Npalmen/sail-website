@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import { ContentSurface } from "@/components/layout/content-surface";
-import { ctaPrimary } from "@/components/shared/cta-styles";
+import { CtaLink } from "@/components/shared/cta-link";
 import { SectionHeader } from "@/components/shared/section-header";
 import { homepageContent } from "@/config/homepage";
 import { siteConfig } from "@/config/site";
@@ -26,9 +24,9 @@ export function Pricing() {
         align="center"
       />
       <div className="mt-8 text-center">
-        <Link href={siteConfig.links.bookDemo} className={ctaPrimary}>
+        <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
           Book a demo
-        </Link>
+        </CtaLink>
       </div>
       <p className="mt-6 text-center text-xs text-muted-foreground">
         Pricing details will be shared during your demo conversation.

@@ -1,10 +1,9 @@
 import Link from "next/link";
 
-import { ctaPrimarySm } from "@/components/shared/cta-styles";
+import { CtaLink } from "@/components/shared/cta-link";
 import { SailOpticalShell } from "@/components/shared/sail-optical-shell";
 import { Wordmark } from "@/components/shared/wordmark";
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
 
 import { MobileNav } from "./mobile-nav";
 
@@ -38,12 +37,12 @@ export function Navbar() {
               >
                 Log in
               </Link>
-              <Link
+              <CtaLink
                 href={siteConfig.links.bookDemo}
-                className={cn(ctaPrimarySm, "hidden md:inline-flex")}
+                className="btn-cta--sm hidden md:inline-flex"
               >
                 Book a demo
-              </Link>
+              </CtaLink>
               <MobileNav />
             </div>
           </div>

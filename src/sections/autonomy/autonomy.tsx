@@ -23,7 +23,7 @@ export function Autonomy() {
           <div
             key={level.title}
             className={cn(
-              "sail-glass-card--dark rounded-[14px] p-5 sm:p-6",
+                "sail-inner-module--dark rounded-[14px] p-5 sm:p-6",
               index === 3 && "ring-1 ring-white/15"
             )}
           >

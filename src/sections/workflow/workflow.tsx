@@ -59,7 +59,7 @@ export function Workflow() {
             <div
               key={step.title}
               className={cn(
-                "rounded-lg border border-border/50 bg-surface-white/90 p-3",
+                "rounded-lg sail-inner-module p-3",
                 index === 2 && "ring-1 ring-primary/20"
               )}
             >

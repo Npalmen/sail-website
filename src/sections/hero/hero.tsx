@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 import { ContentSurface } from "@/components/layout/content-surface";
-import { ctaPrimary, ctaSecondary } from "@/components/shared/cta-styles";
+import { CtaLink } from "@/components/shared/cta-link";
+import { ctaSecondary } from "@/components/shared/cta-styles";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -35,9 +36,9 @@ export function Hero() {
               </p>
 
               <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-                <Link href={siteConfig.links.bookDemo} className={ctaPrimary}>
+                <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
                   Book a demo
-                </Link>
+                </CtaLink>
                 <Link href="#workflow" className={ctaSecondary}>
                   See how it works
                 </Link>
