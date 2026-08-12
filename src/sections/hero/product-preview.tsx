@@ -84,9 +84,9 @@ export function ProductPreview() {
               </span>
             </div>
 
-            <div className="grid divide-y divide-border/50 sm:grid-cols-[1fr_1fr] sm:divide-x sm:divide-y-0">
-              <div className="space-y-3 p-4 sm:p-5">
-                <div>
+            <div className="grid sm:grid-cols-2 sail-module-grid">
+              <div className="flex h-full flex-col p-4 sm:p-5">
+                <div className="flex flex-1 flex-col">
                   <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
                     Understand
                   </p>
@@ -95,7 +95,7 @@ export function ProductPreview() {
                     record.
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="mt-3 flex flex-wrap gap-1.5">
                   {["Contract", "Renewal", "Enterprise"].map((tag) => (
                     <span
                       key={tag}
@@ -107,23 +107,20 @@ export function ProductPreview() {
                 </div>
               </div>
 
-              {/* Prepared action — very soft echo */}
-              <OpticalCard edge="soft" className="h-full">
-                <div className="sail-glass-card h-full space-y-3 bg-surface-cloud/20 p-4 sm:p-5">
-                  <div>
-                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                      Prepared action
-                    </p>
-                    <p className="mt-1.5 text-sm leading-snug text-foreground">
-                      Draft renewal proposal with updated pricing tier.
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <StatusDot status="active" />
-                    Ready for approval
-                  </div>
+              <div className="flex h-full flex-col border-t border-border/50 bg-surface-cloud/15 p-4 sm:border-t-0 sm:border-l sm:p-5">
+                <div className="flex flex-1 flex-col">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
+                    Prepared action
+                  </p>
+                  <p className="mt-1.5 text-sm leading-snug text-foreground">
+                    Draft renewal proposal with updated pricing tier.
+                  </p>
                 </div>
-              </OpticalCard>
+                <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
+                  <StatusDot status="active" />
+                  Ready for approval
+                </div>
+              </div>
             </div>
           </div>
         </div>

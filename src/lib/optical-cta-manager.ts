@@ -69,15 +69,25 @@ class OpticalCtaManager {
       const rect = el.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) continue;
 
-      const nearestX = Math.max(rect.left, Math.min(px, rect.right));
-      const nearestY = Math.max(rect.top, Math.min(py, rect.bottom));
+      const inside =
+        px >= rect.left &&
+        px <= rect.right &&
+        py >= rect.top &&
+        py <= rect.bottom;
 
-      const dx = px - nearestX;
-      const dy = py - nearestY;
+      const anchorX = inside
+        ? px
+        : Math.max(rect.left, Math.min(px, rect.right));
+      const anchorY = inside
+        ? py
+        : Math.max(rect.top, Math.min(py, rect.bottom));
+
+      const dx = px - anchorX;
+      const dy = py - anchorY;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      const localX = ((nearestX - rect.left) / rect.width) * 100;
-      const localY = ((nearestY - rect.top) / rect.height) * 100;
+      const localX = ((anchorX - rect.left) / rect.width) * 100;
+      const localY = ((anchorY - rect.top) / rect.height) * 100;
 
       const normalized = Math.max(
         0,

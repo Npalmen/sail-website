@@ -165,7 +165,7 @@ Backgrounds use warm/cool off-whites, subtle tonal fields, optional micro-grain,
 
 ### Embossed / debossed brand surfaces
 
-`SailEmboss` provides a reusable treatment for future logo/wordmark integration — pressed into the surface with low-contrast directional highlight/shadow. Used sparingly on large background areas (security, final CTA).
+The fixed `SailBrandMark` uses **inset/debossed** relief — not raised emboss. The glyph face matches `--sail-canvas` exactly; visibility comes only from internal dark/light contour layers driven by `--brand-dark-x/y` and `--brand-light-x/y` (scroll-reactive via `SailBrandLighting`, smoothstep-eased). Dark contour sits toward the light source; highlight sits on the opposite inner wall.
 
 ### Controlled use of optical effects
 

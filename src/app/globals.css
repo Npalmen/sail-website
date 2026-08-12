@@ -85,13 +85,19 @@
   --sail-ink-deep: #1c2433;
   --sail-canvas-material: #f7f5f1;
 
-  /* Brand deboss lighting — updated by scroll (SailBrandLighting) */
-  --brand-highlight-x: -1.5px;
-  --brand-highlight-y: -2px;
-  --brand-shadow-x: 1.5px;
-  --brand-shadow-y: 2px;
-  --brand-highlight-blur: 1px;
-  --brand-shadow-blur: 2px;
+  /* Brand deboss relief — scroll-driven via SailBrandLighting */
+  --brand-dark-x: 0px;
+  --brand-dark-y: -3px;
+  --brand-light-x: 0px;
+  --brand-light-y: 3px;
+  --brand-shadow-x: 0px;
+  --brand-shadow-y: -3px;
+  --brand-relief-depth: 3px;
+  --brand-dark-blur: 3px;
+  --brand-light-blur: 3px;
+  --brand-dark-opacity: 0.15;
+  --brand-light-opacity: 0.55;
+  --brand-dark-opacity-secondary: 0.1;
 
   /* Optical chromatic family */
   --sail-optical-steel: #7e91aa;
@@ -200,10 +206,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --brand-highlight-x: -1.5px;
-    --brand-highlight-y: -2px;
-    --brand-shadow-x: 1.5px;
-    --brand-shadow-y: 2px;
+    --brand-dark-x: 0px;
+    --brand-dark-y: -3px;
+    --brand-light-x: 0px;
+    --brand-light-y: 3px;
+    --brand-shadow-x: 0px;
+    --brand-shadow-y: -3px;
   }
 }
 
@@ -260,18 +268,68 @@
   left: 50%;
   transform: translate(-42%, -50%);
   width: clamp(280px, 45vw, 720px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.sail-brand-mark__stack {
+  position: relative;
+  display: block;
+  width: 100%;
   font-size: clamp(8rem, 22vw, 18rem);
   font-weight: 600;
   letter-spacing: 0.18em;
   line-height: 0.85;
   text-align: center;
   white-space: nowrap;
-  color: var(--sail-canvas-material);
+}
+
+.sail-brand-mark__face,
+.sail-brand-mark__relief {
+  display: block;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  white-space: inherit;
+}
+
+.sail-brand-mark__relief {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  pointer-events: none;
+}
+
+/* Inset dark contour — toward light source */
+.sail-brand-mark__relief--dark {
+  z-index: 1;
   text-shadow:
-    var(--brand-highlight-x) var(--brand-highlight-y) var(--brand-highlight-blur)
-      rgba(255, 255, 255, 0.52),
-    var(--brand-shadow-x) var(--brand-shadow-y) var(--brand-shadow-blur)
-      rgba(25, 32, 42, 0.085);
+    var(--brand-dark-x) var(--brand-dark-y) var(--brand-dark-blur)
+      rgba(25, 32, 42, var(--brand-dark-opacity));
+}
+
+/* Inset light contour — opposite inner wall */
+.sail-brand-mark__relief--light {
+  z-index: 2;
+  text-shadow:
+    var(--brand-light-x) var(--brand-light-y) var(--brand-light-blur)
+      rgba(255, 255, 255, var(--brand-light-opacity));
+}
+
+/* Tighter secondary dark — hugs glyph contours */
+.sail-brand-mark__relief--dark-secondary {
+  z-index: 3;
+  text-shadow:
+    calc(var(--brand-dark-x) * 0.55) calc(var(--brand-dark-y) * 0.55)
+      calc(var(--brand-dark-blur) * 0.65)
+      rgba(25, 32, 42, var(--brand-dark-opacity-secondary));
+}
+
+/* Flat canvas fill — no gradient, no text-shadow */
+.sail-brand-mark__face {
+  position: relative;
+  z-index: 4;
+  color: var(--sail-canvas);
 }
 
 @media (max-width: 768px) {
@@ -280,8 +338,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: min(85vw, 420px);
+  }
+
+  .sail-brand-mark__stack {
     font-size: clamp(5rem, 28vw, 9rem);
     letter-spacing: 0.14em;
+  }
+
+  :root {
+    --brand-relief-depth: 2.5px;
+    --brand-dark-blur: 2.5px;
+    --brand-light-blur: 2.5px;
+    --brand-dark-opacity: 0.14;
+    --brand-light-opacity: 0.5;
   }
 }
 
@@ -597,10 +666,10 @@
   -webkit-backdrop-filter: blur(12px) saturate(125%);
   border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
     0 calc(8px + var(--cta-light-strength) * 2px)
-      calc(20px + var(--cta-light-strength) * 4px)
-      rgba(26, 38, 56, calc(0.16 + var(--cta-light-strength) * 0.04));
+      calc(20px + var(--cta-light-strength) * 3px)
+      rgba(26, 38, 56, calc(0.16 + var(--cta-light-strength) * 0.03));
   transition:
     box-shadow 0.18s ease,
     transform 0.12s ease,
@@ -612,6 +681,7 @@
   z-index: 1;
 }
 
+/* Single pointer-local specular hotspot — no static sheen, no mirror */
 .btn-cta::before {
   content: "";
   position: absolute;
@@ -619,23 +689,17 @@
   border-radius: inherit;
   pointer-events: none;
   z-index: 0;
-  background:
-    radial-gradient(
-      circle at var(--cta-light-x) var(--cta-light-y),
-      rgba(255, 255, 255, 0.22),
-      transparent 32%
-    ),
-    linear-gradient(
-      110deg,
-      transparent 15%,
-      rgba(255, 255, 255, calc(0.06 + var(--cta-light-strength) * 0.06)) 38%,
-      rgba(160, 185, 220, calc(0.03 + var(--cta-light-strength) * 0.05)) 48%,
-      transparent 68%
-    );
-  opacity: calc(var(--cta-light-strength) * 0.95);
+  background: radial-gradient(
+    circle 38% at var(--cta-light-x) var(--cta-light-y),
+    rgba(255, 255, 255, 0.34),
+    rgba(255, 255, 255, 0.1) 26%,
+    transparent 48%
+  );
+  opacity: var(--cta-light-strength);
   transition: opacity 0.12s linear;
 }
 
+/* Local edge refraction at pointer only */
 .btn-cta::after {
   content: "";
   position: absolute;
@@ -644,18 +708,11 @@
   padding: 1px;
   pointer-events: none;
   z-index: 0;
-  background:
-    radial-gradient(
-      ellipse 55% 40% at var(--cta-light-x) var(--cta-light-y),
-      rgba(180, 195, 220, 0.32),
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 45% 35% at calc(100% - var(--cta-light-x))
-        calc(100% - var(--cta-light-y)),
-      rgba(190, 175, 145, 0.14),
-      transparent 68%
-    );
+  background: radial-gradient(
+    ellipse 32% 24% at var(--cta-light-x) var(--cta-light-y),
+    rgba(190, 205, 230, 0.42),
+    transparent 68%
+  );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -664,7 +721,7 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
-  opacity: calc(var(--cta-light-strength) * 0.58);
+  opacity: calc(var(--cta-light-strength) * 0.5);
   transition: opacity 0.12s linear;
 }
 
@@ -676,7 +733,7 @@
 }
 
 .btn-cta:active::before {
-  opacity: calc(var(--cta-light-strength) * 0.65);
+  opacity: calc(var(--cta-light-strength) * 0.82);
 }
 
 .btn-cta:focus-visible {
@@ -753,8 +810,16 @@
   box-shadow: 0 1px 3px rgba(18, 25, 35, 0.04);
 }
 
-:root[data-page-tone="legal"] .sail-brand-mark {
-  opacity: 0.22;
+:root[data-page-tone="legal"] .sail-brand-mark__relief--dark {
+  --brand-dark-opacity: 0.08;
+}
+
+:root[data-page-tone="legal"] .sail-brand-mark__relief--light {
+  --brand-light-opacity: 0.38;
+}
+
+:root[data-page-tone="legal"] .sail-brand-mark__relief--dark-secondary {
+  --brand-dark-opacity-secondary: 0.05;
 }
 
 .nav-link {

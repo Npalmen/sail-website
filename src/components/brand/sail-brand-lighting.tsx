@@ -2,28 +2,22 @@
 
 import { useEffect } from "react";
 
-const STATIC_SHADOW = { x: "1.5px", y: "2px" };
-const STATIC_HIGHLIGHT = { x: "-1.5px", y: "-2px" };
+const RELIEF_DEPTH = 3;
 
-function applyLighting(
-  root: HTMLElement,
-  shadowX: number,
-  shadowY: number
-) {
-  root.style.setProperty("--brand-shadow-x", `${shadowX}px`);
-  root.style.setProperty("--brand-shadow-y", `${shadowY}px`);
-  root.style.setProperty("--brand-highlight-x", `${-shadowX}px`);
-  root.style.setProperty("--brand-highlight-y", `${-shadowY}px`);
+/** Static inset light from above (reduced motion). */
+function applyStaticDebossLighting(root: HTMLElement) {
+  root.style.setProperty("--brand-dark-x", "0px");
+  root.style.setProperty("--brand-dark-y", `${-RELIEF_DEPTH}px`);
+  root.style.setProperty("--brand-light-x", "0px");
+  root.style.setProperty("--brand-light-y", `${RELIEF_DEPTH}px`);
+  root.style.setProperty("--brand-shadow-x", "0px");
+  root.style.setProperty("--brand-shadow-y", `${-RELIEF_DEPTH}px`);
 }
 
-function applyStaticLighting(root: HTMLElement) {
-  root.style.setProperty("--brand-shadow-x", STATIC_SHADOW.x);
-  root.style.setProperty("--brand-shadow-y", STATIC_SHADOW.y);
-  root.style.setProperty("--brand-highlight-x", STATIC_HIGHLIGHT.x);
-  root.style.setProperty("--brand-highlight-y", STATIC_HIGHLIGHT.y);
-}
-
-/** Scroll-reactive deboss lighting for the fixed brand mark. No React state. */
+/**
+ * Scroll-reactive inset/deboss lighting for the fixed brand mark.
+ * Light source arcs from above → lateral → below. No React state.
+ */
 export function SailBrandLighting() {
   useEffect(() => {
     const root = document.documentElement;
@@ -32,7 +26,7 @@ export function SailBrandLighting() {
     ).matches;
 
     if (reducedMotion) {
-      applyStaticLighting(root);
+      applyStaticDebossLighting(root);
       return;
     }
 
@@ -46,17 +40,26 @@ export function SailBrandLighting() {
           ? Math.max(0, Math.min(1, window.scrollY / maxScroll))
           : 0;
 
-      const startAngle = -60;
-      const endAngle = 60;
-      const angle = startAngle + (endAngle - startAngle) * progress;
-      const radians = (angle * Math.PI) / 180;
-      const depth = 2.2;
+      const eased = progress * progress * (3 - 2 * progress);
 
-      applyLighting(
-        root,
-        Math.cos(radians) * depth,
-        Math.sin(radians) * depth
-      );
+      // -90° = light from above, +90° = light from below
+      const sourceAngleDeg = -90 + eased * 180;
+      const radians = (sourceAngleDeg * Math.PI) / 180;
+
+      const fromX = Math.cos(radians);
+      const fromY = Math.sin(radians);
+
+      const darkX = `${fromX * RELIEF_DEPTH}px`;
+      const darkY = `${fromY * RELIEF_DEPTH}px`;
+      const lightX = `${-fromX * RELIEF_DEPTH}px`;
+      const lightY = `${-fromY * RELIEF_DEPTH}px`;
+
+      root.style.setProperty("--brand-dark-x", darkX);
+      root.style.setProperty("--brand-dark-y", darkY);
+      root.style.setProperty("--brand-light-x", lightX);
+      root.style.setProperty("--brand-light-y", lightY);
+      root.style.setProperty("--brand-shadow-x", darkX);
+      root.style.setProperty("--brand-shadow-y", darkY);
     };
 
     const onScroll = () => {
