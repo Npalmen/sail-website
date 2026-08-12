@@ -31,11 +31,17 @@ export function SailOpticalShell({
   const rootRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef(0);
 
-  const applyPointerVars = useCallback((x: number, y: number) => {
+  const applyPointerVars = useCallback((nx: number, ny: number) => {
     const el = rootRef.current;
     if (!el) return;
-    el.style.setProperty("--pointer-x", `${x * 100}%`);
-    el.style.setProperty("--pointer-y", `${y * 100}%`);
+    el.style.setProperty("--pointer-x", `${nx * 100}%`);
+    el.style.setProperty("--pointer-y", `${ny * 100}%`);
+    el.style.setProperty("--light-x", `${8 + nx * 18}%`);
+    el.style.setProperty("--light-y", `${6 + ny * 16}%`);
+    el.style.setProperty(
+      "--shimmer-angle",
+      `${120 + (nx - 0.5) * 36 + (ny - 0.5) * 24}deg`
+    );
   }, []);
 
   useEffect(() => {
@@ -51,11 +57,11 @@ export function SailOpticalShell({
 
     if (reducedMotion || noHover) return;
 
-    const schedule = (x: number, y: number) => {
+    const schedule = (nx: number, ny: number) => {
       if (rafRef.current) return;
       rafRef.current = window.requestAnimationFrame(() => {
         rafRef.current = 0;
-        applyPointerVars(x, y);
+        applyPointerVars(nx, ny);
       });
     };
 
@@ -64,7 +70,7 @@ export function SailOpticalShell({
       if (rect.width === 0 || rect.height === 0) return;
       const nx = (event.clientX - rect.left) / rect.width;
       const ny = (event.clientY - rect.top) / rect.height;
-      schedule(0.5 + (nx - 0.5) * 0.08, 0.5 + (ny - 0.5) * 0.08);
+      schedule(nx, ny);
     };
 
     const onPointerLeave = () => schedule(0.5, 0.5);
@@ -93,6 +99,9 @@ export function SailOpticalShell({
         {
           "--pointer-x": "50%",
           "--pointer-y": "50%",
+          "--light-x": "12%",
+          "--light-y": "10%",
+          "--shimmer-angle": "128deg",
         } as CSSProperties
       }
     >

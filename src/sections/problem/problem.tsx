@@ -1,6 +1,5 @@
-import { Container } from "@/components/layout/container";
+import { ContentSurface } from "@/components/layout/content-surface";
 import { SectionHeader } from "@/components/shared/section-header";
-import { SailCanvasPattern } from "@/components/shared/sail-canvas-pattern";
 import { homepageContent } from "@/config/homepage";
 
 export function Problem() {
@@ -8,53 +7,57 @@ export function Problem() {
     homepageContent.problem;
 
   return (
-    <section id="problem" className="relative overflow-hidden pb-20 pt-16 sm:pb-28 sm:pt-20">
-      <SailCanvasPattern variant="section" grain />
+    <ContentSurface
+      as="section"
+      id="problem"
+      variant="paper"
+      width="editorial"
+      align="left"
+      spacing="default"
+      radius="md"
+    >
+      <div className="grid gap-10 xl:grid-cols-12 xl:gap-12">
+        <div className="xl:col-span-5">
+          <SectionHeader eyebrow={eyebrow} headline={headline} />
+          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-[17px]">
+            {body}
+          </p>
+        </div>
 
-      <Container className="relative z-10">
-        <div className="grid gap-12 xl:grid-cols-12 xl:gap-16">
-          <div className="xl:col-span-5">
-            <SectionHeader eyebrow={eyebrow} headline={headline} />
-            <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-[17px]">
-              {body}
+        <div className="grid gap-6 sm:grid-cols-2 xl:col-span-7">
+          <div className="sail-field-chapter p-5 sm:p-6">
+            <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+              Work arrives through
             </p>
+            <ul className="mt-4 space-y-3">
+              {channels.map((channel) => (
+                <li
+                  key={channel}
+                  className="border-l-2 border-border pl-4 text-sm font-medium text-foreground sm:text-[15px]"
+                >
+                  {channel}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 xl:col-span-7 xl:gap-10">
-            <div className="sail-field-chapter p-6 sm:p-8">
-              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-                Work arrives through
-              </p>
-              <ul className="mt-5 space-y-3">
-                {channels.map((channel) => (
-                  <li
-                    key={channel}
-                    className="border-l-2 border-border pl-4 text-sm font-medium text-foreground sm:text-[15px]"
-                  >
-                    {channel}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="relative p-6 sm:p-8">
-              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-                But still requires
-              </p>
-              <ul className="mt-5 space-y-3">
-                {adminTasks.map((task) => (
-                  <li
-                    key={task}
-                    className="text-sm leading-relaxed text-muted-foreground sm:text-[15px]"
-                  >
-                    {task}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="p-5 sm:p-6">
+            <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+              But still requires
+            </p>
+            <ul className="mt-4 space-y-3">
+              {adminTasks.map((task) => (
+                <li
+                  key={task}
+                  className="text-sm leading-relaxed text-muted-foreground sm:text-[15px]"
+                >
+                  {task}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </Container>
-    </section>
+      </div>
+    </ContentSurface>
   );
 }

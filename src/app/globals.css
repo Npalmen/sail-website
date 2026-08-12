@@ -4,9 +4,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@property --sail-angle {
+@property --shimmer-angle {
   syntax: "<angle>";
-  initial-value: 0deg;
+  initial-value: 128deg;
   inherits: false;
 }
 
@@ -121,6 +121,9 @@
   --input: var(--sail-line);
   --ring: var(--sail-signal);
   --radius: 0.625rem;
+  --radius-surface-sm: 12px;
+  --radius-surface-md: 18px;
+  --radius-surface-lg: 26px;
   --chart-1: var(--sail-signal);
   --chart-2: var(--sail-slate);
   --chart-3: var(--sail-ink);
@@ -141,7 +144,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-transparent text-foreground;
   }
   html {
     @apply font-sans scroll-smooth;
@@ -174,7 +177,7 @@
 
   .sail-optical-border {
     animation: none !important;
-    --sail-angle: 120deg;
+    --shimmer-angle: 128deg;
   }
 
   .sail-optical-pointer {
@@ -182,66 +185,255 @@
   }
 }
 
-/* ── Canvas pattern — tonal radial fields ── */
+/* ══════════════════════════════════════════════════════════
+   Brand canvas — fixed atmospheric background
+   ══════════════════════════════════════════════════════════ */
 
-.sail-canvas {
+.sail-brand-canvas {
+  position: fixed;
+  inset: 0;
   z-index: 0;
-  background-image:
-    radial-gradient(
-      circle at 82% 18%,
-      color-mix(in srgb, var(--sail-optical-steel) 6%, transparent),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 18% 72%,
-      color-mix(in srgb, var(--sail-optical-sand) 5%, transparent),
-      transparent 38%
-    );
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.sail-canvas--hero {
-  background-image:
-    radial-gradient(
-      circle at 78% 22%,
-      color-mix(in srgb, var(--sail-optical-steel) 7%, transparent),
-      transparent 36%
-    ),
-    radial-gradient(
-      circle at 22% 68%,
-      color-mix(in srgb, var(--sail-optical-sand) 6%, transparent),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 55% 88%,
-      color-mix(in srgb, var(--sail-mist) 80%, transparent),
-      transparent 45%
-    );
-}
-
-.sail-canvas--section {
-  background-image:
-    radial-gradient(
-      circle at 70% 30%,
-      color-mix(in srgb, var(--sail-optical-sage) 4%, transparent),
-      transparent 32%
-    );
-}
-
-.sail-canvas--grain::after {
-  content: "";
+.sail-brand-canvas__base {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  opacity: 0.012;
+  background: linear-gradient(
+    168deg,
+    var(--sail-canvas) 0%,
+    color-mix(in srgb, var(--sail-warm) 85%, var(--sail-canvas)) 55%,
+    var(--sail-warm) 100%
+  );
+}
+
+.sail-brand-canvas__tonal {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.sail-brand-canvas__tonal--cool {
+  width: min(70vw, 900px);
+  height: min(55vw, 700px);
+  top: 8%;
+  right: -8%;
+  background: color-mix(in srgb, var(--sail-optical-steel) 9%, transparent);
+  opacity: 0.55;
+}
+
+.sail-brand-canvas__tonal--warm {
+  width: min(60vw, 780px);
+  height: min(50vw, 620px);
+  bottom: 10%;
+  left: -10%;
+  background: color-mix(in srgb, var(--sail-optical-sand) 8%, transparent);
+  opacity: 0.45;
+}
+
+.sail-brand-canvas__mark {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-42%, -50%);
+  width: clamp(280px, 45vw, 720px);
+  font-size: clamp(8rem, 22vw, 18rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  line-height: 0.85;
+  text-align: center;
+  white-space: nowrap;
+  color: transparent;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sail-stone) 72%, var(--sail-ink)) 0%,
+    color-mix(in srgb, var(--sail-warm) 88%, var(--sail-ink)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow:
+    -1px -1px 1px rgba(255, 255, 255, 0.55),
+    1px 1px 2px rgba(20, 30, 45, 0.07);
+  opacity: 0.72;
+}
+
+.sail-brand-canvas__form {
+  position: absolute;
+  top: 62%;
+  left: 8%;
+  width: min(28vw, 320px);
+  height: min(28vw, 320px);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--sail-optical-sage) 5%, transparent);
+  filter: blur(60px);
+  opacity: 0.35;
+}
+
+.sail-brand-canvas__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.014;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ── Optical shell (navbar signature) ── */
+@media (max-width: 768px) {
+  .sail-brand-canvas__mark {
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(85vw, 420px);
+    font-size: clamp(5rem, 28vw, 9rem);
+    opacity: 0.5;
+    letter-spacing: 0.14em;
+  }
+
+  .sail-brand-canvas__tonal--cool {
+    opacity: 0.35;
+  }
+
+  .sail-brand-canvas__form {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   Content surface materials
+   ══════════════════════════════════════════════════════════ */
+
+.sail-surface-paper {
+  background: linear-gradient(
+    180deg,
+    rgba(253, 252, 249, 0.97),
+    rgba(249, 248, 244, 0.94)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.72);
+}
+
+.sail-surface-soft {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sail-stone) 72%, var(--sail-paper)),
+    color-mix(in srgb, var(--sail-mist) 55%, var(--sail-stone))
+  );
+  border: 1px solid color-mix(in srgb, var(--sail-line) 55%, transparent);
+}
+
+.sail-surface-frosted {
+  background: rgba(250, 250, 248, 0.56);
+  backdrop-filter: blur(18px) saturate(118%);
+  -webkit-backdrop-filter: blur(18px) saturate(118%);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+}
+
+.sail-surface-product {
+  background: color-mix(in srgb, var(--sail-stone) 48%, rgba(255, 255, 255, 0.72));
+  backdrop-filter: blur(10px) saturate(112%);
+  -webkit-backdrop-filter: blur(10px) saturate(112%);
+  border: 1px solid color-mix(in srgb, var(--sail-line) 50%, transparent);
+}
+
+.sail-surface-dark {
+  background: linear-gradient(
+    165deg,
+    rgba(33, 44, 62, 0.94),
+    rgba(28, 36, 51, 0.96)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: color-mix(in srgb, var(--sail-cta-text) 92%, transparent);
+}
+
+@media (max-width: 768px) {
+  .sail-surface-frosted {
+    backdrop-filter: blur(12px) saturate(115%);
+    -webkit-backdrop-filter: blur(12px) saturate(115%);
+  }
+}
+
+/* ── Surface shadows ── */
+
+.shadow-surface-resting {
+  box-shadow: 0 2px 8px rgba(18, 25, 35, 0.04);
+}
+
+.shadow-surface-floating {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 12px 32px rgba(18, 25, 35, 0.06);
+}
+
+.shadow-glass-floating {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 16px 40px rgba(18, 25, 35, 0.07);
+}
+
+.shadow-dark-floating {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 48px rgba(10, 14, 22, 0.22);
+}
+
+/* ══════════════════════════════════════════════════════════
+   Glass light — navbar & frosted shells
+   ══════════════════════════════════════════════════════════ */
+
+.sail-glass-surface {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  background: rgba(250, 250, 248, 0.52);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.68),
+    0 12px 36px rgba(18, 25, 35, 0.08);
+}
+
+.sail-glass-surface--dark {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.04)
+  );
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.sail-glass-card {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px) saturate(112%);
+  -webkit-backdrop-filter: blur(8px) saturate(112%);
+  border: 1px solid color-mix(in srgb, var(--sail-line) 65%, transparent);
+  box-shadow: 0 1px 2px rgba(17, 21, 29, 0.03);
+}
+
+.sail-glass-card--dark {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ══════════════════════════════════════════════════════════
+   Optical shell — localized lens shimmer
+   ══════════════════════════════════════════════════════════ */
 
 .sail-optical-shell {
   --pointer-x: 50%;
   --pointer-y: 50%;
+  --light-x: 12%;
+  --light-y: 10%;
+  --shimmer-angle: 128deg;
   position: relative;
   isolation: isolate;
   border-radius: inherit;
@@ -252,14 +444,31 @@
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: conic-gradient(
-    from var(--sail-angle),
-    color-mix(in srgb, var(--sail-optical-steel) 24%, transparent),
-    color-mix(in srgb, var(--sail-optical-violet) 18%, transparent),
-    color-mix(in srgb, var(--sail-optical-sand) 16%, transparent),
-    color-mix(in srgb, var(--sail-optical-sage) 14%, transparent),
-    color-mix(in srgb, var(--sail-optical-steel) 24%, transparent)
-  );
+  background:
+    radial-gradient(
+      ellipse 38% 28% at var(--light-x) var(--light-y),
+      color-mix(in srgb, var(--sail-optical-violet) 28%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 34% 26% at calc(100% - var(--light-x)) calc(100% - var(--light-y)),
+      color-mix(in srgb, var(--sail-optical-sand) 24%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 28% 20% at 50% 0%,
+      color-mix(in srgb, var(--sail-optical-steel) 18%, transparent),
+      transparent 65%
+    ),
+    conic-gradient(
+      from var(--shimmer-angle),
+      transparent 0deg,
+      color-mix(in srgb, var(--sail-optical-sage) 12%, transparent) 40deg,
+      transparent 120deg,
+      color-mix(in srgb, var(--sail-optical-steel) 10%, transparent) 200deg,
+      transparent 280deg,
+      transparent 360deg
+    );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -268,7 +477,7 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
-  opacity: 0.55;
+  opacity: 0.62;
   pointer-events: none;
   animation: sail-optical-drift 60s linear infinite;
 }
@@ -278,38 +487,45 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.32;
   background: radial-gradient(
     circle at var(--pointer-x) var(--pointer-y),
-    rgba(255, 255, 255, 0.14),
-    transparent 28%
+    rgba(255, 255, 255, 0.16),
+    transparent 32%
   );
-}
-
-.sail-glass-surface {
-  position: relative;
-  z-index: 1;
-  border-radius: inherit;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.82),
-    rgba(249, 248, 244, 0.7)
-  );
-  backdrop-filter: blur(18px) saturate(115%);
-  -webkit-backdrop-filter: blur(18px) saturate(115%);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.75) inset,
-    0 10px 30px rgba(17, 21, 29, 0.06);
 }
 
 @keyframes sail-optical-drift {
   to {
-    --sail-angle: 360deg;
+    --shimmer-angle: 488deg;
   }
 }
 
-/* ── Static optical edge (product cards — restrained echo) ── */
+.sail-optical-shell--strong .sail-optical-border {
+  opacity: 0.62;
+}
+
+.sail-optical-shell--strong .sail-optical-pointer {
+  opacity: 0.32;
+}
+
+.sail-optical-shell--medium .sail-optical-border {
+  opacity: 0.42;
+}
+
+.sail-optical-shell--medium .sail-optical-pointer {
+  opacity: 0.24;
+}
+
+.sail-optical-shell--subtle .sail-optical-border {
+  opacity: 0.26;
+}
+
+.sail-optical-shell--subtle .sail-optical-pointer {
+  opacity: 0.16;
+}
+
+/* ── Static optical edge (product cards) ── */
 
 .sail-optical-edge {
   position: relative;
@@ -322,14 +538,17 @@
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: conic-gradient(
-    from 140deg,
-    color-mix(in srgb, var(--sail-optical-steel) 16%, transparent),
-    color-mix(in srgb, var(--sail-optical-violet) 12%, transparent),
-    color-mix(in srgb, var(--sail-optical-sand) 14%, transparent),
-    transparent 280deg,
-    color-mix(in srgb, var(--sail-optical-sage) 10%, transparent)
-  );
+  background:
+    radial-gradient(
+      ellipse 50% 40% at 10% 15%,
+      color-mix(in srgb, var(--sail-optical-violet) 14%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 35% at 90% 85%,
+      color-mix(in srgb, var(--sail-optical-sand) 12%, transparent),
+      transparent 68%
+    );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -349,18 +568,9 @@
   opacity: 0.22;
 }
 
-.sail-glass-card {
-  position: relative;
-  z-index: 1;
-  border-radius: inherit;
-  background: color-mix(in srgb, var(--sail-white) 86%, transparent);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid color-mix(in srgb, var(--sail-line) 70%, transparent);
-  box-shadow: 0 1px 2px rgba(17, 21, 29, 0.03);
-}
-
-/* ── CTA — warm dark steel / navy glass ── */
+/* ══════════════════════════════════════════════════════════
+   CTA — dark frosted optical glass
+   ══════════════════════════════════════════════════════════ */
 
 .btn-cta {
   position: relative;
@@ -368,18 +578,21 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  isolation: isolate;
   border-radius: 10px;
   font-weight: 500;
   color: var(--sail-cta-text);
   background: linear-gradient(
     180deg,
-    var(--sail-blue-mid),
-    var(--sail-blue-deep)
+    rgba(65, 88, 120, 0.88),
+    rgba(45, 65, 92, 0.9)
   );
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 5px 14px rgba(31, 43, 61, 0.12);
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 6px 18px rgba(31, 43, 61, 0.16);
   transition:
     background 0.2s ease,
     box-shadow 0.2s ease;
@@ -393,18 +606,51 @@
   pointer-events: none;
   background: linear-gradient(
     110deg,
-    rgba(255, 255, 255, 0.1),
-    transparent 28%,
-    transparent 72%,
-    rgba(150, 170, 195, 0.05)
+    rgba(255, 255, 255, 0.14),
+    transparent 30%,
+    transparent 68%,
+    rgba(150, 170, 195, 0.06)
   );
 }
 
+.btn-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 60% 45% at 8% 12%,
+      rgba(180, 195, 220, 0.22),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 92% 88%,
+      rgba(190, 175, 145, 0.14),
+      transparent 68%
+    );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.45;
+}
+
 .btn-cta:hover {
-  background: linear-gradient(180deg, #3d526f, #334761);
+  background: linear-gradient(
+    180deg,
+    rgba(72, 96, 130, 0.9),
+    rgba(50, 70, 98, 0.92)
+  );
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 6px 16px rgba(31, 43, 61, 0.14);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 8px 20px rgba(31, 43, 61, 0.18);
 }
 
 .btn-cta:focus-visible {
@@ -426,79 +672,21 @@
   font-size: 0.8125rem;
 }
 
-/* ── Tonal inset fields ── */
+/* ── Inner product stage (nested) ── */
 
 .sail-field-stage {
-  border-radius: 1rem;
-  background: color-mix(in srgb, var(--sail-stone) 55%, var(--sail-mist));
-  border: 1px solid color-mix(in srgb, var(--sail-line) 50%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--sail-stone) 40%, rgba(255, 255, 255, 0.5));
+  border: 1px solid color-mix(in srgb, var(--sail-line) 45%, transparent);
 }
 
 .sail-field-chapter {
-  border-radius: 1.25rem;
-  background: color-mix(in srgb, var(--sail-stone) 40%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--sail-stone) 32%, transparent);
   border: 1px solid color-mix(in srgb, var(--sail-line) 35%, transparent);
 }
 
-/* ── Optical intensity hierarchy ── */
-
-.sail-optical-shell--strong .sail-optical-border {
-  opacity: 0.55;
-}
-
-.sail-optical-shell--strong .sail-optical-pointer {
-  opacity: 0.35;
-}
-
-.sail-optical-shell--medium .sail-optical-border {
-  opacity: 0.38;
-}
-
-.sail-optical-shell--medium .sail-optical-pointer {
-  opacity: 0.28;
-}
-
-.sail-optical-shell--subtle .sail-optical-border {
-  opacity: 0.22;
-}
-
-.sail-optical-shell--subtle .sail-optical-pointer {
-  opacity: 0.18;
-}
-
-/* ── Dark ink surface (autonomy, contrast sections) ── */
-
-.sail-surface-ink {
-  background: linear-gradient(
-    165deg,
-    color-mix(in srgb, var(--sail-ink-deep) 96%, #2a3548),
-    var(--sail-ink-deep)
-  );
-  color: color-mix(in srgb, var(--sail-cta-text) 92%, transparent);
-}
-
-.sail-glass-surface--dark {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.04)
-  );
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.12) inset,
-    0 12px 32px rgba(0, 0, 0, 0.18);
-}
-
-.sail-glass-card--dark {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* ── Embossed / debossed brand treatment ── */
+/* ── Legacy emboss utility (local accents) ── */
 
 .sail-emboss {
   font-weight: 600;
@@ -515,32 +703,6 @@
     180deg,
     color-mix(in srgb, var(--sail-stone) 55%, var(--sail-ink)) 0%,
     color-mix(in srgb, var(--sail-stone) 75%, var(--sail-ink)) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.sail-emboss--emboss {
-  text-shadow:
-    -1px -1px 1px rgba(255, 255, 255, 0.25),
-    1px 1px 2px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--sail-ink-deep) 30%, white) 0%,
-    color-mix(in srgb, var(--sail-ink-deep) 50%, white) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.sail-emboss--on-ink.sail-emboss--deboss {
-  text-shadow:
-    1px 1px 1px rgba(255, 255, 255, 0.06),
-    -1px -1px 2px rgba(0, 0, 0, 0.35);
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--sail-ink-deep) 70%, white) 0%,
-    color-mix(in srgb, var(--sail-ink-deep) 85%, black) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
