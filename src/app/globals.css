@@ -642,7 +642,7 @@
   z-index: 1;
 }
 
-/* Localized pointer specular — fixed radius, strength-gated */
+/* External light source — overscan coords, clipped to button */
 .btn-cta::before {
   content: "";
   position: absolute;
@@ -651,16 +651,15 @@
   pointer-events: none;
   z-index: 0;
   background: radial-gradient(
-    22px circle at var(--cta-light-x) var(--cta-light-y),
-    rgba(255, 255, 255, 0.42),
-    rgba(255, 255, 255, 0.1) 58%,
-    transparent 100%
+    56px circle at var(--cta-light-x) var(--cta-light-y),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.09) 38%,
+    transparent 68%
   );
   opacity: var(--cta-light-strength);
-  transition: opacity 0.14s ease;
 }
 
-/* Tiny edge refraction hugging the pointer */
+/* Edge refraction — same external anchor, tighter falloff */
 .btn-cta::after {
   content: "";
   position: absolute;
@@ -670,9 +669,9 @@
   pointer-events: none;
   z-index: 0;
   background: radial-gradient(
-    14px circle at var(--cta-edge-x) var(--cta-edge-y),
-    rgba(195, 212, 235, 0.55),
-    transparent 100%
+    36px circle at var(--cta-edge-x) var(--cta-edge-y),
+    rgba(195, 212, 235, 0.48),
+    transparent 72%
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -682,8 +681,7 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
-  opacity: calc(var(--cta-light-strength) * 0.62);
-  transition: opacity 0.14s ease;
+  opacity: calc(var(--cta-light-strength) * 0.55);
 }
 
 .btn-cta:active {

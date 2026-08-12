@@ -1,8 +1,13 @@
-const PROXIMITY_RADIUS = 80;
-const OFFSCREEN_X = "-24%";
+const PROXIMITY_RADIUS = 96;
+const OFFSCREEN_X = "-30%";
 const OFFSCREEN_Y = "50%";
 
 type PointerCoords = { x: number; y: number };
+
+function smoothstep(t: number) {
+  const clamped = Math.max(0, Math.min(1, t));
+  return clamped * clamped * (3 - 2 * clamped);
+}
 
 function setRestLighting(el: HTMLElement) {
   el.style.setProperty("--cta-light-strength", "0");
@@ -89,38 +94,26 @@ class OpticalCtaManager {
       const rect = el.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) continue;
 
-      const inside =
-        px >= rect.left &&
-        px <= rect.right &&
-        py >= rect.top &&
-        py <= rect.bottom;
+      const nearestX = Math.max(rect.left, Math.min(px, rect.right));
+      const nearestY = Math.max(rect.top, Math.min(py, rect.bottom));
+      const edgeDistance = Math.hypot(px - nearestX, py - nearestY);
 
-      const anchorX = inside
-        ? px
-        : Math.max(rect.left, Math.min(px, rect.right));
-      const anchorY = inside
-        ? py
-        : Math.max(rect.top, Math.min(py, rect.bottom));
-
-      const dx = px - anchorX;
-      const dy = py - anchorY;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-
-      const t = Math.max(0, Math.min(1, 1 - distance / PROXIMITY_RADIUS));
-      const strength = t * t * (3 - 2 * t);
+      const proximity = 1 - edgeDistance / PROXIMITY_RADIUS;
+      const strength = smoothstep(proximity);
 
       if (strength < 0.002) {
         setRestLighting(el);
         continue;
       }
 
-      const localX = ((anchorX - rect.left) / rect.width) * 100;
-      const localY = ((anchorY - rect.top) / rect.height) * 100;
+      // Global button-local coords — unclamped so the virtual source can sit outside.
+      const lightX = ((px - rect.left) / rect.width) * 100;
+      const lightY = ((py - rect.top) / rect.height) * 100;
 
-      el.style.setProperty("--cta-light-x", `${localX}%`);
-      el.style.setProperty("--cta-light-y", `${localY}%`);
-      el.style.setProperty("--cta-edge-x", `${localX}%`);
-      el.style.setProperty("--cta-edge-y", `${localY}%`);
+      el.style.setProperty("--cta-light-x", `${lightX}%`);
+      el.style.setProperty("--cta-light-y", `${lightY}%`);
+      el.style.setProperty("--cta-edge-x", `${lightX}%`);
+      el.style.setProperty("--cta-edge-y", `${lightY}%`);
       el.style.setProperty("--cta-light-strength", strength.toFixed(4));
     }
   }
