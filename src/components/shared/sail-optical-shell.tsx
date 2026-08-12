@@ -10,63 +10,57 @@ import {
 
 import { cn } from "@/lib/utils";
 
-type SailHaloProps = {
+type SailOpticalShellProps = {
   children: ReactNode;
   className?: string;
+  trackPointer?: boolean;
 };
 
-/**
- * Subtle chromatic perimeter accent for frosted surfaces (navbar).
- * Pointer interaction is minimal — shifts gradient origin only.
- */
-export function SailHalo({ children, className }: SailHaloProps) {
+export function SailOpticalShell({
+  children,
+  className,
+  trackPointer = true,
+}: SailOpticalShellProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef(0);
-  const pointerRef = useRef({ x: 0.5, y: 0.5 });
 
-  const applyPointerVars = useCallback(() => {
+  const applyPointerVars = useCallback((x: number, y: number) => {
     const el = rootRef.current;
     if (!el) return;
-
-    const { x, y } = pointerRef.current;
-    el.style.setProperty("--halo-x", `${x * 100}%`);
-    el.style.setProperty("--halo-y", `${y * 100}%`);
+    el.style.setProperty("--pointer-x", `${x * 100}%`);
+    el.style.setProperty("--pointer-y", `${y * 100}%`);
   }, []);
 
   useEffect(() => {
+    if (!trackPointer) return;
+
     const el = rootRef.current;
     if (!el) return;
 
-    const prefersReducedMotion = window.matchMedia(
+    const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    const prefersNoHover = window.matchMedia("(hover: none)").matches;
+    const noHover = window.matchMedia("(hover: none)").matches;
 
-    if (prefersReducedMotion || prefersNoHover) return;
+    if (reducedMotion || noHover) return;
 
-    const scheduleUpdate = () => {
+    const schedule = (x: number, y: number) => {
       if (rafRef.current) return;
       rafRef.current = window.requestAnimationFrame(() => {
         rafRef.current = 0;
-        applyPointerVars();
+        applyPointerVars(x, y);
       });
     };
 
     const onPointerMove = (event: PointerEvent) => {
       const rect = el.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) return;
-
-      pointerRef.current = {
-        x: 0.5 + ((event.clientX - rect.left) / rect.width - 0.5) * 0.1,
-        y: 0.5 + ((event.clientY - rect.top) / rect.height - 0.5) * 0.1,
-      };
-      scheduleUpdate();
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = (event.clientY - rect.top) / rect.height;
+      schedule(0.5 + (nx - 0.5) * 0.08, 0.5 + (ny - 0.5) * 0.08);
     };
 
-    const onPointerLeave = () => {
-      pointerRef.current = { x: 0.5, y: 0.5 };
-      scheduleUpdate();
-    };
+    const onPointerLeave = () => schedule(0.5, 0.5);
 
     el.addEventListener("pointermove", onPointerMove);
     el.addEventListener("pointerleave", onPointerLeave);
@@ -76,20 +70,24 @@ export function SailHalo({ children, className }: SailHaloProps) {
       el.removeEventListener("pointerleave", onPointerLeave);
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
     };
-  }, [applyPointerVars]);
+  }, [trackPointer, applyPointerVars]);
 
   return (
     <div
       ref={rootRef}
-      className={cn("sail-halo sail-halo--nav", className)}
+      className={cn("sail-optical-shell", className)}
       style={
         {
-          "--halo-x": "50%",
-          "--halo-y": "50%",
+          "--pointer-x": "50%",
+          "--pointer-y": "50%",
         } as CSSProperties
       }
     >
-      {children}
+      <div aria-hidden="true" className="sail-optical-border" />
+      {trackPointer && (
+        <div aria-hidden="true" className="sail-optical-pointer" />
+      )}
+      <div className="sail-glass-surface">{children}</div>
     </div>
   );
 }

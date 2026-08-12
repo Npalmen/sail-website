@@ -1,8 +1,7 @@
 import Link from "next/link";
 
-import { Container } from "@/components/layout/container";
 import { ctaPrimarySm } from "@/components/shared/cta-styles";
-import { SailHalo } from "@/components/shared/sail-halo";
+import { SailOpticalShell } from "@/components/shared/sail-optical-shell";
 import { Wordmark } from "@/components/shared/wordmark";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -12,9 +11,9 @@ import { MobileNav } from "./mobile-nav";
 export function Navbar() {
   return (
     <header className="sticky top-0 z-40 px-4 pt-3 sm:px-6 md:pt-4">
-      <Container as="div">
-        <SailHalo className="rounded-xl md:rounded-2xl">
-          <div className="sail-glass-nav flex h-[3.5rem] items-center justify-between gap-6 rounded-[inherit] px-4 sm:h-[3.75rem] sm:px-5 md:px-6">
+      <div className="mx-auto w-[min(92vw,1320px)]">
+        <SailOpticalShell className="rounded-xl md:rounded-2xl">
+          <div className="flex h-[62px] items-center justify-between gap-6 px-4 md:h-16 md:px-6">
             <Wordmark className="text-[15px]" />
 
             <nav
@@ -48,8 +47,8 @@ export function Navbar() {
               <MobileNav />
             </div>
           </div>
-        </SailHalo>
-      </Container>
+        </SailOpticalShell>
+      </div>
     </header>
   );
 }

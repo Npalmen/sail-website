@@ -1,4 +1,5 @@
 import { Container } from "@/components/layout/container";
+import { SailCanvasPattern } from "@/components/shared/sail-canvas-pattern";
 import { cn } from "@/lib/utils";
 
 const stages = [
@@ -26,27 +27,29 @@ export function ControlledMomentum() {
   return (
     <section
       id="controlled-momentum"
-      className="relative bg-surface-warm pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24"
+      className="relative bg-surface-warm pb-20 pt-16 sm:pb-24 sm:pt-20 xl:pb-28 xl:pt-24"
     >
-      <Container>
-        <div className="grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-16 lg:gap-20 xl:gap-24">
-          <div className="lg:pt-4">
+      <SailCanvasPattern variant="section" />
+
+      <Container className="relative z-10">
+        <div className="grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-16 xl:gap-20 2xl:gap-24">
+          <div className="xl:pt-4">
             <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
               Controlled momentum
             </p>
-            <h2 className="mt-5 max-w-xl text-[1.75rem] font-semibold leading-[1.2] tracking-[-0.02em] text-foreground sm:text-3xl lg:text-[2rem] xl:text-[2.25rem]">
+            <h2 className="mt-5 max-w-xl text-[1.75rem] font-semibold leading-[1.2] tracking-[-0.02em] text-foreground sm:text-3xl xl:text-[2rem] 2xl:text-[2.25rem]">
               SAIL understands incoming work, decides what needs to happen, and
               acts within the authority the business has given it.
             </h2>
           </div>
 
-          <div className="relative rounded-2xl border border-border/40 bg-surface-mist/50 p-6 sm:p-8 lg:pt-10">
+          <div className="sail-field-chapter relative p-6 sm:p-8 xl:pt-10">
             <div
               aria-hidden="true"
               className="absolute left-[27px] top-8 bottom-8 hidden w-px bg-border/80 sm:block"
             />
 
-            <ol className="space-y-10 sm:space-y-12">
+            <ol className="relative space-y-10 sm:space-y-12">
               {stages.map((stage, index) => (
                 <li
                   key={stage.number}

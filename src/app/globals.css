@@ -4,6 +4,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@property --sail-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -17,11 +23,9 @@
   --color-surface-canvas: var(--surface-canvas);
   --color-surface-soft-stone: var(--surface-soft-stone);
   --color-surface-mist: var(--surface-mist);
-  --color-graphite: var(--sail-graphite);
-  --color-graphite-hover: var(--sail-graphite-hover);
-  --color-warm-white: var(--sail-warm-white);
-  --color-cta-blue: var(--sail-cta-blue);
-  --color-cta-blue-hover: var(--sail-cta-blue-hover);
+  --color-surface-paper: var(--surface-paper);
+  --color-sail-blue: var(--sail-blue);
+  --color-sail-blue-hover: var(--sail-blue-hover);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -61,34 +65,37 @@
 }
 
 :root {
-  /* SAIL brand palette — warm neutrals */
+  /* Warm neutral material palette */
   --sail-canvas: #faf9f6;
-  --sail-warm-white: #f7f5f1;
-  --sail-soft-stone: #f1efea;
-  --sail-mist: #f4f5f3;
+  --sail-warm: #f7f5f1;
+  --sail-stone: #f1efe9;
+  --sail-mist: #f3f4f2;
+  --sail-paper: #fdfcf9;
   --sail-white: #ffffff;
-  --sail-ink: #111318;
-  --sail-graphite: #45433f;
-  --sail-graphite-hover: #3a3834;
-  --sail-cta-blue: #3a4a66;
-  --sail-cta-blue-hover: #33425b;
-  --sail-slate: #687078;
+  --sail-ink: #11151d;
+  --sail-slate: #68717d;
+  --sail-blue: #3a4f70;
+  --sail-blue-hover: #30445f;
+  --sail-blue-deep: #394d6b;
+  --sail-blue-mid: #435775;
+  --sail-cta-text: #fbfaf7;
   --sail-line: #e5e1da;
   --sail-signal: #2864dc;
 
-  /* Halo chromatic family — restrained lens tones */
-  --halo-steel: #8fa3b8;
-  --halo-violet: #a89bb5;
-  --halo-sand: #b8ab96;
-  --halo-cool: #9aa8b4;
+  /* Optical chromatic family */
+  --sail-optical-steel: #7e91aa;
+  --sail-optical-violet: #9984a6;
+  --sail-optical-sand: #bfaa84;
+  --sail-optical-sage: #899d94;
 
   /* Surface system */
   --surface-canvas: var(--sail-canvas);
-  --surface-warm: var(--sail-warm-white);
-  --surface-soft: var(--sail-soft-stone);
+  --surface-warm: var(--sail-warm);
+  --surface-soft: var(--sail-stone);
+  --surface-soft-stone: var(--sail-stone);
   --surface-cloud: var(--sail-mist);
-  --surface-soft-stone: var(--sail-soft-stone);
   --surface-mist: var(--sail-mist);
+  --surface-paper: var(--sail-paper);
   --surface-white: var(--sail-white);
 
   /* Semantic tokens */
@@ -102,9 +109,9 @@
   --primary-foreground: #ffffff;
   --secondary: var(--sail-mist);
   --secondary-foreground: var(--sail-ink);
-  --muted: var(--sail-soft-stone);
+  --muted: var(--sail-stone);
   --muted-foreground: var(--sail-slate);
-  --accent: var(--sail-warm-white);
+  --accent: var(--sail-warm);
   --accent-foreground: var(--sail-ink);
   --destructive: #dc2626;
   --border: var(--sail-line);
@@ -115,7 +122,7 @@
   --chart-2: var(--sail-slate);
   --chart-3: var(--sail-ink);
   --chart-4: var(--sail-mist);
-  --chart-5: var(--sail-soft-stone);
+  --chart-5: var(--sail-stone);
   --sidebar: var(--surface-white);
   --sidebar-foreground: var(--sail-ink);
   --sidebar-primary: var(--sail-signal);
@@ -162,52 +169,246 @@
     animation: none !important;
   }
 
-  .sail-halo--nav::before,
-  .sail-accent-card::before {
+  .sail-optical-border {
     animation: none !important;
+    --sail-angle: 120deg;
+  }
+
+  .sail-optical-pointer {
+    display: none;
   }
 }
 
-/* ── Premium CTA — frosted dark blue glass ── */
+/* ── Canvas pattern — tonal radial fields ── */
+
+.sail-canvas {
+  z-index: 0;
+  background-image:
+    radial-gradient(
+      circle at 82% 18%,
+      color-mix(in srgb, var(--sail-optical-steel) 6%, transparent),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 18% 72%,
+      color-mix(in srgb, var(--sail-optical-sand) 5%, transparent),
+      transparent 38%
+    );
+}
+
+.sail-canvas--hero {
+  background-image:
+    radial-gradient(
+      circle at 78% 22%,
+      color-mix(in srgb, var(--sail-optical-steel) 7%, transparent),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 22% 68%,
+      color-mix(in srgb, var(--sail-optical-sand) 6%, transparent),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 55% 88%,
+      color-mix(in srgb, var(--sail-mist) 80%, transparent),
+      transparent 45%
+    );
+}
+
+.sail-canvas--section {
+  background-image:
+    radial-gradient(
+      circle at 70% 30%,
+      color-mix(in srgb, var(--sail-optical-sage) 4%, transparent),
+      transparent 32%
+    );
+}
+
+.sail-canvas--grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.012;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Optical shell (navbar signature) ── */
+
+.sail-optical-shell {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  position: relative;
+  isolation: isolate;
+  border-radius: inherit;
+}
+
+.sail-optical-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--sail-angle),
+    color-mix(in srgb, var(--sail-optical-steel) 24%, transparent),
+    color-mix(in srgb, var(--sail-optical-violet) 18%, transparent),
+    color-mix(in srgb, var(--sail-optical-sand) 16%, transparent),
+    color-mix(in srgb, var(--sail-optical-sage) 14%, transparent),
+    color-mix(in srgb, var(--sail-optical-steel) 24%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
+  animation: sail-optical-drift 60s linear infinite;
+}
+
+.sail-optical-pointer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.35;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    rgba(255, 255, 255, 0.14),
+    transparent 28%
+  );
+}
+
+.sail-glass-surface {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(249, 248, 244, 0.7)
+  );
+  backdrop-filter: blur(18px) saturate(115%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 10px 30px rgba(17, 21, 29, 0.06);
+}
+
+@keyframes sail-optical-drift {
+  to {
+    --sail-angle: 360deg;
+  }
+}
+
+/* ── Static optical edge (product cards — restrained echo) ── */
+
+.sail-optical-edge {
+  position: relative;
+  border-radius: 10px;
+}
+
+.sail-optical-edge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 140deg,
+    color-mix(in srgb, var(--sail-optical-steel) 16%, transparent),
+    color-mix(in srgb, var(--sail-optical-violet) 12%, transparent),
+    color-mix(in srgb, var(--sail-optical-sand) 14%, transparent),
+    transparent 280deg,
+    color-mix(in srgb, var(--sail-optical-sage) 10%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.sail-optical-edge--medium::before {
+  opacity: 0.42;
+}
+
+.sail-optical-edge--soft::before {
+  opacity: 0.22;
+}
+
+.sail-glass-card {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--sail-white) 86%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--sail-line) 70%, transparent);
+  box-shadow: 0 1px 2px rgba(17, 21, 29, 0.03);
+}
+
+/* ── CTA — warm dark steel / navy glass ── */
 
 .btn-cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   border-radius: 10px;
   font-weight: 500;
-  color: var(--sail-warm-white);
+  color: var(--sail-cta-text);
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--sail-cta-blue) 88%, white) 0%,
-    var(--sail-cta-blue) 100%
+    var(--sail-blue-mid),
+    var(--sail-blue-deep)
   );
-  border: 1px solid color-mix(in srgb, white 14%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
-    0 1px 2px rgba(17, 19, 24, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 5px 14px rgba(31, 43, 61, 0.12);
   transition:
     background 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.15s ease;
+    box-shadow 0.2s ease;
+}
+
+.btn-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.1),
+    transparent 28%,
+    transparent 72%,
+    rgba(150, 170, 195, 0.05)
+  );
 }
 
 .btn-cta:hover {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--sail-cta-blue-hover) 90%, white) 0%,
-    var(--sail-cta-blue-hover) 100%
-  );
+  background: linear-gradient(180deg, #3d526f, #334761);
   box-shadow:
-    0 2px 4px rgba(17, 19, 24, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 6px 16px rgba(31, 43, 61, 0.14);
 }
 
 .btn-cta:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 2px var(--sail-canvas),
-    0 0 0 4px color-mix(in srgb, var(--sail-cta-blue) 40%, transparent);
+    0 0 0 4px color-mix(in srgb, var(--sail-blue) 35%, transparent);
 }
 
 .btn-cta--lg {
@@ -222,121 +423,16 @@
   font-size: 0.8125rem;
 }
 
-/* ── SailHalo — chromatic perimeter (navbar) ── */
+/* ── Tonal inset fields ── */
 
-.sail-halo {
-  --halo-x: 50%;
-  --halo-y: 50%;
-  position: relative;
-  isolation: isolate;
+.sail-field-stage {
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--sail-stone) 55%, var(--sail-mist));
+  border: 1px solid color-mix(in srgb, var(--sail-line) 50%, transparent);
 }
 
-.sail-halo--nav {
-  overflow: hidden;
-}
-
-.sail-halo--nav::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from 0deg at var(--halo-x) var(--halo-y),
-    transparent 0deg,
-    color-mix(in srgb, var(--halo-steel) 28%, transparent) 40deg,
-    transparent 80deg,
-    color-mix(in srgb, var(--halo-violet) 22%, transparent) 140deg,
-    transparent 200deg,
-    color-mix(in srgb, var(--halo-sand) 24%, transparent) 260deg,
-    transparent 320deg,
-    color-mix(in srgb, var(--halo-cool) 20%, transparent) 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  opacity: 0.55;
-  pointer-events: none;
-  animation: sail-halo-border-drift 48s linear infinite;
-}
-
-.sail-glass-nav {
-  position: relative;
-  z-index: 1;
-  border-radius: inherit;
-  background: color-mix(in srgb, var(--sail-warm-white) 72%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow:
-    0 1px 2px rgba(17, 19, 24, 0.04),
-    0 8px 32px rgba(17, 19, 24, 0.03);
-}
-
-/* ── Card accent — selective product blocks ── */
-
-.sail-accent-card {
-  position: relative;
-  border-radius: 10px;
-}
-
-.sail-accent-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from 180deg at 50% 50%,
-    transparent 0deg,
-    color-mix(in srgb, var(--halo-steel) 18%, transparent) 60deg,
-    transparent 120deg,
-    color-mix(in srgb, var(--halo-violet) 14%, transparent) 200deg,
-    transparent 280deg,
-    color-mix(in srgb, var(--halo-sand) 16%, transparent) 340deg,
-    transparent 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
-  animation: sail-halo-border-drift 60s linear infinite;
-}
-
-.sail-accent-card--medium::before {
-  opacity: 0.45;
-}
-
-.sail-accent-card--soft::before {
-  opacity: 0.28;
-  animation-duration: 72s;
-}
-
-.sail-glass-card {
-  position: relative;
-  z-index: 1;
-  border-radius: inherit;
-  background: color-mix(in srgb, var(--sail-white) 88%, transparent);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid color-mix(in srgb, var(--sail-line) 80%, transparent);
-  box-shadow: 0 1px 2px rgba(17, 19, 24, 0.03);
-}
-
-@keyframes sail-halo-border-drift {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sail-field-chapter {
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--sail-stone) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sail-line) 35%, transparent);
 }
