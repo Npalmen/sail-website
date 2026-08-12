@@ -28,17 +28,22 @@ export function ProductExperience() {
       variant="frosted"
       width="wide"
       align="left"
-      spacing="default"
+      spacing="compact"
+      padding="sm"
       radius="lg"
     >
-      <SectionHeader eyebrow={eyebrow} headline={headline} />
+      <SectionHeader
+        eyebrow={eyebrow}
+        headline={headline}
+        className="[&_h2]:mt-3"
+      />
 
-      <div className="mt-10 sail-field-stage p-3 sm:mt-14 sm:p-4">
+      <div className="mt-6 sail-field-stage p-2 sm:mt-7 sm:p-2.5">
         <div
           aria-hidden="true"
           className="overflow-hidden rounded-[14px] sail-inner-module"
         >
-          <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-3 sm:px-5">
+          <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-2 sm:px-4">
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-emerald-600/70" />
               <span className="text-xs font-medium text-foreground">
@@ -50,16 +55,16 @@ export function ProductExperience() {
             </span>
           </div>
 
-          <div className="grid gap-0 lg:grid-cols-[1fr_1.4fr]">
-            <div className="border-b border-border/50 p-4 sm:p-5 lg:border-b-0 lg:border-r">
+          <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="border-b border-border/50 p-3.5 sm:p-4 lg:border-b-0 lg:border-r">
               <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
                 Summary
               </p>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-3 grid gap-2">
                 {panels.slice(0, 3).map((panel) => (
                   <li
                     key={panel.label}
-                    className="flex items-start gap-2.5 rounded-lg border border-border/40 bg-surface-soft/30 p-3"
+                    className="flex min-h-[3.75rem] items-start gap-2.5 rounded-lg border border-border/40 bg-surface-soft/30 p-2.5"
                   >
                     <StatusIndicator status={panel.status} />
                     <div>
@@ -75,11 +80,11 @@ export function ProductExperience() {
               </ul>
             </div>
 
-            <div className="p-4 sm:p-5">
+            <div className="p-3.5 sm:p-4">
               <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
                 Recent activity
               </p>
-              <div className="mt-4 space-y-2">
+              <div className="mt-3 space-y-1.5">
                 {[
                   "Contract renewal parsed · Acme Corp",
                   "Customer record matched · CRM context added",
@@ -87,7 +92,7 @@ export function ProductExperience() {
                 ].map((line) => (
                   <div
                     key={line}
-                    className="flex items-center gap-2 rounded-md bg-surface-soft/50 px-3 py-2"
+                    className="flex items-center gap-2 rounded-md bg-surface-soft/50 px-2.5 py-1.5"
                   >
                     <StatusIndicator status="complete" />
                     <p className="text-xs text-foreground">{line}</p>
@@ -95,15 +100,15 @@ export function ProductExperience() {
                 ))}
               </div>
 
-                <div className="mt-5 sail-state-module--approval p-3">
+              <div className="mt-3.5 sail-state-module--approval p-2.5">
                 <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-primary/80">
                   Needs approval
                 </p>
-                <p className="mt-1.5 text-sm font-medium text-foreground">
+                <p className="mt-1 text-sm font-medium leading-snug text-foreground">
                   Send renewal terms to Acme Corp
                 </p>
-                <div className="mt-3 flex gap-2">
-                  <span className="rounded-md bg-surface-white px-2.5 py-1 text-[11px] font-medium text-foreground ring-1 ring-border/60">
+                <div className="mt-2.5 flex gap-2">
+                  <span className="rounded-md bg-surface-white/90 px-2.5 py-1 text-[11px] font-medium text-foreground ring-1 ring-border/60">
                     Review
                   </span>
                   <span className="rounded-md px-2.5 py-1 text-[11px] text-muted-foreground">

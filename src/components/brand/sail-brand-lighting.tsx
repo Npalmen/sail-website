@@ -2,16 +2,32 @@
 
 import { useEffect } from "react";
 
-const RELIEF_DEPTH = 3;
+const RELIEF_DEPTH = 4.5;
+
+function applyReliefVars(
+  target: HTMLElement,
+  fromX: number,
+  fromY: number
+) {
+  const darkX = `${fromX * RELIEF_DEPTH}px`;
+  const darkY = `${fromY * RELIEF_DEPTH}px`;
+  const lightX = `${-fromX * RELIEF_DEPTH}px`;
+  const lightY = `${-fromY * RELIEF_DEPTH}px`;
+
+  target.style.setProperty("--brand-dark-x", darkX);
+  target.style.setProperty("--brand-dark-y", darkY);
+  target.style.setProperty("--brand-light-x", lightX);
+  target.style.setProperty("--brand-light-y", lightY);
+  target.style.setProperty("--brand-shadow-x", darkX);
+  target.style.setProperty("--brand-shadow-y", darkY);
+  target.style.setProperty("--brand-highlight-x", lightX);
+  target.style.setProperty("--brand-highlight-y", lightY);
+}
 
 /** Static inset light from above (reduced motion). */
-function applyStaticDebossLighting(root: HTMLElement) {
-  root.style.setProperty("--brand-dark-x", "0px");
-  root.style.setProperty("--brand-dark-y", `${-RELIEF_DEPTH}px`);
-  root.style.setProperty("--brand-light-x", "0px");
-  root.style.setProperty("--brand-light-y", `${RELIEF_DEPTH}px`);
-  root.style.setProperty("--brand-shadow-x", "0px");
-  root.style.setProperty("--brand-shadow-y", `${-RELIEF_DEPTH}px`);
+function applyStaticDebossLighting(root: HTMLElement, mark: HTMLElement | null) {
+  applyReliefVars(root, 0, -1);
+  if (mark) applyReliefVars(mark, 0, -1);
 }
 
 /**
@@ -21,12 +37,13 @@ function applyStaticDebossLighting(root: HTMLElement) {
 export function SailBrandLighting() {
   useEffect(() => {
     const root = document.documentElement;
+    const mark = document.querySelector<HTMLElement>(".sail-brand-mark");
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     if (reducedMotion) {
-      applyStaticDebossLighting(root);
+      applyStaticDebossLighting(root, mark);
       return;
     }
 
@@ -49,17 +66,8 @@ export function SailBrandLighting() {
       const fromX = Math.cos(radians);
       const fromY = Math.sin(radians);
 
-      const darkX = `${fromX * RELIEF_DEPTH}px`;
-      const darkY = `${fromY * RELIEF_DEPTH}px`;
-      const lightX = `${-fromX * RELIEF_DEPTH}px`;
-      const lightY = `${-fromY * RELIEF_DEPTH}px`;
-
-      root.style.setProperty("--brand-dark-x", darkX);
-      root.style.setProperty("--brand-dark-y", darkY);
-      root.style.setProperty("--brand-light-x", lightX);
-      root.style.setProperty("--brand-light-y", lightY);
-      root.style.setProperty("--brand-shadow-x", darkX);
-      root.style.setProperty("--brand-shadow-y", darkY);
+      applyReliefVars(root, fromX, fromY);
+      if (mark) applyReliefVars(mark, fromX, fromY);
     };
 
     const onScroll = () => {
@@ -71,11 +79,11 @@ export function SailBrandLighting() {
     };
 
     updateBrandLighting();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
     window.addEventListener("resize", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("scroll", onScroll, true);
       window.removeEventListener("resize", onScroll);
       if (frame !== null) window.cancelAnimationFrame(frame);
     };
