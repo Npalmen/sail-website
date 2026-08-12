@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { CtaButton } from "@/components/shared/cta-button";
 import { cn } from "@/lib/utils";
 
 type ContactFormProps = {
@@ -95,9 +96,9 @@ export function ContactForm({ className }: ContactFormProps) {
           before launch — this UI validates the request flow only.
         </p>
       ) : (
-        <button type="submit" className="btn-cta btn-cta--lg">
-          <span className="btn-cta__label">Send request</span>
-        </button>
+        <CtaButton type="submit" className="btn-cta--lg">
+          Send request
+        </CtaButton>
       )}
     </form>
   );
