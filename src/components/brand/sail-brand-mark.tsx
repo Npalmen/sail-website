@@ -6,7 +6,6 @@ import { useEffect, useId, useRef } from "react";
 const RELIEF_DEPTH = 4;
 
 function applyInnerShadow(
-  target: HTMLElement,
   darkInnerRef: React.RefObject<SVGFEOffsetElement | null>,
   fromX: number,
   fromY: number
@@ -14,34 +13,26 @@ function applyInnerShadow(
   const offsetX = fromX * RELIEF_DEPTH;
   const offsetY = fromY * RELIEF_DEPTH;
 
-  target.style.setProperty("--brand-shadow-x", `${offsetX}px`);
-  target.style.setProperty("--brand-shadow-y", `${offsetY}px`);
-
   darkInnerRef.current?.setAttribute("dx", String(offsetX));
   darkInnerRef.current?.setAttribute("dy", String(offsetY));
 }
 
 function applyStaticInnerShadow(
-  target: HTMLElement,
   darkInnerRef: React.RefObject<SVGFEOffsetElement | null>
 ) {
-  applyInnerShadow(target, darkInnerRef, 0, -1);
+  applyInnerShadow(darkInnerRef, 0, -1);
 }
 
 function useBrandMarkLighting(
-  markRef: React.RefObject<HTMLElement | null>,
   darkInnerRef: React.RefObject<SVGFEOffsetElement | null>
 ) {
   useEffect(() => {
-    const mark = markRef.current;
-    if (!mark) return;
-
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     if (reducedMotion) {
-      applyStaticInnerShadow(mark, darkInnerRef);
+      applyStaticInnerShadow(darkInnerRef);
       return;
     }
 
@@ -60,7 +51,6 @@ function useBrandMarkLighting(
       const radians = (sourceAngleDeg * Math.PI) / 180;
 
       applyInnerShadow(
-        mark,
         darkInnerRef,
         Math.cos(radians),
         Math.sin(radians)
@@ -86,19 +76,18 @@ function useBrandMarkLighting(
       window.removeEventListener("resize", onScroll);
       if (frame !== null) window.cancelAnimationFrame(frame);
     };
-  }, [markRef, darkInnerRef]);
+  }, [darkInnerRef]);
 }
 
-/** Canvas-matched SAIL mark — dark inner contour only, scroll-driven. */
+/** Flat canvas face + isolated dark inner contour, scroll-driven. */
 export function SailBrandMark() {
-  const markRef = useRef<HTMLDivElement>(null);
   const darkInnerRef = useRef<SVGFEOffsetElement>(null);
   const filterId = useId().replace(/:/g, "");
 
-  useBrandMarkLighting(markRef, darkInnerRef);
+  useBrandMarkLighting(darkInnerRef);
 
   return (
-    <div ref={markRef} aria-hidden="true" className="sail-brand-mark">
+    <div aria-hidden="true" className="sail-brand-mark">
       <svg
         aria-hidden="true"
         className="sail-brand-mark__defs"
@@ -132,23 +121,30 @@ export function SailBrandMark() {
               operator="out"
               result="darkInv"
             />
-            <feFlood floodColor="#191820" floodOpacity="0.16" result="darkColor" />
+            <feFlood floodColor="#191820" floodOpacity="0.18" result="darkColor" />
             <feComposite
               in="darkColor"
               in2="darkInv"
               operator="in"
               result="darkInner"
             />
-
+            <feComposite
+              in="darkInner"
+              in2="SourceAlpha"
+              operator="in"
+              result="darkInnerClipped"
+            />
             <feMerge>
-              <feMergeNode in="SourceGraphic" />
-              <feMergeNode in="darkInner" />
+              <feMergeNode in="darkInnerClipped" />
             </feMerge>
           </filter>
         </defs>
       </svg>
+
+      <span className="sail-brand-mark__glyph sail-brand-mark__face">SAIL</span>
       <span
-        className="sail-brand-mark__face"
+        aria-hidden="true"
+        className="sail-brand-mark__glyph sail-brand-mark__relief"
         style={{ filter: `url(#${filterId})` }}
       >
         SAIL

@@ -232,12 +232,7 @@
 .sail-brand-canvas__base {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    168deg,
-    var(--sail-canvas) 0%,
-    color-mix(in srgb, var(--sail-warm) 85%, var(--sail-canvas)) 55%,
-    var(--sail-warm) 100%
-  );
+  background: var(--sail-canvas);
 }
 
 .sail-brand-canvas__tonal {
@@ -274,7 +269,7 @@
   user-select: none;
 }
 
-.sail-brand-mark__face {
+.sail-brand-mark__glyph {
   display: block;
   font-size: clamp(8rem, 22vw, 18rem);
   font-weight: 600;
@@ -282,7 +277,19 @@
   line-height: 0.85;
   text-align: center;
   white-space: nowrap;
-  color: var(--sail-canvas-material);
+}
+
+.sail-brand-mark__face {
+  color: var(--sail-canvas);
+  -webkit-text-fill-color: var(--sail-canvas);
+}
+
+.sail-brand-mark__relief {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
 }
 
 .sail-brand-mark__defs {
@@ -299,7 +306,7 @@
     width: min(85vw, 420px);
   }
 
-  .sail-brand-mark__face {
+  .sail-brand-mark__glyph {
     font-size: clamp(5rem, 28vw, 9rem);
     letter-spacing: 0.14em;
   }
