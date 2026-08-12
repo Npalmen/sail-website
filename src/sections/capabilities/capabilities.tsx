@@ -30,7 +30,7 @@ export function Capabilities() {
                 Kapacitetsöversikt
               </p>
             </div>
-            <div className="grid divide-y divide-border/50 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+            <div className="grid divide-y divide-border/50 md:grid-cols-2 md:divide-x md:divide-y-0">
               {items.map((item) => (
                 <div key={item.title} className="p-4 sm:p-5">
                   <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
@@ -44,7 +44,7 @@ export function Capabilities() {
             </div>
           </div>
 
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {items.map((item) => (
               <li
                 key={item.title}

@@ -37,6 +37,7 @@ export function SectionHeader({
       <h2
         className={cn(
           "mt-4 text-2xl font-semibold tracking-tight sm:text-3xl xl:text-[2rem] xl:leading-[1.15]",
+          align === "center" && "mx-auto max-w-[22ch] sm:max-w-none",
           isDark ? "text-white/95" : "text-foreground"
         )}
       >

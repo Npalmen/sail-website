@@ -26,16 +26,19 @@ export function FinalCta({ id = homepageContent.finalCta.id }: FinalCtaProps) {
       spacing="loose"
       padding="none"
     >
-      <SailOpticalShell intensity="medium" className="rounded-[var(--radius-surface-lg)]">
-        <div className="px-6 py-12 text-center sm:px-12 sm:py-16">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+      <SailOpticalShell
+        intensity="medium"
+        className="rounded-[22px] xl:rounded-[var(--radius-surface-lg)]"
+      >
+        <div className="px-5 py-10 text-center sm:px-8 sm:py-12 lg:px-12 lg:py-16">
+          <h2 className="mx-auto max-w-[18ch] text-2xl font-semibold tracking-tight text-foreground sm:max-w-none sm:text-3xl">
             {headline}
           </h2>
           <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
             {body}
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
+          <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg w-full sm:w-auto">
               Boka demo
             </CtaLink>
             <Link href={routes.product} className={ctaSecondary}>

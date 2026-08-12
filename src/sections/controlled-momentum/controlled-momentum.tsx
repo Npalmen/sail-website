@@ -17,17 +17,17 @@ export function ControlledMomentum() {
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
           Kontrollerad rörelse
         </p>
-        <h2 className="mt-5 text-2xl font-semibold leading-[1.25] tracking-tight text-foreground sm:text-3xl xl:text-[2rem]">
+        <h2 className="mt-5 max-w-[22ch] text-2xl font-semibold leading-[1.25] tracking-tight text-foreground sm:mt-5 sm:max-w-none sm:text-3xl xl:text-[2rem]">
           SAIL förstår inkommande arbete, bedömer vad som behöver hända och
           agerar inom den auktoritet verksamheten gett den.
         </h2>
       </div>
 
       <div className="mx-auto mt-12 max-w-2xl">
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-0">
+        <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-0">
           {flow.map((step, index) => (
-            <div key={step} className="flex items-center">
-              <div className="sail-glass-card !rounded-full px-5 py-2.5 text-sm font-medium text-foreground">
+            <div key={step} className="flex items-center justify-center sm:justify-start">
+              <div className="sail-glass-card !rounded-full px-5 py-2.5 text-center text-sm font-medium text-foreground">
                 {step}
               </div>
               {index < flow.length - 1 && (

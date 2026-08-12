@@ -23,7 +23,7 @@ export function Autonomy() {
         Se SAIL:s kontrollmodell
       </DeepLink>
 
-      <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 xl:grid-cols-4 sail-module-grid">
+      <div className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-2 xl:mt-14 xl:grid-cols-4 sail-module-grid">
         {levels.map((level, index) => (
           <div
             key={level.title}
@@ -45,7 +45,27 @@ export function Autonomy() {
         ))}
       </div>
 
-      <div className="mt-8 flex items-center gap-2 overflow-x-auto pb-2">
+      {/* Mobile — vertical progression */}
+      <div className="mt-8 space-y-3 lg:hidden">
+        {levels.map((level, index) => (
+          <div key={level.title} className="flex items-center gap-3">
+            <div
+              className={cn(
+                "h-1.5 shrink-0 rounded-full bg-white/20",
+                index === 0 && "w-10",
+                index === 1 && "w-14",
+                index === 2 && "w-[4.5rem]",
+                index === 3 && "w-20 bg-white/40"
+              )}
+            />
+            <span className="text-xs text-white/50">Nivå {level.level}</span>
+          </div>
+        ))}
+        <p className="pt-1 text-xs text-white/45">Ökande autonomi</p>
+      </div>
+
+      {/* Desktop — horizontal rail */}
+      <div className="mt-8 hidden items-center gap-2 overflow-x-auto pb-2 lg:flex">
         {levels.map((level, index) => (
           <div key={level.title} className="flex items-center gap-2">
             <div

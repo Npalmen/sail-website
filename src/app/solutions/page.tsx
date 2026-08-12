@@ -75,7 +75,7 @@ export default function SolutionsPage() {
 
       <ContentSurface variant="frosted" width="wide" align="center" spacing="default" radius="lg">
         <SectionHeader eyebrow="Kapacitetsområden" headline={capabilities.headline} align="center" />
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 sail-module-grid">
+        <ul className="mt-10 grid gap-4 md:grid-cols-2 sail-module-grid">
           {capabilities.items.map((item) => (
             <li key={item.title} className="sail-inner-module flex flex-col p-5">
               <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
@@ -114,7 +114,7 @@ export default function SolutionsPage() {
 
       <ContentSurface variant="frosted" width="wide" align="center" spacing="default" radius="md">
         <SectionHeader eyebrow={integrations.eyebrow} headline={integrations.headline} align="center" />
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 sail-module-grid">
+        <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 sail-module-grid">
           {integrations.categories.map((category) => (
             <li key={category.name} className="sail-inner-module flex flex-col p-5">
               <h3 className="text-sm font-semibold text-foreground">{category.name}</h3>

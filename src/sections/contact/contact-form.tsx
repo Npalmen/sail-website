@@ -16,6 +16,9 @@ type ContactFormProps = {
 export function ContactForm({ className }: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false);
 
+  const fieldClass =
+    "w-full min-h-11 rounded-[var(--radius-module-control)] border border-border/70 bg-surface-white/90 px-3 py-2.5 text-base sm:text-sm";
+
   return (
     <form
       className={cn("space-y-5", className)}
@@ -25,7 +28,7 @@ export function ContactForm({ className }: ContactFormProps) {
       }}
       noValidate
     >
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2">
         <label className="block space-y-1.5">
           <span className="text-sm font-medium text-foreground">Namn</span>
           <input
@@ -33,7 +36,7 @@ export function ContactForm({ className }: ContactFormProps) {
             name="name"
             type="text"
             autoComplete="name"
-            className="w-full rounded-[var(--radius-module-control)] border border-border/70 bg-surface-white/90 px-3 py-2.5 text-sm"
+            className={fieldClass}
           />
         </label>
         <label className="block space-y-1.5">
@@ -43,7 +46,7 @@ export function ContactForm({ className }: ContactFormProps) {
             name="company"
             type="text"
             autoComplete="organization"
-            className="w-full rounded-[var(--radius-module-control)] border border-border/70 bg-surface-white/90 px-3 py-2.5 text-sm"
+            className={fieldClass}
           />
         </label>
       </div>
@@ -54,7 +57,7 @@ export function ContactForm({ className }: ContactFormProps) {
           name="email"
           type="email"
           autoComplete="email"
-          className="w-full rounded-[var(--radius-module-control)] border border-border/70 bg-surface-white/90 px-3 py-2.5 text-sm"
+          className={fieldClass}
         />
       </label>
       <label className="block space-y-1.5">
@@ -65,7 +68,7 @@ export function ContactForm({ className }: ContactFormProps) {
           name="phone"
           type="tel"
           autoComplete="tel"
-          className="w-full rounded-[var(--radius-module-control)] border border-border/70 bg-surface-white/90 px-3 py-2.5 text-sm"
+          className={fieldClass}
         />
       </label>
       <label className="block space-y-1.5">
@@ -76,7 +79,7 @@ export function ContactForm({ className }: ContactFormProps) {
           required
           name="scope"
           rows={3}
-          className="w-full rounded-[var(--radius-module-info)] border border-border/70 bg-surface-white/90 px-3 py-2.5 text-sm"
+          className={cn(fieldClass, "rounded-[var(--radius-module-info)]")}
         />
       </label>
       <label className="block space-y-1.5">
@@ -86,7 +89,7 @@ export function ContactForm({ className }: ContactFormProps) {
         <textarea
           name="message"
           rows={3}
-          className="w-full rounded-[var(--radius-module-info)] border border-border/70 bg-surface-white/90 px-3 py-2.5 text-sm"
+          className={cn(fieldClass, "rounded-[var(--radius-module-info)]")}
         />
       </label>
 
@@ -96,7 +99,7 @@ export function ContactForm({ className }: ContactFormProps) {
           före lansering — det här gränssnittet validerar endast flödet.
         </p>
       ) : (
-        <CtaButton type="submit" className="btn-cta--lg">
+        <CtaButton type="submit" className="btn-cta--lg w-full sm:w-auto">
           Skicka förfrågan
         </CtaButton>
       )}

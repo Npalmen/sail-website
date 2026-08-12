@@ -38,28 +38,28 @@ const widthClass: Record<SurfaceWidth, string> = {
 
 const alignClass: Record<SurfaceAlign, string> = {
   center: "mx-auto",
-  left: "mx-auto md:ml-[5%] md:mr-auto lg:ml-[7%]",
-  right: "mx-auto md:ml-auto md:mr-[5%] lg:mr-[7%]",
+  left: "mx-auto xl:ml-[7%] xl:mr-auto",
+  right: "mx-auto xl:ml-auto xl:mr-[7%]",
 };
 
 const radiusClass: Record<SurfaceRadius, string> = {
-  sm: "rounded-[var(--radius-surface-sm)]",
-  md: "rounded-[var(--radius-surface-md)]",
-  lg: "rounded-[var(--radius-surface-lg)]",
+  sm: "rounded-[18px] xl:rounded-[var(--radius-surface-sm)]",
+  md: "rounded-[18px] xl:rounded-[var(--radius-surface-md)]",
+  lg: "rounded-[22px] xl:rounded-[var(--radius-surface-lg)]",
 };
 
 const spacingClass: Record<SurfaceSpacing, string> = {
-  compact: "py-12 sm:py-16",
-  default: "py-16 sm:py-20 lg:py-24",
-  loose: "py-20 sm:py-28 lg:py-32",
-  open: "py-20 sm:py-28",
+  compact: "py-10 sm:py-16",
+  default: "py-12 sm:py-20 lg:py-24",
+  loose: "py-16 sm:py-28 lg:py-32",
+  open: "py-16 sm:py-28",
 };
 
 const paddingClass: Record<SurfacePadding, string> = {
   none: "",
-  sm: "p-5 sm:p-6",
-  default: "p-6 sm:p-8 lg:p-10",
-  lg: "p-8 sm:p-10 lg:p-12",
+  sm: "p-4 sm:p-6",
+  default: "p-5 sm:p-8 lg:p-10",
+  lg: "p-6 sm:p-10 lg:p-12",
 };
 
 const variantClass: Record<Exclude<SurfaceVariant, "open">, string> = {
@@ -90,7 +90,7 @@ export function ContentSurface({
     <Component
       id={id}
       aria-label={ariaLabel}
-      className={cn("px-4 sm:px-6", spacingClass[spacing], className)}
+      className={cn("px-4 sm:px-5 xl:px-6", spacingClass[spacing], className)}
     >
       <div
         className={cn(

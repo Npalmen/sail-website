@@ -10,10 +10,10 @@ import { MobileNav } from "./mobile-nav";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 px-4 pt-3 sm:px-6 md:pt-4">
-      <div className="mx-auto w-[min(92vw,1320px)]">
+    <header className="sail-site-header sticky top-0 z-50 px-4 pt-3 sm:px-5 xl:px-6 md:pt-4">
+      <div className="mx-auto w-full max-w-[min(calc(100vw-2rem),1320px)]">
         <SailOpticalShell className="rounded-[var(--radius-surface-sm)] md:rounded-[var(--radius-surface-md)]">
-          <div className="flex h-[62px] items-center justify-between gap-6 px-4 md:h-16 md:px-6">
+          <div className="flex h-14 min-h-[3.5rem] items-center justify-between gap-4 px-4 md:h-16 md:gap-6 md:px-6">
             <Wordmark className="text-[15px]" />
 
             <nav
@@ -23,7 +23,7 @@ export function Navbar() {
               <MainNavLinks />
             </nav>
 
-            <div className="flex items-center gap-4 sm:gap-5">
+            <div className="flex items-center gap-2 sm:gap-4 md:gap-5">
               <Link
                 href={siteConfig.links.login}
                 className="hidden text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
@@ -44,4 +44,3 @@ export function Navbar() {
     </header>
   );
 }
-

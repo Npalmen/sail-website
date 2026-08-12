@@ -24,7 +24,7 @@ export function Integrations() {
         </DeepLink>
       </div>
 
-      <ul className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4 sail-module-grid">
+      <ul className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 md:grid-cols-2 lg:mt-14 lg:grid-cols-4 sail-module-grid">
         {categories.map((category) => (
           <li
             key={category.name}

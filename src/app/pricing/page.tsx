@@ -60,7 +60,7 @@ export default function PricingPage() {
           headline="Vad som avgör omfattningen"
           align="center"
         />
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 sail-module-grid">
+        <ul className="mt-10 grid gap-4 md:grid-cols-2 sail-module-grid">
           {scopeFactors.map((factor) => (
             <li key={factor.title} className="sail-inner-module flex flex-col p-5">
               <h3 className="text-base font-semibold text-foreground">{factor.title}</h3>

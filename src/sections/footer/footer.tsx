@@ -19,35 +19,37 @@ export function Footer() {
       spacing="compact"
       radius="md"
       padding="default"
-      className="pb-8"
+      className="pb-[max(2rem,env(safe-area-inset-bottom))]"
     >
-      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6">
-        <div className="lg:col-span-2">
+      <div className="flex flex-col gap-10">
+        <div className="max-w-sm">
           <Wordmark />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
             {description}
           </p>
         </div>
 
-        {columns.map((column) => (
-          <div key={column.title}>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-foreground">
-              {column.title}
-            </p>
-            <ul className="mt-4 space-y-2.5">
-              {column.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {columns.map((column) => (
+            <div key={column.title}>
+              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-foreground">
+                {column.title}
+              </p>
+              <ul className="mt-4 space-y-3">
+                {column.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="inline-flex min-h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mt-10 border-t border-border/50 pt-8">

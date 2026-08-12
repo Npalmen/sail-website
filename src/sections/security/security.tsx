@@ -20,7 +20,7 @@ export function Security() {
       <SectionHeader eyebrow={eyebrow} headline={headline} />
       <DeepLink href={routes.security}>Läs mer om säkerhet</DeepLink>
 
-      <ul className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2 sail-module-grid">
+      <ul className="mt-8 grid grid-cols-1 gap-5 sm:mt-10 md:grid-cols-2 md:mt-14 sail-module-grid">
         {principles.map((principle) => (
             <li key={principle.title} className="sail-field-chapter flex flex-col p-5 sm:p-6">
             <h3 className="text-base font-semibold tracking-tight text-foreground">

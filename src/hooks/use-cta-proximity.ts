@@ -14,9 +14,11 @@ export function useCtaProximity<T extends HTMLElement>() {
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    const noHover = window.matchMedia("(hover: none)").matches;
+    const finePointer = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
 
-    if (reducedMotion || noHover) return;
+    if (reducedMotion || !finePointer) return;
 
     opticalCtaManager.register(el);
     return () => opticalCtaManager.unregister(el);

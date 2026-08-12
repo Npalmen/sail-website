@@ -24,7 +24,7 @@ export function Problem() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 xl:col-span-7">
+        <div className="grid gap-6 md:grid-cols-2 xl:col-span-7">
           <div className="sail-field-chapter p-5 sm:p-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
               Arbete kommer in via

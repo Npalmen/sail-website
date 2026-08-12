@@ -26,20 +26,20 @@ export function Hero() {
                 Din digitala medarbetare
               </p>
 
-              <h1 className="mt-5 max-w-[12ch] text-display font-semibold text-foreground">
+              <h1 className="mt-4 max-w-[13ch] text-display font-semibold text-foreground sm:mt-5 sm:max-w-[12ch]">
                 Arbetet rör sig framåt.
               </h1>
 
-              <p className="mt-6 max-w-[34ch] text-base leading-relaxed text-muted-foreground sm:text-[17px] sm:leading-[1.65]">
+              <p className="mt-5 max-w-[36ch] text-base leading-relaxed text-muted-foreground sm:mt-6 sm:max-w-[34ch] sm:text-[17px] sm:leading-[1.65]">
                 SAIL hanterar administrationen kring din verksamhet&nbsp;—
                 medan du behåller kontrollen.
               </p>
 
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-                <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 lg:gap-6">
+                <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg w-full sm:w-auto">
                   Boka demo
                 </CtaLink>
-                <Link href={routes.product} className={ctaSecondary}>
+                <Link href={routes.product} className={cn(ctaSecondary, "justify-center sm:justify-start")}>
                   Se hur det fungerar
                 </Link>
               </div>
@@ -48,12 +48,12 @@ export function Hero() {
 
           <div
             className={cn(
-              "relative z-0 mt-10 sm:mt-12 md:mt-14",
+              "relative z-0 mt-8 sm:mt-12 md:mt-14",
               "xl:col-span-7 xl:col-start-6 xl:row-start-1 xl:mt-14",
               "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-6 motion-safe:duration-1000 motion-safe:delay-200 motion-reduce:animate-none"
             )}
           >
-            <div className="sail-surface-frosted shadow-glass-floating rounded-[var(--radius-surface-md)] p-3 sm:p-4 md:p-5">
+            <div className="sail-surface-frosted shadow-glass-floating rounded-[18px] p-3 sm:rounded-[var(--radius-surface-md)] sm:p-4 md:p-5">
               <ProductPreview />
             </div>
           </div>

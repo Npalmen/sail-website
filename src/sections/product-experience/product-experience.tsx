@@ -64,14 +64,14 @@ export function ProductExperience() {
                 {panels.slice(0, 3).map((panel) => (
                   <li
                     key={panel.label}
-                    className="flex min-h-[3.75rem] items-start gap-2.5 rounded-lg border border-border/40 bg-surface-soft/30 p-2.5"
+                    className="flex min-h-[3.75rem] items-start gap-2.5 rounded-lg border border-border/40 bg-surface-soft/30 p-3 sm:p-2.5"
                   >
                     <StatusIndicator status={panel.status} />
                     <div>
-                      <p className="text-xs font-medium text-foreground">
+                      <p className="text-sm font-medium text-foreground sm:text-xs">
                         {panel.label}
                       </p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">
+                      <p className="mt-0.5 text-sm text-muted-foreground sm:text-xs">
                         {panel.value}
                       </p>
                     </div>
@@ -95,7 +95,7 @@ export function ProductExperience() {
                     className="flex items-center gap-2 rounded-md bg-surface-soft/50 px-2.5 py-1.5"
                   >
                     <StatusIndicator status="complete" />
-                    <p className="text-xs text-foreground">{line}</p>
+                    <p className="text-sm text-foreground sm:text-xs">{line}</p>
                   </div>
                 ))}
               </div>

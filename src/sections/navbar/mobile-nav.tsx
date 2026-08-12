@@ -23,32 +23,35 @@ export function MobileNav() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
-              aria-label="Öppna navigationsmenyn"
+            className="size-11 md:hidden"
+            aria-label="Öppna navigationsmenyn"
           />
         }
       >
-        <MenuIcon />
+        <MenuIcon className="size-5" />
       </SheetTrigger>
-      <SheetContent side="right" className="w-full max-w-sm">
-        <SheetHeader>
+      <SheetContent
+        side="right"
+        className="sail-mobile-sheet w-full max-w-sm border-0 bg-transparent shadow-none"
+      >
+        <SheetHeader className="px-2 pt-2">
           <SheetTitle className="sr-only">Navigation</SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col gap-0.5 px-4 pt-2">
+        <nav className="flex flex-col gap-1 px-2 pt-2">
           {siteConfig.nav.map((item) => (
             <NavLink
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3 py-3 text-sm !text-foreground hover:bg-muted"
+              className="flex min-h-11 items-center rounded-[var(--radius-module-info)] px-3 py-2.5 text-sm !text-foreground hover:bg-surface-soft/60"
             >
               {item.title}
             </NavLink>
           ))}
         </nav>
-        <div className="mt-auto flex flex-col gap-3 border-t border-border p-4">
+        <div className="mt-auto flex flex-col gap-3 border-t border-border/50 p-4">
           <Link
             href={siteConfig.links.login}
-            className="px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="flex min-h-11 items-center px-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             Logga in
           </Link>

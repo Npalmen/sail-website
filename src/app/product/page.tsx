@@ -33,8 +33,8 @@ export default function ProductPage() {
             som behöver hända och agerar inom den auktoritet din verksamhet
             definierar.
           </p>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg w-full sm:w-auto">
               Boka demo
             </CtaLink>
             <DeepLink href="#capabilities" className="mt-0">
@@ -60,7 +60,7 @@ export default function ProductPage() {
           headline="Hur SAIL tar emot arbete"
           description="Inkommande administrativt arbete når verksamheten via kanaler ni redan använder — kommunikation, dokument, förfrågningar och kopplade system."
         />
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+        <ul className="mt-8 grid gap-3 md:grid-cols-2">
           {["Kommunikation", "Dokument och formulär", "Kundförfrågningar", "Affärssystem"].map(
             (item) => (
               <li key={item} className="sail-inner-module p-4 text-sm text-foreground">
@@ -93,7 +93,7 @@ export default function ProductPage() {
 
       <ContentSurface id="workflow" variant="frosted" width="wide" align="center" spacing="default" radius="lg">
         <SectionHeader eyebrow={workflow.eyebrow} headline={workflow.headline} />
-        <ol className="mt-10 grid gap-4 sm:grid-cols-5 sail-module-grid">
+        <ol className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 sail-module-grid">
           {workflow.steps.map((step, index) => (
             <li key={step.title} className="sail-inner-module flex flex-col p-4">
               <span className="font-mono text-xs text-muted-foreground">{index + 1}</span>
@@ -128,7 +128,7 @@ export default function ProductPage() {
         <DeepLink href={routes.security} className="text-white/60 hover:text-white/90">
           Läs mer om säkerhet och kontroll
         </DeepLink>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 sail-module-grid">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4 sail-module-grid">
           {autonomy.levels.map((level) => (
             <div key={level.title} className="sail-inner-module--dark flex flex-col p-5 sm:p-6">
               <span className="font-mono text-xs text-white/40">Nivå {level.level}</span>

@@ -68,7 +68,7 @@ export default function SecurityPage() {
 
       <ContentSurface variant="frosted" width="wide" align="center" spacing="default" radius="lg">
         <SectionHeader eyebrow="Principer" headline="Hur SAIL förhåller sig till förtroende" align="center" />
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 sail-module-grid">
+        <ul className="mt-10 grid gap-5 md:grid-cols-2 sail-module-grid">
           {extendedPrinciples.map((principle) => (
             <li key={principle.title} className="sail-inner-module flex flex-col p-5 sm:p-6">
               <h3 className="text-base font-semibold text-foreground">{principle.title}</h3>
@@ -82,7 +82,7 @@ export default function SecurityPage() {
 
       <ContentSurface variant="dark" width="wide" align="center" spacing="default" radius="lg">
         <SectionHeader eyebrow={autonomy.eyebrow} headline={autonomy.headline} variant="dark" align="center" />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 sail-module-grid">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4 sail-module-grid">
           {autonomy.levels.map((level) => (
             <div key={level.title} className="sail-inner-module--dark flex flex-col p-5">
               <span className="font-mono text-xs text-white/40">Nivå {level.level}</span>
