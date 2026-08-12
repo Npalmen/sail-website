@@ -6,11 +6,11 @@ export const siteConfig = {
   url: "https://sail.example.com",
   links: {
     login: "#",
-    bookDemo: "#",
+    bookDemo: "#final-cta",
   },
   nav: [
     { title: "Product", href: "#product" },
-    { title: "Solutions", href: "#solutions" },
+    { title: "Solutions", href: "#capabilities" },
     { title: "Pricing", href: "#pricing" },
     { title: "Security", href: "#security" },
   ],

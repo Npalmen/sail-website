@@ -10,16 +10,23 @@ import {
 
 import { cn } from "@/lib/utils";
 
+type OpticalIntensity = "strong" | "medium" | "subtle";
+type OpticalSurface = "light" | "dark";
+
 type SailOpticalShellProps = {
   children: ReactNode;
   className?: string;
   trackPointer?: boolean;
+  intensity?: OpticalIntensity;
+  surface?: OpticalSurface;
 };
 
 export function SailOpticalShell({
   children,
   className,
   trackPointer = true,
+  intensity = "strong",
+  surface = "light",
 }: SailOpticalShellProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef(0);
@@ -75,7 +82,13 @@ export function SailOpticalShell({
   return (
     <div
       ref={rootRef}
-      className={cn("sail-optical-shell", className)}
+      className={cn(
+        "sail-optical-shell",
+        intensity === "strong" && "sail-optical-shell--strong",
+        intensity === "medium" && "sail-optical-shell--medium",
+        intensity === "subtle" && "sail-optical-shell--subtle",
+        className
+      )}
       style={
         {
           "--pointer-x": "50%",
@@ -87,7 +100,14 @@ export function SailOpticalShell({
       {trackPointer && (
         <div aria-hidden="true" className="sail-optical-pointer" />
       )}
-      <div className="sail-glass-surface">{children}</div>
+      <div
+        className={cn(
+          "sail-glass-surface",
+          surface === "dark" && "sail-glass-surface--dark"
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 }

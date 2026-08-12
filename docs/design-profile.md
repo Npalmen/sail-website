@@ -130,3 +130,74 @@ All tokens are defined in [`src/app/globals.css`](../src/app/globals.css). Compo
 ## Site configuration
 
 Centralized in [`src/config/site.ts`](../src/config/site.ts): name, description, navigation, CTA/login URLs.
+
+Homepage section content lives in [`src/config/homepage.ts`](../src/config/homepage.ts).
+
+---
+
+## SAIL Material Principles
+
+These principles are permanent. **Colors are currently provisional and may be visually tuned later** — do not treat exact hex values as locked brand standards.
+
+### Frosted optical glass
+
+Important interactive surfaces use real optical material: transparency, backdrop blur, slight saturation, soft borders, internal highlights, restrained shadow, and depth.
+
+Primary uses: floating navbar, primary CTA buttons, selected floating product surfaces.
+
+Do not apply glassmorphism to the entire site.
+
+### Dark optical CTA material
+
+Primary CTAs use warm dark steel / navy glass — not generic blue buttons or flat ink fills.
+
+### Interactive lens shimmer
+
+A subtle recurring optical signature (lens coating, thin-film interference, chromatic refraction). Implemented via `SailOpticalShell` with CSS custom properties and rAF-throttled pointer updates — not React state per move.
+
+**Hierarchy:** strongest on navbar and final CTA; medium on one major brand object; subtle on primary CTA and selected product surfaces; none on ordinary content.
+
+Pointer interaction affects perceived light and local reflection — not object tilt or cursor-chasing gimmicks.
+
+### Living canvas
+
+Backgrounds use warm/cool off-whites, subtle tonal fields, optional micro-grain, and section-specific treatments via `SailCanvasPattern`. Architecture supports future brand patterns without hard-coding weak decorative motifs.
+
+### Embossed / debossed brand surfaces
+
+`SailEmboss` provides a reusable treatment for future logo/wordmark integration — pressed into the surface with low-contrast directional highlight/shadow. Used sparingly on large background areas (security, final CTA).
+
+### Controlled use of optical effects
+
+Optical signature must remain special. Restrained richness over visual noise.
+
+### Product-led graphics
+
+Intelligence is shown through workflow and product UI fragments — not AI orbs, robots, or decorative dashboards.
+
+### Brand character
+
+Serious, stable, controlled, premium, capable, modern, technically sophisticated, calm, subtly alive.
+
+Avoid: generic Tailwind SaaS, sterile enterprise, playful startup, colorful AI company, crypto/Web3, gaming, futuristic HUD, minimal emptiness, visual noise.
+
+---
+
+## Material components
+
+| Component | Role |
+|-----------|------|
+| `SailOpticalShell` | Navbar + final CTA frosted optical shell with shimmer |
+| `SailCanvasPattern` | Tonal background fields + optional grain |
+| `SailEmboss` | Debossed/embossed brand wordmark on large surfaces |
+| `.sail-glass-card` | Neutral product glass for floating cards |
+| `.sail-optical-edge` | Static chromatic edge on selected product cards |
+| `.btn-cta` | Dark optical CTA material |
+| `.sail-surface-ink` | Deep contrast section (autonomy) |
+
+Glass variants:
+
+- **Optical glass light** — navbar, light floating surfaces (`sail-glass-surface`)
+- **Optical glass dark** — primary CTA (`.btn-cta`), dark section inner cards (`sail-glass-card--dark`)
+- **Optical edge** — selected product cards (`sail-optical-edge`)
+- **Neutral product glass** — floating product cards (`sail-glass-card`)

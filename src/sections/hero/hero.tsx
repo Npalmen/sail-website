@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
 import { SailCanvasPattern } from "@/components/shared/sail-canvas-pattern";
-import { SailFlowPattern } from "@/components/shared/sail-flow-pattern";
 import { ctaPrimary, ctaSecondary } from "@/components/shared/cta-styles";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -12,8 +11,7 @@ import { ProductPreview } from "./product-preview";
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-surface-canvas">
-      <SailCanvasPattern variant="hero" />
-      <SailFlowPattern />
+      <SailCanvasPattern variant="hero" grain />
 
       <Container className="relative z-10 pb-12 sm:pb-16 xl:pb-24">
         <div className="flex flex-col xl:grid xl:grid-cols-12 xl:items-start xl:gap-x-8">
@@ -37,7 +35,7 @@ export function Hero() {
                 <Link href={siteConfig.links.bookDemo} className={ctaPrimary}>
                   Book a demo
                 </Link>
-                <Link href="#controlled-momentum" className={ctaSecondary}>
+                <Link href="#workflow" className={ctaSecondary}>
                   See how it works
                 </Link>
               </div>

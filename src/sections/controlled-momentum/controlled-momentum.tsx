@@ -1,80 +1,49 @@
 import { Container } from "@/components/layout/container";
 import { SailCanvasPattern } from "@/components/shared/sail-canvas-pattern";
-import { cn } from "@/lib/utils";
 
-const stages = [
-  {
-    number: "01",
-    title: "Understand",
-    description:
-      "SAIL reads incoming work — emails, requests, documents — and extracts what matters.",
-  },
-  {
-    number: "02",
-    title: "Decide",
-    description:
-      "Business rules and context determine the right next step, every time.",
-  },
-  {
-    number: "03",
-    title: "Act",
-    description:
-      "Actions are prepared and executed within the authority your business has defined.",
-  },
-] as const;
+const flow = ["Understand", "Decide", "Act"] as const;
 
 export function ControlledMomentum() {
   return (
     <section
       id="controlled-momentum"
-      className="relative bg-surface-warm pb-20 pt-16 sm:pb-24 sm:pt-20 xl:pb-28 xl:pt-24"
+      className="relative overflow-hidden py-20 sm:py-28"
     >
-      <SailCanvasPattern variant="section" />
+      <SailCanvasPattern variant="section" grain />
 
       <Container className="relative z-10">
-        <div className="grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-16 xl:gap-20 2xl:gap-24">
-          <div className="xl:pt-4">
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Controlled momentum
-            </p>
-            <h2 className="mt-5 max-w-xl text-[1.75rem] font-semibold leading-[1.2] tracking-[-0.02em] text-foreground sm:text-3xl xl:text-[2rem] 2xl:text-[2.25rem]">
-              SAIL understands incoming work, decides what needs to happen, and
-              acts within the authority the business has given it.
-            </h2>
-          </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+            Controlled momentum
+          </p>
+          <h2 className="mt-5 text-2xl font-semibold leading-[1.25] tracking-tight text-foreground sm:text-3xl xl:text-[2rem]">
+            SAIL understands incoming work, decides what needs to happen, and
+            acts within the authority the business has given it.
+          </h2>
+        </div>
 
-          <div className="sail-field-chapter relative p-6 sm:p-8 xl:pt-10">
-            <div
-              aria-hidden="true"
-              className="absolute left-[27px] top-8 bottom-8 hidden w-px bg-border/80 sm:block"
-            />
-
-            <ol className="relative space-y-10 sm:space-y-12">
-              {stages.map((stage, index) => (
-                <li
-                  key={stage.number}
-                  className={cn(
-                    "relative grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 sm:gap-x-6",
-                    "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-right-2 motion-safe:duration-600 motion-reduce:animate-none",
-                    index === 1 && "motion-safe:delay-150",
-                    index === 2 && "motion-safe:delay-300"
-                  )}
-                >
-                  <span className="font-mono text-sm tabular-nums text-muted-foreground/60">
-                    {stage.number}
+        <div className="mx-auto mt-12 max-w-2xl">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-0">
+            {flow.map((step, index) => (
+              <div key={step} className="flex items-center">
+                <div className="rounded-full border border-border bg-surface-white px-5 py-2.5 text-sm font-medium text-foreground shadow-sm">
+                  {step}
+                </div>
+                {index < flow.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    className="mx-3 hidden text-muted-foreground/50 sm:inline"
+                  >
+                    →
                   </span>
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-                      {stage.title}
-                    </h3>
-                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
-                      {stage.description}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+                )}
+              </div>
+            ))}
           </div>
+          <p className="mt-8 text-center text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+            Work keeps moving — at the pace and within the boundaries you
+            define.
+          </p>
         </div>
       </Container>
     </section>

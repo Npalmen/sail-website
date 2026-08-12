@@ -24,6 +24,7 @@
   --color-surface-soft-stone: var(--surface-soft-stone);
   --color-surface-mist: var(--surface-mist);
   --color-surface-paper: var(--surface-paper);
+  --color-surface-ink: var(--surface-ink);
   --color-sail-blue: var(--sail-blue);
   --color-sail-blue-hover: var(--sail-blue-hover);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -81,6 +82,7 @@
   --sail-cta-text: #fbfaf7;
   --sail-line: #e5e1da;
   --sail-signal: #2864dc;
+  --sail-ink-deep: #1c2433;
 
   /* Optical chromatic family */
   --sail-optical-steel: #7e91aa;
@@ -97,6 +99,7 @@
   --surface-mist: var(--sail-mist);
   --surface-paper: var(--sail-paper);
   --surface-white: var(--sail-white);
+  --surface-ink: var(--sail-ink-deep);
 
   /* Semantic tokens */
   --background: var(--sail-canvas);
@@ -435,4 +438,110 @@
   border-radius: 1.25rem;
   background: color-mix(in srgb, var(--sail-stone) 40%, transparent);
   border: 1px solid color-mix(in srgb, var(--sail-line) 35%, transparent);
+}
+
+/* ── Optical intensity hierarchy ── */
+
+.sail-optical-shell--strong .sail-optical-border {
+  opacity: 0.55;
+}
+
+.sail-optical-shell--strong .sail-optical-pointer {
+  opacity: 0.35;
+}
+
+.sail-optical-shell--medium .sail-optical-border {
+  opacity: 0.38;
+}
+
+.sail-optical-shell--medium .sail-optical-pointer {
+  opacity: 0.28;
+}
+
+.sail-optical-shell--subtle .sail-optical-border {
+  opacity: 0.22;
+}
+
+.sail-optical-shell--subtle .sail-optical-pointer {
+  opacity: 0.18;
+}
+
+/* ── Dark ink surface (autonomy, contrast sections) ── */
+
+.sail-surface-ink {
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--sail-ink-deep) 96%, #2a3548),
+    var(--sail-ink-deep)
+  );
+  color: color-mix(in srgb, var(--sail-cta-text) 92%, transparent);
+}
+
+.sail-glass-surface--dark {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.04)
+  );
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.sail-glass-card--dark {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Embossed / debossed brand treatment ── */
+
+.sail-emboss {
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: transparent;
+  user-select: none;
+}
+
+.sail-emboss--deboss {
+  text-shadow:
+    1px 1px 1px rgba(255, 255, 255, 0.35),
+    -1px -1px 1px rgba(17, 21, 29, 0.06);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sail-stone) 55%, var(--sail-ink)) 0%,
+    color-mix(in srgb, var(--sail-stone) 75%, var(--sail-ink)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.sail-emboss--emboss {
+  text-shadow:
+    -1px -1px 1px rgba(255, 255, 255, 0.25),
+    1px 1px 2px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sail-ink-deep) 30%, white) 0%,
+    color-mix(in srgb, var(--sail-ink-deep) 50%, white) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.sail-emboss--on-ink.sail-emboss--deboss {
+  text-shadow:
+    1px 1px 1px rgba(255, 255, 255, 0.06),
+    -1px -1px 2px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sail-ink-deep) 70%, white) 0%,
+    color-mix(in srgb, var(--sail-ink-deep) 85%, black) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
 }
