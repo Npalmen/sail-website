@@ -105,7 +105,7 @@ export function SailBrandMark() {
           >
             <feGaussianBlur
               in="SourceAlpha"
-              stdDeviation="2"
+              stdDeviation="2.2"
               result="darkBlur"
             />
             <feOffset
@@ -121,7 +121,7 @@ export function SailBrandMark() {
               operator="out"
               result="darkInv"
             />
-            <feFlood floodColor="#191820" floodOpacity="0.18" result="darkColor" />
+            <feFlood floodColor="#191820" floodOpacity="0.24" result="darkColor" />
             <feComposite
               in="darkColor"
               in2="darkInv"

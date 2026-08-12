@@ -287,8 +287,8 @@
 .sail-brand-mark__relief {
   position: absolute;
   inset: 0;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: #000;
+  -webkit-text-fill-color: #000;
   pointer-events: none;
 }
 
