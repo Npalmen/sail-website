@@ -87,15 +87,10 @@
 
   /* Brand deboss relief — scroll-driven on .sail-brand-mark */
   --brand-shadow-x: 0px;
-  --brand-shadow-y: 5px;
+  --brand-shadow-y: 4px;
   --brand-highlight-x: 0px;
-  --brand-highlight-y: -5px;
-  --brand-relief-depth: 5px;
-  --brand-shadow-blur: 4.5px;
-  --brand-highlight-blur: 4px;
-  --brand-shadow-opacity: 0.18;
-  --brand-highlight-opacity: 0.58;
-  --brand-shadow-opacity-secondary: 0.11;
+  --brand-highlight-y: -4px;
+  --brand-relief-depth: 4px;
   --brand-inset-face: color-mix(in srgb, var(--sail-canvas) 91%, rgb(28, 34, 44));
 
   /* Optical chromatic family */
@@ -206,9 +201,9 @@
 @media (prefers-reduced-motion: reduce) {
   :root {
     --brand-shadow-x: 0px;
-    --brand-shadow-y: 5px;
+    --brand-shadow-y: 4px;
     --brand-highlight-x: 0px;
-    --brand-highlight-y: -5px;
+    --brand-highlight-y: -4px;
   }
 }
 
@@ -278,18 +273,12 @@
   text-align: center;
   white-space: nowrap;
   color: var(--brand-inset-face);
-  /* Inset cavity: highlight toward light, shadow on opposite inner wall */
-  text-shadow:
-    var(--brand-shadow-x) var(--brand-shadow-y) var(--brand-shadow-blur)
-      rgba(25, 32, 42, var(--brand-shadow-opacity)),
-    var(--brand-highlight-x) var(--brand-highlight-y) var(--brand-highlight-blur)
-      rgba(255, 255, 255, var(--brand-highlight-opacity)),
-    calc(var(--brand-shadow-x) * 0.65) calc(var(--brand-shadow-y) * 0.65)
-      calc(var(--brand-shadow-blur) * 0.75)
-      rgba(25, 32, 42, var(--brand-shadow-opacity-secondary)),
-    calc(var(--brand-highlight-x) * 1.2) calc(var(--brand-highlight-y) * 1.2)
-      calc(var(--brand-highlight-blur) * 1.1)
-      rgba(255, 255, 255, calc(var(--brand-highlight-opacity) * 0.42));
+}
+
+.sail-brand-mark__defs {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -306,11 +295,7 @@
   }
 
   .sail-brand-mark {
-    --brand-relief-depth: 4px;
-    --brand-shadow-blur: 4px;
-    --brand-highlight-blur: 3.5px;
-    --brand-shadow-opacity: 0.17;
-    --brand-highlight-opacity: 0.52;
+    --brand-relief-depth: 3.5px;
   }
 }
 
@@ -775,9 +760,7 @@
 }
 
 :root[data-page-tone="legal"] .sail-brand-mark {
-  --brand-shadow-opacity: 0.09;
-  --brand-highlight-opacity: 0.4;
-  --brand-shadow-opacity-secondary: 0.06;
+  opacity: 0.88;
 }
 
 .nav-link {
