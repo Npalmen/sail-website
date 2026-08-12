@@ -2,10 +2,12 @@ import Link from "next/link";
 
 import { ContentSurface } from "@/components/layout/content-surface";
 import { Wordmark } from "@/components/shared/wordmark";
+import { footerColumns } from "@/config/footer";
 import { homepageContent } from "@/config/homepage";
 
 export function Footer() {
-  const { description, columns } = homepageContent.footer;
+  const { description } = homepageContent.footer;
+  const columns = footerColumns;
   const year = new Date().getFullYear();
 
   return (

@@ -7,10 +7,14 @@ import { CtaLink } from "@/components/shared/cta-link";
 import { ctaSecondary } from "@/components/shared/cta-styles";
 import { SailOpticalShell } from "@/components/shared/sail-optical-shell";
 import { homepageContent } from "@/config/homepage";
-import { siteConfig } from "@/config/site";
+import { routes, siteConfig } from "@/config/site";
 
-export function FinalCta() {
-  const { id, headline, body } = homepageContent.finalCta;
+type FinalCtaProps = {
+  id?: string;
+};
+
+export function FinalCta({ id = homepageContent.finalCta.id }: FinalCtaProps) {
+  const { headline, body } = homepageContent.finalCta;
 
   return (
     <ContentSurface
@@ -34,7 +38,7 @@ export function FinalCta() {
             <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
               Book a demo
             </CtaLink>
-            <Link href="#workflow" className={ctaSecondary}>
+            <Link href={routes.product} className={ctaSecondary}>
               See how SAIL works
             </Link>
           </div>

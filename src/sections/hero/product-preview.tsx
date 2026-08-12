@@ -50,7 +50,7 @@ export function ProductPreview() {
           )}
         >
           <OpticalCard edge="medium">
-            <div className="sail-glass-card rounded-[10px] p-3.5 sm:p-4">
+            <div className="sail-glass-card rounded-[var(--radius-module-info)] p-3.5 sm:p-4">
               <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
                 Incoming
               </p>
@@ -71,7 +71,7 @@ export function ProductPreview() {
             "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-700 motion-safe:delay-150 motion-reduce:animate-none"
           )}
         >
-          <div className="overflow-hidden rounded-xl border border-border/60 bg-surface-white shadow-[0_1px_3px_rgba(17,21,29,0.04)]">
+          <div className="sail-product-workspace">
             <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-2.5 sm:px-5">
               <div className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-emerald-600/70" />
@@ -135,7 +135,7 @@ export function ProductPreview() {
             "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-right-3 motion-safe:duration-700 motion-safe:delay-300 motion-reduce:animate-none"
           )}
         >
-          <div className="sail-glass-card rounded-[10px] p-3.5 sm:p-4">
+          <div className="sail-glass-card rounded-[var(--radius-module-info)] p-3.5 sm:p-4">
             <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
               Activity
             </p>

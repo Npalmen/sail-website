@@ -16,19 +16,12 @@ This project is **separate from the SAIL customer application**. The marketing s
 
 ## Getting started
 
-Install dependencies:
-
 ```bash
 npm install
-```
-
-Run the development server:
-
-```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
@@ -39,45 +32,49 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `npm run start` | Serve production build |
 | `npm run lint` | Run ESLint |
 
+## Routes
+
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage overview |
+| `/product` | Product deep-dive |
+| `/solutions` | Solutions & scenarios |
+| `/pricing` | Commercial model |
+| `/security` | Security & control |
+| `/about` | About SAIL |
+| `/contact` | Contact / demo request |
+| `/privacy` | Privacy (placeholder) |
+| `/terms` | Terms (placeholder) |
+
 ## Project structure
 
 ```text
 src/
-├── app/              # Next.js App Router (layout, pages, globals.css)
+├── app/                  # App Router pages
 ├── components/
-│   ├── ui/           # shadcn/ui primitives (button, sheet)
-│   ├── layout/       # Shared layout components (Container)
-│   └── shared/       # Reusable shared components (Wordmark)
-├── sections/         # Page sections (navbar, hero)
-├── lib/              # Utilities (cn helper)
-└── config/           # Site configuration (nav, metadata values)
+│   ├── brand/            # SailBrandCanvas, relief lighting
+│   ├── layout/           # ContentSurface, SiteShell
+│   └── shared/           # CtaLink, DeepLink, NavLink, optical shell
+├── sections/             # Homepage sections + contact form
+├── config/               # site.ts, homepage.ts, footer.ts
+└── lib/                  # optical-cta-manager, utils
 docs/
-└── design-profile.md # Visual design source of truth
+└── design-profile.md     # Visual design source of truth
 ```
 
-## Design tokens
+## Configuration
 
-Design tokens live in [`src/app/globals.css`](src/app/globals.css):
+- [`src/config/site.ts`](src/config/site.ts) — routes, nav, metadata, CTA URLs
+- [`src/config/homepage.ts`](src/config/homepage.ts) — homepage section content
+- [`src/config/footer.ts`](src/config/footer.ts) — footer link columns
 
-- **Brand palette**: `--sail-ink`, `--sail-signal`, `--sail-slate`, `--sail-line`, `--sail-cloud`, `--sail-soft`, `--sail-warm`
-- **Surface system**: `--surface-warm`, `--surface-white`, `--surface-cloud`, `--surface-soft`
-- **Semantic tokens**: shadcn/ui variables (`--primary`, `--foreground`, `--muted`, etc.) mapped from brand tokens
+## Design
 
-See [`docs/design-profile.md`](docs/design-profile.md) for the full visual foundation.
+See [`docs/design-profile.md`](docs/design-profile.md) for material principles, fixed brand canvas architecture, CTA proximity lighting, and module hierarchy.
 
-## Current scope
+## Placeholders
 
-This foundation includes:
-
-- Project scaffolding and architecture
-- SAIL design token system
-- Responsive navbar with mobile sheet navigation
-- Hero section with product workflow preview placeholder
-- Minimal surface variation demo section
-- SEO metadata baseline
-
-Not yet included: additional marketing pages, CMS, authentication, analytics, or backend integrations.
-
-## Navigation placeholders
-
-Nav links, login, and CTA URLs are temporary (`#` or hash anchors) until real routes and the app domain are configured. See [`src/config/site.ts`](src/config/site.ts).
+- **Login** — `#` until app URL is configured
+- **Contact submission** — form UI only; no backend
+- **Privacy / Terms** — draft placeholders pending lawyer-reviewed copy
+- **Pricing** — no fabricated prices or plan names

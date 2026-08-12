@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { useOpticalPointer } from "@/hooks/use-optical-pointer";
+import { useCtaProximity } from "@/hooks/use-cta-proximity";
 import { cn } from "@/lib/utils";
 
 type CtaLinkProps = {
@@ -12,11 +12,11 @@ type CtaLinkProps = {
 };
 
 export function CtaLink({ href, children, className }: CtaLinkProps) {
-  const ref = useOpticalPointer<HTMLAnchorElement>({ prefix: "cta" });
+  const ref = useCtaProximity<HTMLAnchorElement>();
 
   return (
     <Link ref={ref} href={href} className={cn("btn-cta", className)}>
-      {children}
+      <span className="btn-cta__label">{children}</span>
     </Link>
   );
 }

@@ -1,5 +1,7 @@
 import { ContentSurface } from "@/components/layout/content-surface";
+import { DeepLink } from "@/components/shared/deep-link";
 import { SectionHeader } from "@/components/shared/section-header";
+import { routes } from "@/config/site";
 import { homepageContent } from "@/config/homepage";
 import { cn } from "@/lib/utils";
 
@@ -17,13 +19,16 @@ export function Autonomy() {
       radius="lg"
     >
       <SectionHeader eyebrow={eyebrow} headline={headline} variant="dark" />
+      <DeepLink href={routes.security} className="text-white/60 hover:text-white/90">
+        See SAIL&apos;s control model
+      </DeepLink>
 
-      <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 xl:grid-cols-4 sail-module-grid">
         {levels.map((level, index) => (
           <div
             key={level.title}
             className={cn(
-                "sail-inner-module--dark rounded-[14px] p-5 sm:p-6",
+              "sail-inner-module--dark flex flex-col rounded-[14px] p-5 sm:p-6",
               index === 3 && "ring-1 ring-white/15"
             )}
           >

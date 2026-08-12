@@ -198,6 +198,63 @@ Avoid: generic Tailwind SaaS, sterile enterprise, playful startup, colorful AI c
 Glass variants:
 
 - **Optical glass light** — navbar, light floating surfaces (`sail-glass-surface`)
-- **Optical glass dark** — primary CTA (`.btn-cta`), dark section inner cards (`sail-glass-card--dark`)
+- **Optical glass dark** — primary CTA (`.btn-cta`), dark section inner cards
 - **Optical edge** — selected product cards (`sail-optical-edge`)
 - **Neutral product glass** — floating product cards (`sail-glass-card`)
+
+---
+
+## Multi-page information architecture
+
+The marketing site is a multi-page SaaS website. The homepage is a concise overview; dedicated routes carry deeper content.
+
+| Route | Role |
+|-------|------|
+| `/` | Homepage overview — summaries with deep links |
+| `/product` | Deepest product explanation |
+| `/solutions` | Work scenarios and capability framing |
+| `/security` | Trust, control, and permissions |
+| `/pricing` | Commercial model (no fabricated prices) |
+| `/about` | Brand/product philosophy |
+| `/contact` | Demo / contact (form UI; submission TBD) |
+| `/privacy` | Privacy placeholder pending legal review |
+| `/terms` | Terms placeholder pending legal review |
+
+Navigation and footer links are centralized in [`src/config/site.ts`](../src/config/site.ts) and [`src/config/footer.ts`](../src/config/footer.ts).
+
+---
+
+## CTA proximity lighting
+
+Primary CTAs use `CtaLink` + `opticalCtaManager`:
+
+- **At rest:** `--cta-light-strength: 0` — no radial reflection
+- **Proximity (~90px):** light originates at nearest edge point, strength scales as `normalized²`
+- **Inside:** pointer position drives `--cta-light-x/y` seamlessly
+- **Exit:** light fades with distance — no jump to center on `pointerleave`
+- Single shared `pointermove` listener, rAF-batched, no React state
+
+---
+
+## Module geometry & hierarchy
+
+Radius tokens: outer chapter (26px), workspace (16px), info module (12px), control (8px).
+
+```text
+fixed SAIL canvas
+  → frosted outer surface (translucent)
+    → opaque inner module (`.sail-inner-module`)
+      → content
+```
+
+Sibling groups use `.sail-module-grid` with `grid-auto-rows: 1fr` for equal height within the group only.
+
+Approval states use `.sail-state-module--approval` — translucent, not bright blue.
+
+---
+
+## Legal & contact placeholders
+
+Privacy and Terms pages use draft placeholder copy — **not launch-ready legal documents**.
+
+Contact form UI exists at `/contact`; submission adapter is not connected. Do not show fake success.

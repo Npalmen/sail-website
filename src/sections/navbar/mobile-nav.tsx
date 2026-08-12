@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MenuIcon } from "lucide-react";
 
 import { CtaLink } from "@/components/shared/cta-link";
+import { NavLink } from "@/components/shared/nav-link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -35,13 +36,13 @@ export function MobileNav() {
         </SheetHeader>
         <nav className="flex flex-col gap-0.5 px-4 pt-2">
           {siteConfig.nav.map((item) => (
-            <Link
+            <NavLink
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+              className="rounded-lg px-3 py-3 text-sm !text-foreground hover:bg-muted"
             >
               {item.title}
-            </Link>
+            </NavLink>
           ))}
         </nav>
         <div className="mt-auto flex flex-col gap-3 border-t border-border p-4">

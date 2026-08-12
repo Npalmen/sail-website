@@ -1,5 +1,7 @@
 import { ContentSurface } from "@/components/layout/content-surface";
+import { DeepLink } from "@/components/shared/deep-link";
 import { SectionHeader } from "@/components/shared/section-header";
+import { routes } from "@/config/site";
 import { homepageContent } from "@/config/homepage";
 
 export function Capabilities() {
@@ -18,6 +20,7 @@ export function Capabilities() {
       <div className="grid gap-10 xl:grid-cols-12 xl:gap-12">
         <div className="xl:col-span-4">
           <SectionHeader eyebrow={eyebrow} headline={headline} />
+          <DeepLink href={routes.product}>Explore the product</DeepLink>
         </div>
 
         <div className="xl:col-span-8">

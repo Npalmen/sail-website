@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { CtaLink } from "@/components/shared/cta-link";
+import { MainNavLinks } from "@/components/shared/nav-link";
 import { SailOpticalShell } from "@/components/shared/sail-optical-shell";
 import { Wordmark } from "@/components/shared/wordmark";
 import { siteConfig } from "@/config/site";
@@ -19,15 +20,7 @@ export function Navbar() {
               aria-label="Main navigation"
               className="hidden items-center gap-7 md:flex lg:gap-9"
             >
-              {siteConfig.nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {item.title}
-                </Link>
-              ))}
+              <MainNavLinks />
             </nav>
 
             <div className="flex items-center gap-4 sm:gap-5">
@@ -51,3 +44,4 @@ export function Navbar() {
     </header>
   );
 }
+

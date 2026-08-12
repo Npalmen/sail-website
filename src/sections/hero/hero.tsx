@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ContentSurface } from "@/components/layout/content-surface";
 import { CtaLink } from "@/components/shared/cta-link";
 import { ctaSecondary } from "@/components/shared/cta-styles";
-import { siteConfig } from "@/config/site";
+import { siteConfig, routes } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 import { ProductPreview } from "./product-preview";
@@ -39,7 +39,7 @@ export function Hero() {
                 <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
                   Book a demo
                 </CtaLink>
-                <Link href="#workflow" className={ctaSecondary}>
+                <Link href={routes.product} className={ctaSecondary}>
                   See how it works
                 </Link>
               </div>

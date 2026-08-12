@@ -1,5 +1,7 @@
 import { ContentSurface } from "@/components/layout/content-surface";
+import { DeepLink } from "@/components/shared/deep-link";
 import { SectionHeader } from "@/components/shared/section-header";
+import { routes } from "@/config/site";
 import { homepageContent } from "@/config/homepage";
 
 export function Security() {
@@ -16,10 +18,11 @@ export function Security() {
       radius="md"
     >
       <SectionHeader eyebrow={eyebrow} headline={headline} />
+      <DeepLink href={routes.security}>Learn about security</DeepLink>
 
-      <ul className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2">
+      <ul className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2 sail-module-grid">
         {principles.map((principle) => (
-          <li key={principle.title} className="sail-field-chapter p-5 sm:p-6">
+            <li key={principle.title} className="sail-field-chapter flex flex-col p-5 sm:p-6">
             <h3 className="text-base font-semibold tracking-tight text-foreground">
               {principle.title}
             </h3>

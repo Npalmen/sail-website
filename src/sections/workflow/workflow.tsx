@@ -1,5 +1,7 @@
 import { ContentSurface } from "@/components/layout/content-surface";
+import { DeepLink } from "@/components/shared/deep-link";
 import { SectionHeader } from "@/components/shared/section-header";
+import { routes } from "@/config/site";
 import { homepageContent } from "@/config/homepage";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +19,7 @@ export function Workflow() {
       radius="lg"
     >
       <SectionHeader eyebrow={eyebrow} headline={headline} />
+      <DeepLink href={routes.product}>Explore how SAIL works</DeepLink>
 
       <div className="mt-10 overflow-x-auto pb-2 sm:mt-14">
         <ol className="flex min-w-[640px] gap-0">
@@ -54,12 +57,12 @@ export function Workflow() {
       </div>
 
       <div className="mt-8 sail-field-stage p-4 sm:p-5">
-        <div className="grid gap-3 sm:grid-cols-5">
+        <div className="grid gap-3 sm:grid-cols-5 sail-module-grid">
           {steps.map((step, index) => (
             <div
               key={step.title}
               className={cn(
-                "rounded-lg sail-inner-module p-3",
+                "sail-inner-module flex h-full flex-col rounded-lg p-3",
                 index === 2 && "ring-1 ring-primary/20"
               )}
             >

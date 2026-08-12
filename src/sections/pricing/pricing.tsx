@@ -1,8 +1,9 @@
 import { ContentSurface } from "@/components/layout/content-surface";
 import { CtaLink } from "@/components/shared/cta-link";
+import { DeepLink } from "@/components/shared/deep-link";
 import { SectionHeader } from "@/components/shared/section-header";
 import { homepageContent } from "@/config/homepage";
-import { siteConfig } from "@/config/site";
+import { routes, siteConfig } from "@/config/site";
 
 export function Pricing() {
   const { id, eyebrow, headline, body } = homepageContent.pricing;
@@ -23,6 +24,11 @@ export function Pricing() {
         description={body}
         align="center"
       />
+      <div className="text-center">
+        <DeepLink href={routes.pricing} className="mt-0">
+          View pricing approach
+        </DeepLink>
+      </div>
       <div className="mt-8 text-center">
         <CtaLink href={siteConfig.links.bookDemo} className="btn-cta--lg">
           Book a demo

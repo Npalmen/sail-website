@@ -95,7 +95,7 @@ export function ProductExperience() {
                 ))}
               </div>
 
-              <div className="mt-5 rounded-lg border border-primary/15 bg-primary/[0.03] p-3">
+                <div className="mt-5 sail-state-module--approval p-3">
                 <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-primary/80">
                   Needs approval
                 </p>

@@ -1,5 +1,7 @@
 import { ContentSurface } from "@/components/layout/content-surface";
+import { DeepLink } from "@/components/shared/deep-link";
 import { SectionHeader } from "@/components/shared/section-header";
+import { routes } from "@/config/site";
 import { homepageContent } from "@/config/homepage";
 
 export function Integrations() {
@@ -16,12 +18,17 @@ export function Integrations() {
       radius="md"
     >
       <SectionHeader eyebrow={eyebrow} headline={headline} align="center" />
+      <div className="text-center">
+        <DeepLink href={routes.solutions} className="mt-0">
+          Explore solutions
+        </DeepLink>
+      </div>
 
-      <ul className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4 sail-module-grid">
         {categories.map((category) => (
           <li
             key={category.name}
-              className="rounded-[12px] sail-inner-module p-5"
+              className="sail-inner-module flex h-full flex-col rounded-[12px] p-5"
           >
             <div className="flex size-10 items-center justify-center rounded-lg bg-surface-soft text-xs font-semibold text-muted-foreground">
               {category.name.slice(0, 2).toUpperCase()}
