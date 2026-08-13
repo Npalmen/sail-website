@@ -49,7 +49,7 @@ export default function AboutPage() {
         </div>
       </ContentSurface>
 
-      <ContentSurface variant="frosted" width="standard" align="left" spacing="default" radius="md">
+      <ContentSurface variant="paper" width="standard" align="left" spacing="default" radius="md">
         <div className="space-y-10">
           {themes.map((theme) => (
             <div key={theme.title}>

@@ -80,30 +80,6 @@ export function Workflow() {
         </ol>
       </div>
 
-      <div className="mt-8 sail-field-stage">
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5 sail-module-grid">
-          {steps.map((step, index) => (
-            <div
-              key={step.title}
-              className={cn(
-                "sail-inner-module flex h-full flex-col rounded-[var(--radius-module-info)] p-4 sm:p-5",
-                index === 2 && "ring-1 ring-primary/20"
-              )}
-            >
-              <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                {step.title}
-              </p>
-              <p className="mt-1.5 text-xs leading-snug text-foreground">
-                {index === 0 && "Ny förfrågan mottagen"}
-                {index === 1 && "Avsikt och kontext matchad"}
-                {index === 2 && "Nästa steg bedömt"}
-                {index === 3 && "Åtgärd förberedd"}
-                {index === 4 && "Aktivitet loggad"}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
     </ContentSurface>
   );
 }

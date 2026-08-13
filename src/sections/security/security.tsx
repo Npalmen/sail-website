@@ -11,7 +11,7 @@ export function Security() {
     <ContentSurface
       as="section"
       id={id}
-      variant="frosted"
+      variant="paper"
       width="standard"
       align="right"
       spacing="default"

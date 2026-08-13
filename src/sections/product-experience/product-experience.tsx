@@ -41,7 +41,7 @@ export function ProductExperience() {
       <div className="mt-6 sail-field-stage sm:mt-7">
         <div
           aria-hidden="true"
-          className="overflow-hidden rounded-[var(--radius-module-nested)] sail-inner-module"
+          className="overflow-hidden rounded-[var(--radius-module-nested)] sail-inner-module sail-inner-module--product"
         >
           <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-2.5 sm:px-5">
             <div className="flex items-center gap-2">

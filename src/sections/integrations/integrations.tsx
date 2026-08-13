@@ -11,20 +11,15 @@ export function Integrations() {
     <ContentSurface
       as="section"
       id={id}
-      variant="frosted"
-      width="wide"
+      variant="soft"
+      width="standard"
       align="center"
-      spacing="default"
+      spacing="compact"
       radius="md"
     >
       <SectionHeader eyebrow={eyebrow} headline={headline} align="center" />
-      <div className="text-center">
-        <DeepLink href={routes.solutions} className="mt-0">
-          Utforska lösningar
-        </DeepLink>
-      </div>
 
-      <ul className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 md:grid-cols-2 lg:mt-14 lg:grid-cols-4 sail-module-grid">
+      <ul className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 md:grid-cols-2 lg:grid-cols-4 sail-module-grid">
         {categories.map((category) => (
           <li
             key={category.name}
@@ -43,10 +38,14 @@ export function Integrations() {
         ))}
       </ul>
 
-      <p className="mx-auto mt-8 max-w-lg text-center text-xs text-muted-foreground">
-        Kategorier visas som illustration. Stödda kopplingar bekräftas när de
-        blir tillgängliga.
+      <p className="mx-auto mt-6 max-w-lg text-center text-xs text-muted-foreground">
+        Kategorier illustrerar kopplingstyper. Stödda integrationer bekräftas vid lansering.
       </p>
+      <div className="mt-5 text-center">
+        <DeepLink href={routes.product} className="mt-0">
+          Se produkten
+        </DeepLink>
+      </div>
     </ContentSurface>
   );
 }

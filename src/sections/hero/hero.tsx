@@ -30,9 +30,10 @@ export function Hero() {
                 Arbetet rör sig framåt.
               </h1>
 
-              <p className="mt-5 max-w-[36ch] text-base leading-relaxed text-muted-foreground sm:mt-6 sm:max-w-[34ch] sm:text-[17px] sm:leading-[1.65]">
-                SAIL hanterar administrationen kring din verksamhet&nbsp;—
-                medan du behåller kontrollen.
+              <p className="mt-5 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:mt-6 sm:max-w-[42ch] sm:text-[17px] sm:leading-[1.65]">
+                SAIL tar emot inkommande arbete, förstår vad det gäller och
+                förbereder nästa steg&nbsp;— automatiskt eller för ditt
+                godkännande.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 lg:gap-6">
@@ -40,7 +41,7 @@ export function Hero() {
                   Boka demo
                 </CtaLink>
                 <Link href={routes.product} className={cn(ctaSecondary, "justify-center sm:justify-start")}>
-                  Se hur det fungerar
+                  Se hur SAIL fungerar
                 </Link>
               </div>
             </div>
@@ -53,7 +54,7 @@ export function Hero() {
               "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-6 motion-safe:duration-1000 motion-safe:delay-200 motion-reduce:animate-none"
             )}
           >
-            <div className="sail-surface-frosted shadow-glass-floating rounded-[18px] p-3 sm:rounded-[var(--radius-surface-md)] sm:p-4 md:p-5">
+            <div className="sail-surface-product shadow-product-floating rounded-[16px] p-3 sm:rounded-[var(--radius-module-workspace)] sm:p-4 md:p-5">
               <ProductPreview />
             </div>
           </div>

@@ -13,7 +13,7 @@ export function Footer() {
   return (
     <ContentSurface
       as="footer"
-      variant="frosted"
+      variant="paper"
       width="wide"
       align="center"
       spacing="compact"

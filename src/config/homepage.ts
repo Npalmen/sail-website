@@ -1,6 +1,6 @@
 export const homepageContent = {
   trustStrip: {
-    headline: "Byggt för att fungera med verktygen din verksamhet redan använder.",
+    headline: "Fungerar med verktygen din verksamhet redan använder.",
     categories: [
       "Kommunikation",
       "Ekonomi",
@@ -45,19 +45,19 @@ export const homepageContent = {
     items: [
       {
         title: "Mottagning",
-        description: "Hantering av inkommande kommunikation och information — analyserad, förstådd och dirigerad.",
+        description: "Inkommande kommunikation analyserad och dirigerad.",
       },
       {
         title: "Administration",
-        description: "Förberedelse, sortering och rutinmässigt administrativt arbete kring verksamheten.",
+        description: "Sortering, förberedelse och rutinmässigt arbete.",
       },
       {
         title: "Leads",
-        description: "Identifierar inkommande säljmöjligheter och förbereder nästa åtgärd.",
+        description: "Säljmöjligheter identifierade — nästa steg förberett.",
       },
       {
         title: "Support",
-        description: "Förstår serviceärenden och förbereder svar inom dina riktlinjer.",
+        description: "Serviceärenden förstådda — svar förberedda inom dina riktlinjer.",
       },
     ] as const,
   },
@@ -97,7 +97,7 @@ export const homepageContent = {
   integrations: {
     id: "integrations",
     eyebrow: "Integrationer",
-    headline: "SAIL arbetar kring din verksamhet — inte tvärtom.",
+    headline: "Kopplas till din befintliga verktygsmiljö.",
     categories: [
       { name: "Kommunikation", examples: "E-post, meddelanden" },
       { name: "Ekonomi", examples: "Ekonomisystem" },

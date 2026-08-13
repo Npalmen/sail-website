@@ -15,7 +15,7 @@ export default function TermsPage() {
   return (
     <SiteShell>
       <LegalPageTone />
-      <ContentSurface variant="frosted" width="editorial" align="center" spacing="default" radius="md">
+      <ContentSurface variant="paper" width="editorial" align="center" spacing="default" radius="md">
         <h1 className="text-3xl font-semibold tracking-tight text-foreground">
           Användarvillkor
         </h1>

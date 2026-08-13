@@ -9,7 +9,7 @@ export function TrustStrip() {
       as="section"
       id="trust"
       aria-label="Produktkontext"
-      variant="frosted"
+      variant="soft"
       width="narrow"
       align="center"
       spacing="compact"

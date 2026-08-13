@@ -11,7 +11,7 @@ export function Capabilities() {
     <ContentSurface
       as="section"
       id={id}
-      variant="frosted"
+      variant="soft"
       width="standard"
       align="right"
       spacing="default"
@@ -20,7 +20,7 @@ export function Capabilities() {
       <div className="grid gap-10 xl:grid-cols-12 xl:gap-12">
         <div className="xl:col-span-4">
           <SectionHeader eyebrow={eyebrow} headline={headline} />
-          <DeepLink href={routes.product}>Utforska produkten</DeepLink>
+          <DeepLink href={routes.solutions}>Utforska lösningar</DeepLink>
         </div>
 
         <div className="xl:col-span-8">
@@ -43,22 +43,6 @@ export function Capabilities() {
               ))}
             </div>
           </div>
-
-          <ul className="mt-8 grid gap-4 md:grid-cols-2">
-            {items.map((item) => (
-              <li
-                key={item.title}
-                className="border-l-2 border-primary/30 pl-4"
-              >
-                <h3 className="text-sm font-semibold text-foreground">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </ContentSurface>
