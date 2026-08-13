@@ -81,7 +81,7 @@ function ActivityCard({ className }: { className?: string }) {
 function WorkspacePanel() {
   return (
     <div className="sail-product-workspace">
-      <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-2.5 sm:px-5">
+      <div className="flex items-center justify-between border-b border-border/40 bg-surface-product-muted/70 px-4 py-2.5 sm:px-5">
         <div className="flex items-center gap-2">
           <span className="size-2 rounded-full bg-emerald-600/70" />
           <span className="text-xs font-medium text-foreground">
@@ -106,7 +106,7 @@ function WorkspacePanel() {
             {["Avtal", "Förnyelse", "Enterprise"].map((tag) => (
               <span
                 key={tag}
-                className="rounded-md bg-surface-cloud px-2 py-0.5 text-[11px] text-muted-foreground"
+                className="rounded-md bg-surface-product-muted px-2 py-0.5 text-[11px] text-muted-foreground"
               >
                 {tag}
               </span>
@@ -114,7 +114,7 @@ function WorkspacePanel() {
           </div>
         </div>
 
-        <div className="flex h-full flex-col border-t border-border/50 bg-surface-cloud/15 p-4 sm:border-t-0 sm:border-l sm:p-5">
+        <div className="flex h-full flex-col border-t border-border/40 bg-surface-product-muted/35 p-4 sm:border-t-0 sm:border-l sm:p-5">
           <div className="flex flex-1 flex-col">
             <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
               Förberedd åtgärd

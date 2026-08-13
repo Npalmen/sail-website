@@ -25,7 +25,7 @@ export function Integrations() {
             key={category.name}
             className="sail-inner-module flex h-full flex-col p-4 sm:p-5"
           >
-            <div className="flex size-10 items-center justify-center rounded-lg bg-surface-soft text-xs font-semibold text-muted-foreground">
+            <div className="flex size-10 items-center justify-center rounded-lg bg-surface-product text-xs font-semibold text-sail-blue">
               {category.name.slice(0, 2).toUpperCase()}
             </div>
             <h3 className="mt-4 text-sm font-semibold text-foreground">

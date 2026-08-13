@@ -13,7 +13,7 @@ export function DeepLink({ href, children, className }: DeepLinkProps) {
     <Link
       href={href}
       className={cn(
-        "group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground",
+        "deep-link group mt-6 inline-flex items-center gap-1.5 text-sm font-medium underline-offset-4 transition-colors",
         className
       )}
     >

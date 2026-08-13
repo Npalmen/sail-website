@@ -23,7 +23,7 @@ export function TrustStrip() {
         <ul className="flex flex-wrap gap-2 sm:gap-2.5">
           {categories.map((category) => (
             <li key={category}>
-              <span className="inline-flex rounded-md border border-border/50 bg-surface-white/80 px-3 py-1.5 text-xs font-medium text-muted-foreground">
+              <span className="inline-flex rounded-md border border-border/40 bg-surface-white/95 px-3 py-1.5 text-xs font-medium text-muted-foreground">
                 {category}
               </span>
             </li>

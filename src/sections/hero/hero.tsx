@@ -30,7 +30,7 @@ export function Hero() {
                 Arbetet rör sig framåt.
               </h1>
 
-              <p className="mt-5 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:mt-6 sm:max-w-[42ch] sm:text-[17px] sm:leading-[1.65]">
+              <p className="text-body-readable mt-5 max-w-[38ch] text-base leading-relaxed sm:mt-6 sm:max-w-[42ch] sm:text-[17px] sm:leading-[1.65]">
                 SAIL tar emot inkommande arbete, förstår vad det gäller och
                 förbereder nästa steg&nbsp;— automatiskt eller för ditt
                 godkännande.

@@ -19,7 +19,7 @@ export function Problem() {
       <div className="grid gap-10 xl:grid-cols-12 xl:gap-12">
         <div className="xl:col-span-5">
           <SectionHeader eyebrow={eyebrow} headline={headline} />
-          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-[17px]">
+          <p className="text-body-readable mt-6 max-w-md text-base leading-relaxed sm:text-[17px]">
             {body}
           </p>
         </div>

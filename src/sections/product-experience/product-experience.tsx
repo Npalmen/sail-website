@@ -43,7 +43,7 @@ export function ProductExperience() {
           aria-hidden="true"
           className="overflow-hidden rounded-[var(--radius-module-nested)] sail-inner-module sail-inner-module--product"
         >
-          <div className="flex items-center justify-between border-b border-border/50 bg-surface-soft/40 px-4 py-2.5 sm:px-5">
+          <div className="flex items-center justify-between border-b border-border/40 bg-surface-product-muted/70 px-4 py-2.5 sm:px-5">
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-emerald-600/70" />
               <span className="text-xs font-medium text-foreground">
@@ -64,7 +64,7 @@ export function ProductExperience() {
                 {panels.slice(0, 3).map((panel) => (
                   <li
                     key={panel.label}
-                    className="flex min-h-[3.75rem] items-start gap-2.5 rounded-lg border border-border/40 bg-surface-soft/30 p-3 sm:p-2.5"
+                    className="flex min-h-[3.75rem] items-start gap-2.5 rounded-lg border border-border/35 bg-surface-product-muted/50 p-3 sm:p-2.5"
                   >
                     <StatusIndicator status={panel.status} />
                     <div>
@@ -92,7 +92,7 @@ export function ProductExperience() {
                 ].map((line) => (
                   <div
                     key={line}
-                    className="flex items-center gap-2 rounded-md bg-surface-soft/50 px-2.5 py-1.5"
+                    className="flex items-center gap-2 rounded-md bg-surface-product-muted/60 px-2.5 py-1.5"
                   >
                     <StatusIndicator status="complete" />
                     <p className="text-sm text-foreground sm:text-xs">{line}</p>

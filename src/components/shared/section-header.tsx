@@ -47,7 +47,7 @@ export function SectionHeader({
         <p
           className={cn(
             "mt-4 text-base leading-relaxed sm:text-[17px]",
-            isDark ? "text-white/60" : "text-muted-foreground"
+            isDark ? "text-white/60" : "text-body-readable"
           )}
         >
           {description}
