@@ -71,7 +71,7 @@ export const productJourneyScenario = {
     requiresApproval: "skicka till kund",
   },
   result: {
-    status: "Klart" as const,
+    status: "Väntar på godkännande" as const,
     summary: [
       "Förfrågan analyserad",
       "Kund matchad",

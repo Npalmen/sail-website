@@ -3,13 +3,19 @@ import { SectionHeader } from "@/components/shared/section-header";
 import { productJourneyScenario, productPageContent } from "@/config/product-page";
 import { cn } from "@/lib/utils";
 
-type StageStatus = "Mottagen" | "Förstådd" | "Bedömd" | "Förberedd" | "Klart";
+type StageStatus =
+  | "Mottagen"
+  | "Förstådd"
+  | "Bedömd"
+  | "Förberedd"
+  | "Klart"
+  | "Väntar på godkännande";
 
 function StatusBadge({ status }: { status: StageStatus }) {
   const tone =
     status === "Klart"
       ? "text-emerald-700 bg-emerald-50 ring-emerald-200/60"
-      : status === "Förberedd"
+      : status === "Väntar på godkännande" || status === "Förberedd"
         ? "text-sail-blue bg-surface-product ring-sail-blue/20"
         : "text-sail-blue bg-surface-product-muted ring-border/50";
 
@@ -168,10 +174,35 @@ function DesktopFlowArrow() {
   return (
     <span
       aria-hidden="true"
-      className="hidden items-center justify-center text-muted-foreground/40 lg:flex"
+      className="hidden items-center justify-center text-sail-blue/35 lg:flex"
     >
       →
     </span>
+  );
+}
+
+function DesktopSnakeConnector() {
+  return (
+    <div
+      aria-hidden="true"
+      className="col-span-3 hidden h-8 lg:block xl:h-10"
+    >
+      <svg
+        className="h-full w-full text-border/75"
+        viewBox="0 0 100 24"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 83 0 V 12 H 17 V 24"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+    </div>
   );
 }
 
@@ -206,9 +237,7 @@ export function ProductJourney() {
           <DesktopFlowArrow />
           <UnderstandStage />
 
-          <div className="col-span-3 my-1 flex justify-center" aria-hidden="true">
-            <span className="h-px w-full max-w-md bg-border/60" />
-          </div>
+          <DesktopSnakeConnector />
 
           <DecideStage />
           <DesktopFlowArrow />
@@ -241,15 +270,30 @@ export function ProductJourneyResult() {
         <h3 className="mt-3 text-base font-semibold text-foreground">Spårbar aktivitet</h3>
 
         <ul className="mt-4 flex flex-wrap gap-2">
-          {result.summary.map((item) => (
-            <li
-              key={item}
-              className="flex items-center gap-1.5 rounded-md bg-surface-product-muted/50 px-2.5 py-1 text-[11px] text-foreground"
-            >
-              <span className="size-1.5 rounded-full bg-emerald-600/70" aria-hidden="true" />
-              {item}
-            </li>
-          ))}
+          {result.summary.map((item, index) => {
+            const isPending = index === result.summary.length - 1;
+
+            return (
+              <li
+                key={item}
+                className={cn(
+                  "flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[11px]",
+                  isPending
+                    ? "bg-surface-product text-sail-blue ring-1 ring-sail-blue/20"
+                    : "bg-surface-product-muted/50 text-foreground"
+                )}
+              >
+                <span
+                  className={cn(
+                    "size-1.5 rounded-full",
+                    isPending ? "bg-sail-blue/70" : "bg-emerald-600/70"
+                  )}
+                  aria-hidden="true"
+                />
+                {item}
+              </li>
+            );
+          })}
         </ul>
 
         <ol className="mt-5 space-y-0 divide-y divide-border/35 rounded-[var(--radius-module-control)] border border-border/35 bg-surface-product-muted/30">

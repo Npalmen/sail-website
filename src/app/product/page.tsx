@@ -23,9 +23,9 @@ export default function ProductPage() {
     <SiteShell>
       <ProductHero />
       <ProductJourney />
-      <ProductDifferentiation />
       <ProductControl />
       <ProductJourneyResult />
+      <ProductDifferentiation />
       <ProductExperience
         id="morning-overview"
         eyebrow={morningOverview.eyebrow}

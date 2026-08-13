@@ -26,27 +26,10 @@ function HeroPipeline() {
         </div>
 
         <div className="p-4 sm:p-5">
-          <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-            Inkommande
-          </p>
-          <p className="mt-1.5 text-sm font-semibold text-foreground">
+          <p className="text-sm font-semibold text-foreground">
+            {productJourneyScenario.incoming.customer} ·{" "}
             {productJourneyScenario.incoming.title}
           </p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {productJourneyScenario.incoming.customer} · mottagen{" "}
-            {productJourneyScenario.incoming.received}
-          </p>
-
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            {productJourneyScenario.incoming.sources.map((source) => (
-              <span
-                key={source}
-                className="rounded-md bg-surface-product-muted px-2 py-0.5 text-[11px] text-muted-foreground"
-              >
-                {source}
-              </span>
-            ))}
-          </div>
 
           <div className="mt-5 border-t border-border/40 pt-4">
             <div className="flex flex-wrap items-center gap-2 sm:gap-0">
