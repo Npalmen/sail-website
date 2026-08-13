@@ -18,8 +18,20 @@ function StatusIndicator({ status }: { status: PanelStatus }) {
   );
 }
 
-export function ProductExperience() {
-  const { id, eyebrow, headline, panels } = homepageContent.productExperience;
+type ProductExperienceProps = {
+  id?: string;
+  eyebrow?: string;
+  headline?: string;
+  description?: string;
+};
+
+export function ProductExperience({
+  id = homepageContent.productExperience.id,
+  eyebrow = homepageContent.productExperience.eyebrow,
+  headline = homepageContent.productExperience.headline,
+  description,
+}: ProductExperienceProps) {
+  const { panels } = homepageContent.productExperience;
 
   return (
     <ContentSurface
@@ -35,6 +47,7 @@ export function ProductExperience() {
       <SectionHeader
         eyebrow={eyebrow}
         headline={headline}
+        description={description}
         className="[&_h2]:mt-3"
       />
 
